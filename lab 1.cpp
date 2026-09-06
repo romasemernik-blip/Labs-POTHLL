@@ -70,14 +70,11 @@ class Ticket
 {
      private:
      int place;
-     Session* session;
+     shared_ptr<Session> session;
      float price;
      int row;
      public:
-     Ticket(int place, Session* session, float price, int row)
-     {
-          In(place,session, price, row );
-     }
+     Ticket(int place, shared_ptr<Session> session , float price, int row): place(place), price(price), session(session), row(row) {}
      void OutT ()
      {
           Out_place_and_row();
@@ -85,19 +82,11 @@ class Ticket
           Out_price();
 
      }
-     void In (int place, Session* session, float price, int row)
-     {
-          In_place(place);
-          In_session(session);
-          In_price(price);
-          In_row(row);
-
-     }
      void  In_place(int place)
      {
          this->place = place;
      }
-     void   In_session(Session* session)
+     void   In_session(shared_ptr<Session> session)
      {
          this->session = session;
      }
@@ -115,7 +104,11 @@ class Ticket
      }
      void Out_session()
      {
-          session->OutS();
+          if (session)
+          {
+               session->OutS();
+          }
+          
 
      }
      void Out_price()
@@ -133,7 +126,7 @@ class Session
     shared_ptr<Date> date;
     shared_ptr<Time> time_start;
     public:
-    Session(string film, shared_ptr<Hall> hall, shared_ptr<Date> date, shared_ptr<Time> time_start): film(film), hall(hall), date(date), time_start(time_start) {}
+    Session( string film, shared_ptr<Hall> hall, shared_ptr<Date> date, shared_ptr<Time> time_start): film(film), hall(hall), date(date), time_start(time_start) {}
       void In_film (string film)
     {
          this->film = film;

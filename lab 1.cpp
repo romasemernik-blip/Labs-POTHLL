@@ -82,8 +82,53 @@ class Ticket
      float price;
      int row;
      public:
-  
-     
+     Ticket(int place, Session* session, float price, int row)
+     {
+          In(place,session, price, row );
+     }
+     void Out ()
+     {
+          Out_place_and_row();
+          Out_session();
+          Out_price();
+
+     }
+     void In (int place, Session* session, float price, int row)
+     {
+          In_place(place);
+          In_session(session);
+          In_price(price);
+          In_row(row);
+
+     }
+     void  In_place(int place)
+     {
+         this->place = place;
+     }
+     void   In_session(Session* session)
+     {
+         this->session = session;
+     }
+     void  In_price(float price)
+     {
+         this->price = price;
+     }
+     void  In_row(int row)
+     {
+         this->row = row;
+     }
+     void Out_place_and_row()
+     {
+         cout << "Row and place of person: " << row << " " << place <<  endl;
+     }
+     void Out_session()
+     {
+          session->Out();
+     }
+     void Out_price()
+     {
+          cout << "Price of ticket: " << price << endl;
+     }
 
 };
 class Session

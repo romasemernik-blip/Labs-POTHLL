@@ -206,8 +206,8 @@ int main ()
     auto session2 = make_shared<Session>("Stranger Things", time2, date2, hall2);
     session1->OutS();
     session2->OutS();
-    auto ticket1 = make_shared<Ticket>(2, 7, 12.3, session1);
-    auto ticket2 = make_shared<Ticket>(3, 14, 10.3, session2);
+    auto ticket1 = make_shared<Ticket>(2, 7, 12.3f, session1);
+    auto ticket2 = make_shared<Ticket>(3, 14, 10.3f, session2);
     ticket1->OutT();
     ticket2->OutT();
 

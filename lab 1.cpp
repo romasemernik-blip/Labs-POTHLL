@@ -1,6 +1,7 @@
 #include<iostream>
 #include<string>
 
+using namespace std;
 class Halls 
 {
     Halls (int num, int num_seat, string name)
@@ -14,15 +15,15 @@ class Halls
     public:
     void Out ( )
     {
-      cout << "Name of Hall: " << name << endl;
-      cout << "Number of Hall: " << num << endl;
-      cout << "Number of seats: " << num_seat << endl;
+       Out_num();
+       Out_num_seat();
+       Out_name();
     }
     void In (int num, int num_seat, string name)
     {
-        this->num = num;
-        this->num_seat = num_seat;
-        this->name = name;
+        In_num (num);
+        In_num_seat (num_seat);
+        In_name (name);
     }
     void In_num (int num)
     {
@@ -63,15 +64,15 @@ class Session
     public:
     void Out ( )
     {
-      cout << "Name of session film: " << film << endl;
-      cout << "Date of session: " << date << endl;
-      cout << "Session start time: " << time_start << endl;
+      Out_film ();
+      Out_date ();
+      Out_time_start ();
     }  
      void In (string film, string date, int time_start)
     {
-        this->film = film;
-        this->date = date;
-        this->time_start = time_start;
+        In_film (film);
+        In_date (date);
+        In_time_start (time_start);
     }
     void In_film (string film)
     {

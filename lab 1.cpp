@@ -4,7 +4,34 @@
 using namespace std;
 class Session;
 class Hall;
-
+struct Date {
+int year;
+int month;
+int day;
+Date (int y, int m, int d)
+{
+    year = y;
+    month = m;
+    day = d; 
+}
+void Out ()
+{
+     cout << day << "." << month << "." << year << endl;
+}
+};
+struct Time {
+int hour;
+int minute;
+Time (int h, int m)
+{
+     hour = h;
+     minute = m;
+}
+void Out ()
+{
+     cout << hour << ":" << minute << endl;
+}
+};
 class Hall
 {
    

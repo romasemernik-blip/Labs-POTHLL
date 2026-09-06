@@ -4,6 +4,7 @@
 using namespace std;
 class Session;
 class Hall;
+class Ticket;
 struct Date {
 int year;
 int month;
@@ -24,6 +25,7 @@ Time (int h, int m)
      minute = m;
 }
 };
+
 class Hall
 {
     private:
@@ -71,6 +73,18 @@ class Hall
     {
          cout << "Number of seats: " << num_seat << endl;
     }    
+};
+class Ticket
+{
+     private:
+     int place;
+     Session* session;
+     float price;
+     int row;
+     public:
+  
+     
+
 };
 class Session
 {

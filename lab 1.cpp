@@ -66,57 +66,7 @@ class Hall
          cout << "Name of Hall: " << name << endl;
     }    
 };
-class Ticket
-{
-     private:
-     int place;
-     shared_ptr<Session> session;
-     float price;
-     int row;
-     public:
-     Ticket( int row,int place,  float price,shared_ptr<Session> session ): place(place), price(price), session(session), row(row) {}
-     void OutT ()
-     {
-          Out_place_and_row();
-          Out_session();
-          Out_price();
 
-     }
-     void  In_place(int place)
-     {
-         this->place = place;
-     }
-     void   In_session(shared_ptr<Session> session)
-     {
-         this->session = session;
-     }
-     void  In_price(float price)
-     {
-         this->price = price;
-     }
-     void  In_row(int row)
-     {
-         this->row = row;
-     }
-     void Out_place_and_row()
-     {
-         cout << "Row and place of person: " << row << " " << place <<  endl;
-     }
-     void Out_session()
-     {
-          if (session)
-          {
-               session->OutS;
-          }
-          
-
-     }
-     void Out_price()
-     {
-          cout << "Price of ticket: " << price << "$" << endl;
-     }
-
-};
 class Session
 {
     
@@ -183,6 +133,57 @@ void Out_time ()
          
     }   
 
+
+};
+class Ticket
+{
+     private:
+     int place;
+     shared_ptr<Session> session;
+     float price;
+     int row;
+     public:
+     Ticket( int row,int place,  float price,shared_ptr<Session> session ): place(place), price(price), session(session), row(row) {}
+     void OutT ()
+     {
+          Out_place_and_row();
+          Out_session();
+          Out_price();
+
+     }
+     void  In_place(int place)
+     {
+         this->place = place;
+     }
+     void   In_session(shared_ptr<Session> session)
+     {
+         this->session = session;
+     }
+     void  In_price(float price)
+     {
+         this->price = price;
+     }
+     void  In_row(int row)
+     {
+         this->row = row;
+     }
+     void Out_place_and_row()
+     {
+         cout << "Row and place of person: " << row << " " << place <<  endl;
+     }
+     void Out_session()
+     {
+          if (session)
+          {
+               session->OutS();
+          }
+          
+
+     }
+     void Out_price()
+     {
+          cout << "Price of ticket: " << price << "$" << endl;
+     }
 
 };
 int main ()

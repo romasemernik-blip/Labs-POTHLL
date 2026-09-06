@@ -59,11 +59,11 @@ class Hall
     }   
      void Out_num_seat ()
     {
-         cout << "Name of Hall: " << name << endl;
+         cout << "Number of seats: " << num_seat << endl;
     }   
      void Out_name ()
     {
-         cout << "Number of seats: " << num_seat << endl;
+         cout << "Name of Hall: " << name << endl;
     }    
 };
 class Ticket
@@ -129,51 +129,52 @@ class Session
     
     private:
     string film;
-    Hall* hall;
-    Date* date;
-    Time* time_start;
+    shared_ptr<Hall> hall;
+    shared_ptr<Date> date;
+    shared_ptr<Time> time_start;
     public:
-    Session(string film, Time* time_start, Date* date, Hall* hall)
+    Session(string film, shared_ptr<Hall> hall, shared_ptr<Date> date, shared_ptr<Time> time_start): film(film), hall(hall), date(date), time_start(time_start) {}
+      void In_film (string film)
     {
-        In(film,time_start, date, hall);
+         this->film = film;
     }
+    void In_hall (shared_ptr<Hall> hall)
+    {
+         this->hall = hall;
+    }
+    void In_time_start (shared_ptr<Time> time_start)
+    {
+         this->time_start = time_start;
+    }
+    void In_date (shared_ptr<Date> date )
+    {
+         this->date = date;
+    } 
     void OutS ( )
     {
+     cout << "Session info" << endl;
       Out_film ();
       Out_hall ();
       Out_date ();
       Out_time ();
+      cout << endl;
     }  
-     void In (string film, Time* time_start, Date* date, Hall* hall)
-    {
-        In_film (film);
-        In_hall (hall);
-        In_date (date);
-        In_time_start (time_start);
-    }
-    void In_film (string film)
-    {
-         this->film = film;
-    }
-    void In_hall (Hall* hall)
-    {
-         this->hall = hall;
-    }
-    void In_time_start (Time* time_start)
-    {
-         this->time_start = time_start;
-    }
-    void In_date (Date* date)
-    {
-         this->date = date;
-    }
+ 
     void Out_date ()
 {
-     cout <<"Date of session:"<< date->day << "." << date->month << "." << date->year << endl;
+     if (date) {
+          cout << "Date:";
+          date->print();
+          cout << endl;
+     }
 }
 void Out_time ()
 {
-     cout << "Time of session start:"<< time_start->hour << ":" << time_start->minute << endl;
+   if (time_start) {
+          cout << "Time:";
+          time_start->print();
+          cout << endl;
+     }
 }
     void Out_film ()
     {
@@ -181,7 +182,12 @@ void Out_time ()
     }
     void Out_hall ()
     {
-         hall->OutH();
+     if (hall)
+     {
+          hall->Out_name();
+          hall->Out_num(); 
+     }
+         
     }   
 
 

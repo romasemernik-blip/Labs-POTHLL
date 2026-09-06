@@ -66,7 +66,11 @@ class Hall
      void Out_name ()
     {
          cout << "Name of Hall: " << name << endl;
-    }    
+    }
+    int getNum() const { return num; }
+    int getNumSeats() const { return num_seat; }
+    string getName() const { return name; }    
+
 };
 
 class Session
@@ -133,7 +137,11 @@ void Out_time ()
           hall->Out_num(); 
      }
          
-    }   
+    }
+    string getFilm() const { return film; }
+    shared_ptr<Hall> getHall() const { return hall; }
+    shared_ptr<Date> getDate() const { return date; }
+    shared_ptr<Time> getTimeStart() const { return time_start; }   
 
 
 };
@@ -188,6 +196,10 @@ class Ticket
      {
           cout << "Price of ticket: " << price << "$" << endl;
      }
+     int getRow() const { return row; }
+     int getPlace() const { return place; }
+     float getPrice() const { return price; }
+     shared_ptr<Session> getSession() const { return session; }
 
 };
 int main ()

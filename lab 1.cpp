@@ -33,22 +33,8 @@ class Hall
     int num_seat;
     string name;
     public:
-     Hall (int num, int num_seat, string name)
-    {
-        In(num, num_seat, name);
-    }
-    void OutH ( )
-    {
-       Out_num();
-       Out_num_seat();
-       Out_name();
-    }
-    void In (int num, int num_seat, string name)
-    {
-        In_num (num);
-        In_num_seat (num_seat);
-        In_name (name);
-    }
+     Hall (int num, int num_seat, string name): num(num), num_seat(num_seat), name(name) {}
+    
     void In_num (int num)
     {
          this->num = num;
@@ -60,6 +46,12 @@ class Hall
     void In_name (string name)
     {
          this->name = name;
+    }
+    void OutH ( )
+    {
+       Out_num();
+       Out_num_seat();
+       Out_name();
     }
     void Out_num ()
     {

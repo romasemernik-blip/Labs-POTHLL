@@ -74,7 +74,7 @@ class Ticket
      float price;
      int row;
      public:
-     Ticket(int place, shared_ptr<Session> session , float price, int row): place(place), price(price), session(session), row(row) {}
+     Ticket( int row,int place,  float price,shared_ptr<Session> session ): place(place), price(price), session(session), row(row) {}
      void OutT ()
      {
           Out_place_and_row();
@@ -106,7 +106,7 @@ class Ticket
      {
           if (session)
           {
-               session->OutS();
+               session->OutS;
           }
           
 
@@ -126,7 +126,7 @@ class Session
     shared_ptr<Date> date;
     shared_ptr<Time> time_start;
     public:
-    Session( string film, shared_ptr<Hall> hall, shared_ptr<Date> date, shared_ptr<Time> time_start): film(film), hall(hall), date(date), time_start(time_start) {}
+    Session( string film, shared_ptr<Time> time_start, shared_ptr<Date> date,shared_ptr<Hall> hall ): film(film), hall(hall), date(date), time_start(time_start) {}
       void In_film (string film)
     {
          this->film = film;
@@ -187,28 +187,28 @@ void Out_time ()
 };
 int main ()
 {
-    Hall First(1 ,120 ,"mooon" );
-    Hall Second(2 ,240 ,"spartac" );
-    Hall Third(3 ,200 ,"october" );
-    Hall Fourth(4 ,420 ,"qeen" );
-    Hall Fifth(5 ,90 ,"mooon" );
-    First.OutH();
-    Second.OutH();
-    Third.OutH();
-    Fourth.OutH();
-    Fifth.OutH();
-    Time time1(13,30);
-    Date date1(2026,02,12);
-    Time time2(18,20);
-    Date date2(2025,12,12);
-    Session Nut("Breaking bad",&time1,&date1, &Fifth );
-    Session Not("Stranger things", &time2,&date2, &Second);
-    Nut.OutS();
-    Not.OutS();
-    Ticket t1( 7,&Nut,12.3,2);
-    Ticket t2( 14,&Not,10.3,3);
-    t1.OutT();
-    t2.OutT();
+    auto hall1 = make_shared<Hall>(1, 120, "Moon");
+    auto hall2 = make_shared<Hall>(2, 240, "Spartac");
+    auto hall3 = make_shared<Hall>(3, 200, "October");
+    auto hall4 = make_shared<Hall>(4, 420, "Queen");
+    auto hall5 = make_shared<Hall>(5, 90, "Moon");
+    hall1->OutH();
+    hall2->OutH();
+    hall3->OutH();
+    hall4->OutH();
+    hall5->OutH();
+    auto date1 = make_shared<Date>(2026, 2, 12);
+    auto date2 = make_shared<Date>(2025, 12, 12);
+    auto time1 = make_shared<Time>(13, 30);
+    auto time2 = make_shared<Time>(18, 20);
+    auto session1 = make_shared<Session>("Breaking Bad", time1, date1, hall5);
+    auto session2 = make_shared<Session>("Stranger Things", time2, date2, hall2);
+    session1->OutS();
+    session2->OutS();
+    auto ticket1 = make_shared<Ticket>(2, 7, 12.3, session1);
+    auto ticket2 = make_shared<Ticket>(3, 14, 10.3, session2);
+    ticket1->OutT();
+    ticket2->OutT();
 
 
     return 0;

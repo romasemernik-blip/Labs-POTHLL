@@ -14,10 +14,6 @@ Date (int y, int m, int d)
     month = m;
     day = d; 
 }
-void Out ()
-{
-     cout << day << "." << month << "." << year << endl;
-}
 };
 struct Time {
 int hour;
@@ -27,14 +23,9 @@ Time (int h, int m)
      hour = h;
      minute = m;
 }
-void Out ()
-{
-     cout << hour << ":" << minute << endl;
-}
 };
 class Hall
 {
-   
     private:
     int num;
     int num_seat;
@@ -87,55 +78,55 @@ class Session
     private:
     string film;
     Hall* hall;
-    string date;
-    int time_start;
+    Date* date;
+    Time* time_start;
     public:
-    Session(string film, string date, int time_start, Hall* hall)
+    Session(string film, Time* time_start, Date* date, Hall* hall)
     {
-        In(film, date, time_start, hall);
+        In(film,time_start, date, hall);
     }
     void Out ( )
     {
       Out_film ();
-      Out_date ();
-      Out_time_start ();
       Out_hall ();
+      Out_date ();
+      Out_time ();
     }  
-     void In (string film, string date, int time_start, Hall* hall)
+     void In (string film, Time* time_start, Date* date, Hall* hall)
     {
         In_film (film);
+        In_hall (hall);
         In_date (date);
         In_time_start (time_start);
-        In_hall (hall);
     }
     void In_film (string film)
     {
          this->film = film;
     }
-    void In_date (string date)
-    {
-         this->date = date;
-    }
-    void In_time_start (int time_start)
-    {
-         this->time_start = time_start;
-    }
     void In_hall (Hall* hall)
     {
          this->hall = hall;
     }
+    void In_time_start (Time* time_start)
+    {
+         this->time_start = time_start;
+    }
+    void In_date (Date* date)
+    {
+         this->date = date;
+    }
+    void Out_date ()
+{
+     cout <<"Date of session:"<< date->day << "." << date->month << "." << date->year << endl;
+}
+void Out_time ()
+{
+     cout << "Time of session start:"<< time_start->hour << ":" << time_start->minute << endl;
+}
     void Out_film ()
     {
          cout << "Name of session film: " << film << endl;
     }
-    void Out_date ()
-    {
-         cout << "Date of session: " << date << endl;
-    }  
-    void Out_time_start ()
-    {
-         cout << "Session start time: " << time_start << endl;
-    }  
     void Out_hall ()
     {
          hall->Out();
@@ -155,8 +146,12 @@ int main ()
     Third.Out();
     Fourth.Out();
     Fifth.Out();
-    Session Nut("Breaking bad", "24.12.2026",19, &Fifth );
-    Session Not("Stranger things", "20.02.2020",10, &Second);
+    Time time1(13,30);
+    Date date1(2026,02,12);
+    Time time2(18,20);
+    Date date2(2025,12,12);
+    Session Nut("Breaking bad",&time1,&date1, &Fifth );
+    Session Not("Stranger things", &time2,&date2, &Second);
     Nut.Out();
     Not.Out();
 

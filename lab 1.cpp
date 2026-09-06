@@ -4,15 +4,16 @@
 using namespace std;
 class Halls 
 {
-    Halls (int num, int num_seat, string name)
-    {
-        In(num, num_seat, name);
-    }
+   
     private:
     int num;
     int num_seat;
     string name;
     public:
+     Halls (int num, int num_seat, string name)
+    {
+        In(num, num_seat, name);
+    }
     void Out ( )
     {
        Out_num();
@@ -52,16 +53,17 @@ class Halls
 };
 class Session
 {
-    Session(string film, string date, int time_start)
-    {
-        In(film, date, time_start);
-    }
+    
     private:
     string film;
     class Halls;
     string date;
     int time_start;
     public:
+    Session(string film, string date, int time_start)
+    {
+        In(film, date, time_start);
+    }
     void Out ( )
     {
       Out_film ();
@@ -103,5 +105,20 @@ class Session
 };
 int main ()
 {
+    Halls First(1 ,120 ,"mooon" );
+    Halls Second(2 ,240 ,"spartac" );
+    Halls Third(3 ,200 ,"october" );
+    Halls Fourth(4 ,420 ,"qeen" );
+    Halls Fifth(5 ,90 ,"mooon" );
+    First.Out();
+    Second.Out();
+    Third.Out();
+    Fourth.Out();
+    Fifth.Out();
+    Session Nut("Breaking bad", "24.12.2026",19);
+    Session Not("Stranger things", "20.02.2020",10);
+    Nut.Out();
+    Not.Out();
+
     return 0;
 }

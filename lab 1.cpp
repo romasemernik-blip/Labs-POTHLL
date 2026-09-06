@@ -2,7 +2,10 @@
 #include<string>
 
 using namespace std;
-class Halls 
+class Session;
+class Hall;
+
+class Hall
 {
    
     private:
@@ -10,7 +13,7 @@ class Halls
     int num_seat;
     string name;
     public:
-     Halls (int num, int num_seat, string name)
+     Hall (int num, int num_seat, string name)
     {
         In(num, num_seat, name);
     }
@@ -56,25 +59,27 @@ class Session
     
     private:
     string film;
-    class Halls;
+    Hall* hall;
     string date;
     int time_start;
     public:
-    Session(string film, string date, int time_start)
+    Session(string film, string date, int time_start, Hall* hall)
     {
-        In(film, date, time_start);
+        In(film, date, time_start, hall);
     }
     void Out ( )
     {
       Out_film ();
       Out_date ();
       Out_time_start ();
+      Out_hall ();
     }  
-     void In (string film, string date, int time_start)
+     void In (string film, string date, int time_start, Hall* hall)
     {
         In_film (film);
         In_date (date);
         In_time_start (time_start);
+        In_hall (hall);
     }
     void In_film (string film)
     {
@@ -88,6 +93,10 @@ class Session
     {
          this->time_start = time_start;
     }
+    void In_hall (Hall* hall)
+    {
+         this->hall = hall;
+    }
     void Out_film ()
     {
          cout << "Name of session film: " << film << endl;
@@ -99,24 +108,28 @@ class Session
     void Out_time_start ()
     {
          cout << "Session start time: " << time_start << endl;
-    }     
+    }  
+    void Out_hall ()
+    {
+         hall->Out();
+    }   
 
 
 };
 int main ()
 {
-    Halls First(1 ,120 ,"mooon" );
-    Halls Second(2 ,240 ,"spartac" );
-    Halls Third(3 ,200 ,"october" );
-    Halls Fourth(4 ,420 ,"qeen" );
-    Halls Fifth(5 ,90 ,"mooon" );
+    Hall First(1 ,120 ,"mooon" );
+    Hall Second(2 ,240 ,"spartac" );
+    Hall Third(3 ,200 ,"october" );
+    Hall Fourth(4 ,420 ,"qeen" );
+    Hall Fifth(5 ,90 ,"mooon" );
     First.Out();
     Second.Out();
     Third.Out();
     Fourth.Out();
     Fifth.Out();
-    Session Nut("Breaking bad", "24.12.2026",19);
-    Session Not("Stranger things", "20.02.2020",10);
+    Session Nut("Breaking bad", "24.12.2026",19, &Fifth );
+    Session Not("Stranger things", "20.02.2020",10, &Second);
     Nut.Out();
     Not.Out();
 

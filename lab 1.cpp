@@ -9,20 +9,19 @@ struct Date {
 int year;
 int month;
 int day;
-Date (int y, int m, int d)
-{
-    year = y;
-    month = m;
-    day = d; 
+Date (int y, int m, int d) : year(y), month(m), day(d) {}
+void print() {
+     cout << day <<"." << month << "." << year;
 }
 };
 struct Time {
 int hour;
 int minute;
-Time (int h, int m)
-{
-     hour = h;
-     minute = m;
+Time (int h, int m): hour(h), minute(m) {}
+void print () const {
+     cout << hour << ":";
+     if (minute < 10) cout << "0";
+     cout << minute;
 }
 };
 
@@ -37,7 +36,7 @@ class Hall
     {
         In(num, num_seat, name);
     }
-    void Out ( )
+    void OutH ( )
     {
        Out_num();
        Out_num_seat();
@@ -86,7 +85,7 @@ class Ticket
      {
           In(place,session, price, row );
      }
-     void Out ()
+     void OutT ()
      {
           Out_place_and_row();
           Out_session();
@@ -123,11 +122,12 @@ class Ticket
      }
      void Out_session()
      {
-          session->Out();
+          session->OutS();
+
      }
      void Out_price()
      {
-          cout << "Price of ticket: " << price << endl;
+          cout << "Price of ticket: " << price << "$" << endl;
      }
 
 };
@@ -144,7 +144,7 @@ class Session
     {
         In(film,time_start, date, hall);
     }
-    void Out ( )
+    void OutS ( )
     {
       Out_film ();
       Out_hall ();
@@ -188,7 +188,7 @@ void Out_time ()
     }
     void Out_hall ()
     {
-         hall->Out();
+         hall->OutH();
     }   
 
 
@@ -200,19 +200,24 @@ int main ()
     Hall Third(3 ,200 ,"october" );
     Hall Fourth(4 ,420 ,"qeen" );
     Hall Fifth(5 ,90 ,"mooon" );
-    First.Out();
-    Second.Out();
-    Third.Out();
-    Fourth.Out();
-    Fifth.Out();
+    First.OutH();
+    Second.OutH();
+    Third.OutH();
+    Fourth.OutH();
+    Fifth.OutH();
     Time time1(13,30);
     Date date1(2026,02,12);
     Time time2(18,20);
     Date date2(2025,12,12);
     Session Nut("Breaking bad",&time1,&date1, &Fifth );
     Session Not("Stranger things", &time2,&date2, &Second);
-    Nut.Out();
-    Not.Out();
+    Nut.OutS();
+    Not.OutS();
+    Ticket t1( 7,&Nut,12.3,2);
+    Ticket t2( 14,&Not,10.3,3);
+    t1.OutT();
+    t2.OutT();
+
 
     return 0;
 }

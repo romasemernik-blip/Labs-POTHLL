@@ -48,10 +48,12 @@ class Hall
          this->name = name;
     }
     void OutH ( )
-    {
+    { 
+     cout << "Hall:" << endl;
        Out_num();
        Out_num_seat();
        Out_name();
+       cout << endl;
     }
     void Out_num ()
     {
@@ -146,9 +148,11 @@ class Ticket
      Ticket( int row,int place,  float price,shared_ptr<Session> session ): place(place), price(price), session(session), row(row) {}
      void OutT ()
      {
+          cout<< "Ticket:"<<endl;
           Out_place_and_row();
           Out_session();
           Out_price();
+          cout << endl;
 
      }
      void  In_place(int place)
@@ -206,11 +210,11 @@ int main ()
     auto session2 = make_shared<Session>("Stranger Things", time2, date2, hall2);
     session1->OutS();
     session2->OutS();
+    session1->In_hall(hall3);
+    session1->OutS();
     auto ticket1 = make_shared<Ticket>(2, 7, 12.3f, session1);
     auto ticket2 = make_shared<Ticket>(3, 14, 10.3f, session2);
     ticket1->OutT();
     ticket2->OutT();
-
-
     return 0;
 }

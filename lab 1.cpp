@@ -1,13 +1,15 @@
+
 #include<iostream>
 #include<string>
 #include<memory>
-#include<vector>
 
 using namespace std;
+
 class Session;
 class Hall;
 class Ticket;
 class Cinema_system;
+
 struct Date {
 int year;
 int month;
@@ -27,49 +29,6 @@ void print () const {
      cout << minute;
 }
 };
-class Cinema_system
-{
-     private:
-     vector<shared_ptr<Ticket> tickets;
-     public:
-     void addTicket(shared_ptr<Ticket> ticket) {
-        tickets.push_back(ticket);
-    }
-
-     bool isPlaceFree(int row, int place)  {
-        for (const auto& ticket : tickets) {
-            if (ticket->getRow() == row && ticket->getPlace() == place) {
-                return false; 
-            }
-        }
-        return true; 
-    }
-
-     bool removeTicket(int row, int place) {
-        for (auto it = tickets.begin(); it != tickets.end(); ++it) {
-            if ((*it)->getRow() == row && (*it)->getPlace() == place) {
-                tickets.erase(it);
-                return true; 
-        }
-        return false; 
-    }
-     void showAllTickets()  {
-        if (tickets.empty()) {
-            cout << " No tickets." << endl;
-            return;
-        }
-        
-        cout << "=== ALL TICKETS (" << tickets.size() << ") ===" << endl;
-        for (size_t i = 0; i < tickets.size(); ++i) {
-            cout << "Ticket №" << (i + 1) << ":";
-            tickets[i]->OutT();
-        }
-    }
-    
-    int getTicketCount() const {
-        return tickets.size();
-     
-}
 class Hall
 {
     private:

@@ -41,7 +41,7 @@ class Ticket_system
      void In_unique_ticket (unique_ptr<Ticket> ticket) {
           particle.push_back(move(ticket));
      }
-      void Out_shared_ticket(shared_ptr<Ticket> ticket)
+      void Out_shared_ticket()
      {
           for ( auto & Ticket : reservation )
           {
@@ -50,7 +50,7 @@ class Ticket_system
           }
 
      }
-     void Out_unique_ticket (unique_ptr<Ticket> ticket)
+     void Out_unique_ticket ()
      {
           for ( auto & Ticket : particle )
           {
@@ -261,8 +261,14 @@ int main ()
     session1->In_hall(hall3);
     session1->OutS();
     auto ticket1 = make_shared<Ticket>(2, 7, 12.3f, session1);
-    auto ticket2 = make_shared<Ticket>(3, 14, 10.3f, session2);
+    auto ticket2 = make_unique<Ticket>(3, 14, 10.3f, session2);
     ticket1->OutT();
     ticket2->OutT();
+    Ticket_system system;
+    system.In_shared_ticket(ticket1);
+    system.In_unique_ticket(move(ticket2));
+    system.Out_shared_ticket();
+    system.Out_unique_ticket();
     return 0;
+
 }

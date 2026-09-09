@@ -16,7 +16,7 @@ int year;
 int month;
 int day;
 Date (int y, int m, int d) : year(y), month(m), day(d) {}
-void print() {
+void const Print() {
      cout << day <<"." << month << "." << year;
 }
 };
@@ -24,7 +24,7 @@ struct Time {
 int hour;
 int minute;
 Time (int h, int m): hour(h), minute(m) {}
-void print () const {
+void const Print () const {
      cout << hour << ":";
      if (minute < 10) cout << "0";
      cout << minute;
@@ -38,7 +38,7 @@ class Hall
     int num_seat;
     string name;
     public:
-     Hall (int num, int num_seat, string name): num(num), num_seat(num_seat), name(name) {}
+    const Hall  (int num, int num_seat, string name): num(num), num_seat(num_seat), name(name) {}
     
     void In_num (int num)
     {
@@ -48,9 +48,9 @@ class Hall
     {
          this->num_seat = num_seat;
     }
-    void In_name (string name)
+    void  const In_name (string name_)
     {
-         this->name = name;
+         name = name_;
     }
     void Out_h ( )
     { 
@@ -60,15 +60,15 @@ class Hall
        Out_name();
        cout << endl;
     }
-    void Out_num ()
+    void const Out_num ()
     {
          cout << "Number of Hall: " << num << endl;
     }   
-     void Out_num_seat ()
+     void const Out_num_seat ()
     {
          cout << "Number of seats: " << num_seat << endl;
     }   
-     void Out_name ()
+     void const Out_name ()
     {
          cout << "Name of Hall: " << name << endl;
     }
@@ -87,22 +87,22 @@ class Session
     shared_ptr<Date> date;
     shared_ptr<Time> time_start;
     public:
-    Session( string film, shared_ptr<Time> time_start, shared_ptr<Date> date,shared_ptr<Hall> hall ): film(film), hall(hall), date(date), time_start(time_start) {}
-      void In_film (string film)
+    const Session( string film, shared_ptr<Time> time_start, shared_ptr<Date> date,shared_ptr<Hall> hall ): film(film), hall(hall), date(date), time_start(time_start) {}
+      void In_film (string film_)
     {
-         this->film = film;
+         film = film_;
     }
-    void In_hall (shared_ptr<Hall> hall)
+    void In_hall (shared_ptr<Hall> hall_)
     {
-         this->hall = hall;
+         hall = hall_;
     }
-    void In_time_start (shared_ptr<Time> time_start)
+    void In_time_start (shared_ptr<Time> time_start_)
     {
-         this->time_start = time_start;
+         time_start = time_start_;
     }
-    void In_date (shared_ptr<Date> date )
+    void In_date (shared_ptr<Date> date_ )
     {
-         this->date = date;
+         date = date_;
     } 
     void Out_s ( )
     {
@@ -118,19 +118,19 @@ class Session
 {
      if (date) {
           cout << "Date:";
-          date->print();
+          date->Print();
           cout << endl;
      }
 }
-void Out_time ()
+void const Out_time ()
 {
    if (time_start) {
           cout << "Time:";
-          time_start->print();
+          time_start->Print();
           cout << endl;
      }
 }
-    void Out_film ()
+    void const Out_film ()
     {
          cout << "Name of session film: " << film << endl;
     }
@@ -158,7 +158,7 @@ class Ticket
      float price;
      int row;
      public:
-     Ticket( int row,int place,  float price,shared_ptr<Session> session ): place(place), price(price), session(session), row(row) {}
+     Ticket( int row,int place,  float price,shared_ptr<Session> session ): place(place), session(session), price(price), row(row) {}
      void Out_t ()
      {
           cout<< "Ticket:"<<endl;
@@ -172,9 +172,9 @@ class Ticket
      {
          this->place = place;
      }
-     void   In_session(shared_ptr<Session> session)
+     void   In_session(shared_ptr<Session> session_)
      {
-         this->session = session;
+         session = session_;
      }
      void  In_price(float price)
      {
@@ -184,7 +184,7 @@ class Ticket
      {
          this->row = row;
      }
-     void Out_place_and_row()
+     void const Out_place_and_row()
      {
          cout << "Row and place of person: " << row << " " << place <<  endl;
      }
@@ -197,7 +197,7 @@ class Ticket
           
 
      }
-     void Out_price()
+     void const Out_price()
      {
           cout << "Price of ticket: " << price << "$" << endl;
      }
@@ -213,13 +213,13 @@ class Ticket_system
      vector <shared_ptr<Ticket>> reservation;
      vector <unique_ptr<Ticket>> particle;
      public: 
-     void In_shared_ticket (shared_ptr<Ticket> ticket_sh) {
+     void In_shared_ticket ( const shared_ptr<Ticket> ticket_sh) {
           reservation.push_back(ticket_sh);
      }
-     void In_unique_ticket (unique_ptr<Ticket> ticket_un) {
+     void In_unique_ticket (const unique_ptr<Ticket> ticket_un) {
           particle.push_back(move(ticket_un));
      }
-      void Out_shared_ticket()
+      void const Out_shared_ticket()
      {
           for ( auto& ticket_sh : reservation )
           {
@@ -228,7 +228,7 @@ class Ticket_system
           }
 
      }
-     void Out_unique_ticket ()
+     void const Out_unique_ticket ()
      {
           for ( auto& ticket_un : particle )
           {

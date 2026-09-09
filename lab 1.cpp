@@ -16,7 +16,7 @@ int year;
 int month;
 int day;
 Date (int y, int m, int d) : year(y), month(m), day(d) {}
-void const Print() {
+const void  Print() {
      cout << day <<"." << month << "." << year;
 }
 };

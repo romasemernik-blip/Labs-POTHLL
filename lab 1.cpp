@@ -45,7 +45,7 @@ public:
     void In_num_seat(int num_seat) {
         this->num_seat = num_seat;
     }
-    void In_name(const string& name_) {
+    void In_name(const string_view& name_) {
         name = name_;
     }
     
@@ -81,7 +81,7 @@ public:
     Session(const string& film, shared_ptr<Time> time_start, shared_ptr<Date> date, shared_ptr<Hall> hall) 
         : film(film), hall(hall), date(date), time_start(time_start) {}
     
-    void In_film(const string& film_) {
+    void In_film(const string_view& film_) {
         film = film_;
     }
     void In_hall(shared_ptr<Hall> hall_) {

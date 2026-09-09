@@ -1,14 +1,14 @@
 
 #include<iostream>
 #include<string>
-#include<memory>
+#include<vector>
 
 using namespace std;
 
 class Session;
 class Hall;
 class Ticket;
-class Cinema_system;
+class Ticket_system;
 
 struct Date {
 int year;
@@ -28,6 +28,39 @@ void print () const {
      if (minute < 10) cout << "0";
      cout << minute;
 }
+};
+class Ticket_system
+{
+     private: 
+     vector <shared_ptr<Ticket>> reservation;
+     vector <unique_ptr<Ticket>> particle;
+     public: 
+     void In_shared_ticket (shared_ptr<Ticket> ticket) {
+          reservation.push_back(ticket);
+     }
+     void In_unique_ticket (unique_ptr<Ticket> ticket) {
+          particle.push_back(move(ticket));
+     }
+      void Out_shared_ticket(shared_ptr<Ticket> ticket)
+     {
+          for ( auto & Ticket : reservation )
+          {
+               Ticket->OutT();
+
+          }
+
+     }
+     void Out_unique_ticket (unique_ptr<Ticket> ticket)
+     {
+          for ( auto & Ticket : particle )
+          {
+               Ticket->OutT();
+
+          }
+          
+     }
+
+
 };
 class Hall
 {

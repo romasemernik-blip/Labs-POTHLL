@@ -104,7 +104,7 @@ class Session
     {
          this->date = date;
     } 
-    void OutS ( )
+    void Out_s ( )
     {
      cout << "Session info" << endl;
       Out_film ();
@@ -159,7 +159,7 @@ class Ticket
      int row;
      public:
      Ticket( int row,int place,  float price,shared_ptr<Session> session ): place(place), price(price), session(session), row(row) {}
-     void OutT ()
+     void Out_t ()
      {
           cout<< "Ticket:"<<endl;
           Out_place_and_row();
@@ -192,7 +192,7 @@ class Ticket
      {
           if (session)
           {
-               session->OutS();
+               session->Out_s();
           }
           
 
@@ -223,7 +223,7 @@ class Ticket_system
      {
           for ( auto& ticket_sh : reservation )
           {
-               ticket_sh->OutT();
+               ticket_sh->Out_t();
 
           }
 
@@ -232,7 +232,7 @@ class Ticket_system
      {
           for ( auto& ticket_un : particle )
           {
-               ticket_un->OutT();
+               ticket_un->Out_t();
 
           }
           
@@ -247,25 +247,25 @@ int main ()
     auto hall3 = make_shared<Hall>(3, 200, "October");
     auto hall4 = make_shared<Hall>(4, 420, "Queen");
     auto hall5 = make_shared<Hall>(5, 90, "Moon");
-    hall1->OutH();
-    hall2->OutH();
-    hall3->OutH();
-    hall4->OutH();
-    hall5->OutH();
+    hall1->Out_h();
+    hall2->Out_h();
+    hall3->Out_h();
+    hall4->Out_h();
+    hall5->Out_h();
     auto date1 = make_shared<Date>(2026, 2, 12);
     auto date2 = make_shared<Date>(2025, 12, 12);
     auto time1 = make_shared<Time>(13, 30);
     auto time2 = make_shared<Time>(18, 20);
     auto session1 = make_shared<Session>("Breaking Bad", time1, date1, hall5);
     auto session2 = make_shared<Session>("Stranger Things", time2, date2, hall2);
-    session1->OutS();
-    session2->OutS();
+    session1->Out_s();
+    session2->Out_s();
     session1->In_hall(hall3);
-    session1->OutS();
+    session1->Out_s();
     auto ticket1 = make_shared<Ticket>(2, 7, 12.3f, session1);
     auto ticket2 = make_unique<Ticket>(3, 14, 10.3f, session2);
-    ticket1->OutT();
-    ticket2->OutT();
+    ticket1->Out_t();
+    ticket2->Out_t();
     Ticket_system system;
     system.In_shared_ticket(ticket1);
     system.In_unique_ticket(move(ticket2));

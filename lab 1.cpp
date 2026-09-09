@@ -2,6 +2,7 @@
 #include<iostream>
 #include<string>
 #include<vector>
+#include<memory>
 
 using namespace std;
 
@@ -29,39 +30,7 @@ void print () const {
      cout << minute;
 }
 };
-class Ticket_system
-{
-     private: 
-     vector <shared_ptr<Ticket>> reservation;
-     vector <unique_ptr<Ticket>> particle;
-     public: 
-     void In_shared_ticket (shared_ptr<Ticket> ticket) {
-          reservation.push_back(ticket);
-     }
-     void In_unique_ticket (unique_ptr<Ticket> ticket) {
-          particle.push_back(move(ticket));
-     }
-      void Out_shared_ticket()
-     {
-          for ( auto & Ticket : reservation )
-          {
-               Ticket->OutT();
 
-          }
-
-     }
-     void Out_unique_ticket ()
-     {
-          for ( auto & Ticket : particle )
-          {
-               Ticket->OutT();
-
-          }
-          
-     }
-
-
-};
 class Hall
 {
     private:
@@ -236,6 +205,39 @@ class Ticket
      int getPlace() const { return place; }
      float getPrice() const { return price; }
      shared_ptr<Session> getSession() const { return session; }
+
+};
+class Ticket_system
+{
+     private: 
+     vector <shared_ptr<Ticket>> reservation;
+     vector <unique_ptr<Ticket>> particle;
+     public: 
+     void In_shared_ticket (shared_ptr<Ticket> ticket_sh) {
+          reservation.push_back(ticket_sh);
+     }
+     void In_unique_ticket (unique_ptr<Ticket> ticket_un) {
+          particle.push_back(move(ticket_un));
+     }
+      void Out_shared_ticket()
+     {
+          for ( auto& ticket_sh : reservation )
+          {
+               ticket_sh->OutT();
+
+          }
+
+     }
+     void Out_unique_ticket ()
+     {
+          for ( auto& ticket_un : particle )
+          {
+               ticket_un->OutT();
+
+          }
+          
+     }
+
 
 };
 int main ()

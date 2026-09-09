@@ -52,7 +52,7 @@ class Hall
     {
          this->name = name;
     }
-    void OutH ( )
+    void Out_h ( )
     { 
      cout << "Hall:" << endl;
        Out_num();
@@ -72,9 +72,9 @@ class Hall
     {
          cout << "Name of Hall: " << name << endl;
     }
-    int getNum() const { return num; }
-    int getNumSeats() const { return num_seat; }
-    string getName() const { return name; }    
+    int Get_num() const { return num; }
+    int Get_num_seat() const { return num_seat; }
+    string Get_name() const { return name; }    
 
 };
 
@@ -143,10 +143,10 @@ void Out_time ()
      }
          
     }
-    string getFilm() const { return film; }
-    shared_ptr<Hall> getHall() const { return hall; }
-    shared_ptr<Date> getDate() const { return date; }
-    shared_ptr<Time> getTimeStart() const { return time_start; }   
+    string Get_film() const { return film; }
+    shared_ptr<Hall> Get_hall() const { return hall; }
+    shared_ptr<Date> Get_date() const { return date; }
+    shared_ptr<Time> Get_time_start() const { return time_start; }   
 
 
 };
@@ -201,10 +201,10 @@ class Ticket
      {
           cout << "Price of ticket: " << price << "$" << endl;
      }
-     int getRow() const { return row; }
-     int getPlace() const { return place; }
-     float getPrice() const { return price; }
-     shared_ptr<Session> getSession() const { return session; }
+     int Get_row() const { return row; }
+     int Get_place() const { return place; }
+     float Get_price() const { return price; }
+     shared_ptr<Session> Get_session() const { return session; }
 
 };
 class Ticket_system

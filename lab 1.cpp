@@ -237,6 +237,13 @@ class Ticket_system
           }
           
      }
+     void Out_t_s ()
+     {
+          cout << "Ticket System Database" << endl;
+          Out_shared_ticket();
+          Out_unique_ticket();
+          cout << endl;
+     }
 
 
 };

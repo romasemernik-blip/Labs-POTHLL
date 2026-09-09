@@ -278,6 +278,7 @@ int main ()
     system.In_unique_ticket(move(ticket2));
     system.Out_shared_ticket();
     system.Out_unique_ticket();
+    system.Out_t_s();
     return 0;
 
 }

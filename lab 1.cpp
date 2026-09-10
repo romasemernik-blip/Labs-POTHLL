@@ -45,7 +45,7 @@ public:
     void In_num_seat(int num_seat) {
         this->num_seat = num_seat;
     }
-    void In_name(const string_view& name_) {
+    void In_name(const string name_) {
         name = name_;
     }
     
@@ -81,7 +81,7 @@ public:
     Session(const string& film, shared_ptr<Time> time_start, shared_ptr<Date> date, shared_ptr<Hall> hall) 
         : film(film), hall(hall), date(date), time_start(time_start) {}
     
-    void In_film(const string_view& film_) {
+    void In_film(const string film_) {
         film = film_;
     }
     void In_hall(shared_ptr<Hall> hall_) {
@@ -238,7 +238,7 @@ string Read_string(const string& info) {
     return s;
 }
 
-void MenuHall(vector<shared_ptr<Hall>>& halls) {
+void Menu_hall(vector<shared_ptr<Hall>>& halls) {
     while (true) {
         cout << "\n=== HALL MENU ===\n";
         cout << "1. Show all halls\n";
@@ -279,12 +279,11 @@ void MenuHall(vector<shared_ptr<Hall>>& halls) {
                 string n = Read_string("New name: ");
                 halls[idx]->In_name(n);
             }
-            cout << "Changed.\n";
         }
     }
 }
 
-void MenuSession(vector<shared_ptr<Session>>& sessions, vector<shared_ptr<Hall>>& halls) {
+void Menu_session(vector<shared_ptr<Session>>& sessions, vector<shared_ptr<Hall>>& halls) {
     while (true) {
         cout << "\n=== SESSION MENU ===\n";
         cout << "1. Show all sessions\n";
@@ -336,12 +335,11 @@ void MenuSession(vector<shared_ptr<Session>>& sessions, vector<shared_ptr<Hall>>
                 int m = Read_int("Minutes: ");
                 sessions[idx]->In_time_start(make_shared<Time>(h, m));
             }
-            cout << "Changed.\n";
         }
     }
 }
 
-void MenuTicket(vector<shared_ptr<Ticket>>& tickets, vector<shared_ptr<Session>>& sessions) {
+void Menu_ticket(vector<shared_ptr<Ticket>>& tickets, vector<shared_ptr<Session>>& sessions) {
     while (true) {
         cout << "\n=== TICKET MENU ===\n";
         cout << "1. Show all tickets\n";
@@ -391,12 +389,11 @@ void MenuTicket(vector<shared_ptr<Ticket>>& tickets, vector<shared_ptr<Session>>
                 int s = Read_int("Session index: ");
                 tickets[idx]->In_session(sessions[s]);
             }
-            cout << "Changed.\n";
         }
     }
 }
 
-void MenuTicketSystem(Ticket_system& system,
+void Menu_ticket_system(Ticket_system& system,
                       vector<shared_ptr<Ticket>>& tickets,
                       vector<shared_ptr<Session>>& sessions) {
     while (true) {
@@ -430,7 +427,6 @@ void MenuTicketSystem(Ticket_system& system,
             int s = Read_int("Session index: ");
             auto t = make_unique<Ticket>(row, place, price, sessions[s]);
             system.In_unique_ticket(move(t));
-            cout << "Ticket added.\n";
         }
         else if (choice == 4) {
             cout << "Shared tickets: " << system.Shared_count() << endl;
@@ -474,11 +470,11 @@ int main() {
         int choice = Read_int("Choice: ");
 
         switch (choice) {
-            case 1: MenuHall(halls); break;
-            case 2: MenuSession(sessions, halls); break;
-            case 3: MenuTicket(tickets, sessions); break;
-            case 4: MenuTicketSystem(system, tickets, sessions); break;
-            case 0: cout << "Exiting...\n"; return 0;
+            case 1: Menu_hall(halls); break;
+            case 2: Menu_session(sessions, halls); break;
+            case 3: Menu_ticket(tickets, sessions); break;
+            case 4: Menu_ticket_system(system, tickets, sessions); break;
+            case 0: return 0;
             default: cout << "Invalid choice.\n";
         }
     }

@@ -238,7 +238,6 @@ string Read_string(const string& info) {
     return s;
 }
 
-// ================== HALL MENU ==================
 void MenuHall(vector<shared_ptr<Hall>>& halls) {
     while (true) {
         cout << "\n=== HALL MENU ===\n";
@@ -285,7 +284,6 @@ void MenuHall(vector<shared_ptr<Hall>>& halls) {
     }
 }
 
-// ================== SESSION MENU ==================
 void MenuSession(vector<shared_ptr<Session>>& sessions, vector<shared_ptr<Hall>>& halls) {
     while (true) {
         cout << "\n=== SESSION MENU ===\n";
@@ -343,7 +341,6 @@ void MenuSession(vector<shared_ptr<Session>>& sessions, vector<shared_ptr<Hall>>
     }
 }
 
-// ================== TICKET MENU ==================
 void MenuTicket(vector<shared_ptr<Ticket>>& tickets, vector<shared_ptr<Session>>& sessions) {
     while (true) {
         cout << "\n=== TICKET MENU ===\n";
@@ -399,7 +396,6 @@ void MenuTicket(vector<shared_ptr<Ticket>>& tickets, vector<shared_ptr<Session>>
     }
 }
 
-// ================== TICKET_SYSTEM MENU ==================
 void MenuTicketSystem(Ticket_system& system,
                       vector<shared_ptr<Ticket>>& tickets,
                       vector<shared_ptr<Session>>& sessions) {
@@ -443,7 +439,6 @@ void MenuTicketSystem(Ticket_system& system,
     }
 }
 
-// ================== MAIN MENU ==================
 int main() {
     auto hall1 = make_shared<Hall>(1, 120, "Moon");
     auto hall2 = make_shared<Hall>(2, 240, "Spartac");

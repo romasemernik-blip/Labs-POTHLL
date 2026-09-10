@@ -273,36 +273,51 @@ void Menu_hall(vector<shared_ptr<Hall>>& halls) {
     cout << "0. Back\n";
     int choice = Read_int("Choice: ");
 
-    if (choice == 0) return;
+    switch (choice) {
+      case 0:
+        return;
+      case 1:
+        for (size_t i = 0; i < halls.size(); ++i) {
+          cout << "[" << i << "] ";
+          halls[i]->Out_h();
+        }
+        break;
+      case 2: {
+        for (size_t i = 0; i < halls.size(); ++i) {
+          cout << "[" << i << "] ";
+          halls[i]->Out_h();
+        }
+        int idx = Read_int("Enter hall index: ");
 
-    if (choice == 1) {
-      for (size_t i = 0; i < halls.size(); ++i) {
-        cout << "[" << i << "] ";
-        halls[i]->Out_h();
-      }
-    } else if (choice == 2) {
-      for (size_t i = 0; i < halls.size(); ++i) {
-        cout << "[" << i << "] ";
-        halls[i]->Out_h();
-      }
-      int idx = Read_int("Enter hall index: ");
+        cout << "What to change?\n";
+        cout << "1. Hall number\n";
+        cout << "2. Number of seats\n";
+        cout << "3. Name\n";
+        int sub = Read_int("Choice: ");
 
-      cout << "What to change?\n";
-      cout << "1. Hall number\n";
-      cout << "2. Number of seats\n";
-      cout << "3. Name\n";
-      int sub = Read_int("Choice: ");
-
-      if (sub == 1) {
-        int n = Read_int("New number: ");
-        halls[idx]->In_num(n);
-      } else if (sub == 2) {
-        int n = Read_int("New number of seats: ");
-        halls[idx]->In_num_seat(n);
-      } else if (sub == 3) {
-        string n = Read_string("New name: ");
-        halls[idx]->In_name(n);
+        switch (sub) {
+          case 1: {
+            int n = Read_int("New number: ");
+            halls[idx]->In_num(n);
+            break;
+          }
+          case 2: {
+            int n = Read_int("New number of seats: ");
+            halls[idx]->In_num_seat(n);
+            break;
+          }
+          case 3: {
+            string n = Read_string("New name: ");
+            halls[idx]->In_name(n);
+            break;
+          }
+          default:
+            cout << "Invalid choice.\n";
+        }
+        break;
       }
+      default:
+        cout << "Invalid choice.\n";
     }
   }
 }
@@ -316,46 +331,63 @@ void Menu_session(vector<shared_ptr<Session>>& sessions,
     cout << "0. Back\n";
     int choice = Read_int("Choice: ");
 
-    if (choice == 0) return;
-
-    if (choice == 1) {
-      for (size_t i = 0; i < sessions.size(); ++i) {
-        cout << "[" << i << "]\n";
-        sessions[i]->Out_s();
-      }
-    } else if (choice == 2) {
-      for (size_t i = 0; i < sessions.size(); ++i) {
-        cout << "[" << i << "] " << sessions[i]->Get_film() << endl;
-      }
-      int idx = Read_int("Enter session index: ");
-
-      cout << "What to change?\n";
-      cout << "1. Film name\n";
-      cout << "2. Hall\n";
-      cout << "3. Date\n";
-      cout << "4. Start time\n";
-      int sub = Read_int("Choice: ");
-
-      if (sub == 1) {
-        string n = Read_string("New film name: ");
-        sessions[idx]->In_film(n);
-      } else if (sub == 2) {
-        for (size_t i = 0; i < halls.size(); ++i) {
-          cout << "[" << i << "] ";
-          halls[i]->Out_name();
+    switch (choice) {
+      case 0:
+        return;
+      case 1:
+        for (size_t i = 0; i < sessions.size(); ++i) {
+          cout << "[" << i << "]\n";
+          sessions[i]->Out_s();
         }
-        int h = Read_int("Hall index: ");
-        sessions[idx]->In_hall(halls[h]);
-      } else if (sub == 3) {
-        int y = Read_int("Year: ");
-        int m = Read_int("Month: ");
-        int d = Read_int("Day: ");
-        sessions[idx]->In_date(make_shared<Date>(y, m, d));
-      } else if (sub == 4) {
-        int h = Read_int("Hours: ");
-        int m = Read_int("Minutes: ");
-        sessions[idx]->In_time_start(make_shared<Time>(h, m));
+        break;
+      case 2: {
+        for (size_t i = 0; i < sessions.size(); ++i) {
+          cout << "[" << i << "] " << sessions[i]->Get_film() << endl;
+        }
+        int idx = Read_int("Enter session index: ");
+
+        cout << "What to change?\n";
+        cout << "1. Film name\n";
+        cout << "2. Hall\n";
+        cout << "3. Date\n";
+        cout << "4. Start time\n";
+        int sub = Read_int("Choice: ");
+
+        switch (sub) {
+          case 1: {
+            string n = Read_string("New film name: ");
+            sessions[idx]->In_film(n);
+            break;
+          }
+          case 2: {
+            for (size_t i = 0; i < halls.size(); ++i) {
+              cout << "[" << i << "] ";
+              halls[i]->Out_name();
+            }
+            int h = Read_int("Hall index: ");
+            sessions[idx]->In_hall(halls[h]);
+            break;
+          }
+          case 3: {
+            int y = Read_int("Year: ");
+            int m = Read_int("Month: ");
+            int d = Read_int("Day: ");
+            sessions[idx]->In_date(make_shared<Date>(y, m, d));
+            break;
+          }
+          case 4: {
+            int h = Read_int("Hours: ");
+            int m = Read_int("Minutes: ");
+            sessions[idx]->In_time_start(make_shared<Time>(h, m));
+            break;
+          }
+          default:
+            cout << "Invalid choice.\n";
+        }
+        break;
       }
+      default:
+        cout << "Invalid choice.\n";
     }
   }
 }
@@ -369,44 +401,61 @@ void Menu_ticket(vector<shared_ptr<Ticket>>& tickets,
     cout << "0. Back\n";
     int choice = Read_int("Choice: ");
 
-    if (choice == 0) return;
-
-    if (choice == 1) {
-      for (size_t i = 0; i < tickets.size(); ++i) {
-        cout << "[" << i << "]\n";
-        tickets[i]->Out_t();
-      }
-    } else if (choice == 2) {
-      for (size_t i = 0; i < tickets.size(); ++i) {
-        cout << "[" << i << "] Row " << tickets[i]->Get_row()
-             << ", place " << tickets[i]->Get_place()
-             << ", price " << tickets[i]->Get_price() << endl;
-      }
-      int idx = Read_int("Enter ticket index: ");
-
-      cout << "What to change?\n";
-      cout << "1. Row\n";
-      cout << "2. Place\n";
-      cout << "3. Price\n";
-      cout << "4. Session\n";
-      int sub = Read_int("Choice: ");
-
-      if (sub == 1) {
-        int n = Read_int("New row: ");
-        tickets[idx]->In_row(n);
-      } else if (sub == 2) {
-        int n = Read_int("New place: ");
-        tickets[idx]->In_place(n);
-      } else if (sub == 3) {
-        float n = Read_float("New price: ");
-        tickets[idx]->In_price(n);
-      } else if (sub == 4) {
-        for (size_t i = 0; i < sessions.size(); ++i) {
-          cout << "[" << i << "] " << sessions[i]->Get_film() << endl;
+    switch (choice) {
+      case 0:
+        return;
+      case 1:
+        for (size_t i = 0; i < tickets.size(); ++i) {
+          cout << "[" << i << "]\n";
+          tickets[i]->Out_t();
         }
-        int s = Read_int("Session index: ");
-        tickets[idx]->In_session(sessions[s]);
+        break;
+      case 2: {
+        for (size_t i = 0; i < tickets.size(); ++i) {
+          cout << "[" << i << "] Row " << tickets[i]->Get_row()
+               << ", place " << tickets[i]->Get_place()
+               << ", price " << tickets[i]->Get_price() << endl;
+        }
+        int idx = Read_int("Enter ticket index: ");
+
+        cout << "What to change?\n";
+        cout << "1. Row\n";
+        cout << "2. Place\n";
+        cout << "3. Price\n";
+        cout << "4. Session\n";
+        int sub = Read_int("Choice: ");
+
+        switch (sub) {
+          case 1: {
+            int n = Read_int("New row: ");
+            tickets[idx]->In_row(n);
+            break;
+          }
+          case 2: {
+            int n = Read_int("New place: ");
+            tickets[idx]->In_place(n);
+            break;
+          }
+          case 3: {
+            float n = Read_float("New price: ");
+            tickets[idx]->In_price(n);
+            break;
+          }
+          case 4: {
+            for (size_t i = 0; i < sessions.size(); ++i) {
+              cout << "[" << i << "] " << sessions[i]->Get_film() << endl;
+            }
+            int s = Read_int("Session index: ");
+            tickets[idx]->In_session(sessions[s]);
+            break;
+          }
+          default:
+            cout << "Invalid choice.\n";
+        }
+        break;
       }
+      default:
+        cout << "Invalid choice.\n";
     }
   }
 }
@@ -423,33 +472,41 @@ void Menu_ticket_system(Ticket_system& system,
     cout << "0. Back\n";
     int choice = Read_int("Choice: ");
 
-    if (choice == 0) return;
-
-    if (choice == 1) {
-      system.Out_t_s();
-    } else if (choice == 2) {
-      for (size_t i = 0; i < tickets.size(); ++i) {
-        cout << "[" << i << "] Row " << tickets[i]->Get_row()
-             << ", place " << tickets[i]->Get_place() << endl;
+    switch (choice) {
+      case 0:
+        return;
+      case 1:
+        system.Out_t_s();
+        break;
+      case 2: {
+        for (size_t i = 0; i < tickets.size(); ++i) {
+          cout << "[" << i << "] Row " << tickets[i]->Get_row()
+               << ", place " << tickets[i]->Get_place() << endl;
+        }
+        int idx = Read_int("Ticket index: ");
+        system.In_shared_ticket(tickets[idx]);
+        break;
       }
-      int idx = Read_int("Ticket index: ");
-      system.In_shared_ticket(tickets[idx]);
-    } else if (choice == 3) {
-      int row = Read_int("Row: ");
-      int place = Read_int("Place: ");
-      float price = Read_float("Price: ");
-      for (size_t i = 0; i < sessions.size(); ++i)
-        cout << "[" << i << "] " << sessions[i]->Get_film() << endl;
-      int s = Read_int("Session index: ");
-      auto t = make_unique<Ticket>(row, place, price, sessions[s]);
-      system.In_unique_ticket(move(t));
-    } else if (choice == 4) {
-      cout << "Shared tickets: " << system.Shared_count() << endl;
-      cout << "Unique tickets: " << system.Unique_count() << endl;
+      case 3: {
+        int row = Read_int("Row: ");
+        int place = Read_int("Place: ");
+        float price = Read_float("Price: ");
+        for (size_t i = 0; i < sessions.size(); ++i)
+          cout << "[" << i << "] " << sessions[i]->Get_film() << endl;
+        int s = Read_int("Session index: ");
+        auto t = make_unique<Ticket>(row, place, price, sessions[s]);
+        system.In_unique_ticket(move(t));
+        break;
+      }
+      case 4:
+        cout << "Shared tickets: " << system.Shared_count() << endl;
+        cout << "Unique tickets: " << system.Unique_count() << endl;
+        break;
+      default:
+        cout << "Invalid choice.\n";
     }
   }
 }
-
 int main() {
   auto hall1 = make_shared<Hall>(1, 120, "Moon");
   auto hall2 = make_shared<Hall>(2, 240, "Spartac");

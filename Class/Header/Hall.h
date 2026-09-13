@@ -1,20 +1,18 @@
 #pragma once
 #include <string>
 
-using namespace std;
-
 class Hall {
  private:
   int num;
   int num_seat;
-  string name;
+  std::string name;
 
  public:
-  Hall(int num, int num_seat, const string& name);
+  Hall(int num, int num_seat, const std::string& name);
 
   void In_num(int num);
   void In_num_seat(int num_seat);
-  void In_name(const string& name_);
+  void In_name(const std::string& name_);
 
   void Out_num() const;
   void Out_num_seat() const;
@@ -23,5 +21,5 @@ class Hall {
 
   int Get_num() const;
   int Get_num_seat() const;
-  string Get_name() const;
+  std::string Get_name() const;
 };

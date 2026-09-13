@@ -2,10 +2,8 @@
 #include <memory>
 #include <vector>
 
-using namespace std;
-
 class Session;
 class Hall;
 
-void Menu_session(vector<shared_ptr<Session>>& sessions,
-                  vector<shared_ptr<Hall>>& halls);
+void Menu_session(std::vector<std::shared_ptr<Session>>& sessions,
+                  std::vector<std::shared_ptr<Hall>>& halls);

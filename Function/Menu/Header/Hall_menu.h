@@ -2,8 +2,6 @@
 #include <memory>
 #include <vector>
 
-using namespace std;
-
 class Hall;
 
-void Menu_hall(vector<shared_ptr<Hall>>& halls);
+void Menu_hall(std::vector<std::shared_ptr<Hall>>& halls);

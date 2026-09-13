@@ -2,8 +2,6 @@
 #include <memory>
 #include <vector>
 
-using namespace std;
-
 class Hall;
 
-void Change_hall_field(vector<shared_ptr<Hall>>& halls, int idx);
+void Change_hall_field(std::vector<std::shared_ptr<Hall>>& halls, int idx);

@@ -2,18 +2,18 @@
 #include <memory>
 #include <vector>
 
-using namespace std;
 
-class Ticket;  // forward declaration
+
+class Ticket;  
 
 class Ticket_system {
  private:
-  vector<shared_ptr<Ticket>> reservation;
-  vector<unique_ptr<Ticket>> particle;
+  std::vector<std::shared_ptr<Ticket>> reservation;
+  std::vector<std::unique_ptr<Ticket>> particle;
 
  public:
-  void In_shared_ticket(const shared_ptr<Ticket>& ticket_sh);
-  void In_unique_ticket(unique_ptr<Ticket> ticket_un);
+  void In_shared_ticket(const std::shared_ptr<Ticket>& ticket_sh);
+  void In_unique_ticket(std::unique_ptr<Ticket> ticket_un);
 
   void Out_shared_ticket() const;
   void Out_unique_ticket() const;

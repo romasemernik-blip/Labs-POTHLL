@@ -8,7 +8,7 @@ Hall::Hall(int num, int num_seat, const string& name)
 
 void Hall::In_num(int num) { this->num = num; }
 void Hall::In_num_seat(int num_seat) { this->num_seat = num_seat; }
-void Hall::In_name(const string& name_) { name = name_; }
+void Hall::In_name(const string_view& name_) { name = name_; }
 
 void Hall::Out_num() const { cout << "Number of Hall: " << num << endl; }
 void Hall::Out_num_seat() const { cout << "Number of seats: " << num_seat << endl; }

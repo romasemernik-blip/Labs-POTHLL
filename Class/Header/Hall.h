@@ -12,7 +12,7 @@ class Hall {
 
   void In_num(int num);
   void In_num_seat(int num_seat);
-  void In_name(const std::string& name_);
+  void In_name(const std::string_view& name_);
 
   void Out_num() const;
   void Out_num_seat() const;

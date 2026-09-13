@@ -7,7 +7,7 @@ Session::Session(const string& film, shared_ptr<Time> time_start,
                  shared_ptr<Date> date, shared_ptr<Hall> hall)
     : film(film), hall(hall), date(date), time_start(time_start) {}
 
-void Session::In_film(const string& film_) { film = film_; }
+void Session::In_film(const string_view& film_) { film = film_; }
 void Session::In_hall(shared_ptr<Hall> hall_) { hall = hall_; }
 void Session::In_time_start(shared_ptr<Time> time_start_) { time_start = time_start_; }
 void Session::In_date(shared_ptr<Date> date_) { date = date_; }

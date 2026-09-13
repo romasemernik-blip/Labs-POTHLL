@@ -19,7 +19,7 @@ class Session {
           std::shared_ptr<Date> date,
           std::shared_ptr<Hall> hall);
 
-  void In_film(const std::string& film_);
+  void In_film(const std::string_view& film_);
   void In_hall(std::shared_ptr<Hall> hall_);
   void In_time_start(std::shared_ptr<Time> time_start_);
   void In_date(std::shared_ptr<Date> date_);

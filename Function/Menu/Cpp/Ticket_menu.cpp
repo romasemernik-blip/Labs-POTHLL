@@ -11,7 +11,7 @@ using namespace std;
 void Menu_ticket(vector<shared_ptr<Ticket>>& tickets,
                  vector<shared_ptr<Session>>& sessions) {
   while (true) {
-    cout << "\n=== TICKET MENU ===\n";
+    cout << "\nTICKET MENU\n";
     cout << "1. Show all tickets\n";
     cout << "2. Change ticket characteristics\n";
     cout << "0. Back\n";

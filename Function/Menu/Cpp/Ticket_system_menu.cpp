@@ -13,7 +13,7 @@ void Menu_ticket_system(Ticket_system& system,
                         vector<shared_ptr<Ticket>>& tickets,
                         vector<shared_ptr<Session>>& sessions) {
   while (true) {
-    cout << "\n=== TICKET_SYSTEM MENU ===\n";
+    cout << "\nTICKET_SYSTEM MENU\n";
     cout << "1. Show system contents\n";
     cout << "2. Add ticket (shared)\n";
     cout << "3. Add ticket (unique)\n";

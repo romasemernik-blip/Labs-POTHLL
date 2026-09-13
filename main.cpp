@@ -42,7 +42,7 @@ int main() {
   system.In_shared_ticket(ticket1);
 
   while (true) {
-    cout << "\n===== MAIN MENU =====\n";
+    cout << "\nMAIN MENU\n";
     cout << "1. Hall\n";
     cout << "2. Session\n";
     cout << "3. Ticket\n";

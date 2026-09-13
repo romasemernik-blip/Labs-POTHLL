@@ -9,7 +9,7 @@ using namespace std;
 
 void Menu_hall(vector<shared_ptr<Hall>>& halls) {
   while (true) {
-    cout << "\n=== HALL MENU ===\n";
+    cout << "\n HALL MENU\n";
     cout << "1. Show all halls\n";
     cout << "2. Change hall characteristics\n";
     cout << "0. Back\n";

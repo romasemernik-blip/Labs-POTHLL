@@ -11,7 +11,7 @@ using namespace std;
 void Menu_session(vector<shared_ptr<Session>>& sessions,
                   vector<shared_ptr<Hall>>& halls) {
   while (true) {
-    cout << "\n=== SESSION MENU ===\n";
+    cout << "\nSESSION MENU\n";
     cout << "1. Show all sessions\n";
     cout << "2. Change session characteristics\n";
     cout << "0. Back\n";

@@ -1,8 +1,8 @@
-#include "Function/Change_attributes/Header/Session_change.h"
+#include "Function/Change_atributes/Header/Session_change.h"
 #include "Class/Header/Session.h"
 #include "Class/Header/Hall.h"
-#include "Class/Header/Date.h"
-#include "Class/Header/Time.h"
+#include "Structure/Header/Date.h"
+#include "Structure/Header/Time.h"
 #include "Function/Read/Header/Read.h"
 #include "Function/Show/Header/Hall_show.h"
 #include <iostream>

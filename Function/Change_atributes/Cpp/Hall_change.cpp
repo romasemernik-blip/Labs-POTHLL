@@ -1,4 +1,4 @@
-#include "Function/Change_attributes/Header/Hall_change.h"
+#include "Function/Change_atributes/Header/Hall_change.h"
 #include "Class/Header/Hall.h"
 #include "Function/Read/Header/Read.h"
 #include <iostream>

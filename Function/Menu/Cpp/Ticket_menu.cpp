@@ -3,7 +3,7 @@
 #include "Class/Header/Session.h"
 #include "Function/Read/Header/Read.h"
 #include "Function/Show/Header/Ticket_show.h"
-#include "Function/Change_attributes/Header/Ticket_change.h"
+#include "Function/Change_atributes/Header/Ticket_change.h"
 #include <iostream>
 
 using namespace std;

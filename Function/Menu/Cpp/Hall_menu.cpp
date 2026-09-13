@@ -2,7 +2,7 @@
 #include "Class/Header/Hall.h"
 #include "Function/Read/Header/Read.h"
 #include "Function/Show/Header/Hall_show.h"
-#include "Function/Change_attributes/Header/Hall_change.h"
+#include "Function/Change_atributes/Header/Hall_change.h"
 #include <iostream>
 
 using namespace std;

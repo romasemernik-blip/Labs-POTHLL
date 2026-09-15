@@ -2,6 +2,7 @@
 #include "Class/Header/Ticket.h"    
 #include "Class/Header/Session.h"  
 #include <iostream>
+#include <memory>
 
 using namespace std;
 

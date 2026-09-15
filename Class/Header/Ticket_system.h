@@ -1,18 +1,20 @@
 #pragma once
-#include <memory>
+#include <memory>      
 #include <vector>
 
+using namespace std;
 
-
-class Ticket;  
+class Ticket;
+class Session;
 
 class Ticket_system {
  private:
-  std::vector<std::shared_ptr<Ticket>> reservation;
-  std::vector<std::unique_ptr<Ticket>> particle;
+  vector<shared_ptr<Ticket>> reservation;
+  vector<unique_ptr<Ticket>> particle;
+
+  int Sold_for_session(const shared_ptr<Session>& s) const;
 
  public:
-   int Sold_for_session(const shared_ptr<Session>& s) const;
   bool In_shared_ticket(const shared_ptr<Ticket>& ticket_sh);
   bool In_unique_ticket(unique_ptr<Ticket> ticket_un);
 

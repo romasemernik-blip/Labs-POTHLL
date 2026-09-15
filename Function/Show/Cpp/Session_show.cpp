@@ -13,6 +13,7 @@ void Show_all_sessions(const vector<shared_ptr<Session>>& sessions) {
 
 void Show_session_films(const vector<shared_ptr<Session>>& sessions) {
   for (size_t i = 0; i < sessions.size(); ++i) {
-    cout << "[" << i << "] " << sessions[i]->Get_film() << endl;
+    cout << "[" << i << "] " << sessions[i]->Get_film()
+         << " (seats: " << sessions[i]->Seats_limit() << ")" << endl;
   }
 }

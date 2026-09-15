@@ -12,8 +12,9 @@ class Ticket_system {
   std::vector<std::unique_ptr<Ticket>> particle;
 
  public:
-  void In_shared_ticket(const std::shared_ptr<Ticket>& ticket_sh);
-  void In_unique_ticket(std::unique_ptr<Ticket> ticket_un);
+   int Sold_for_session(const shared_ptr<Session>& s) const;
+  bool In_shared_ticket(const shared_ptr<Ticket>& ticket_sh);
+  bool In_unique_ticket(unique_ptr<Ticket> ticket_un);
 
   void Out_shared_ticket() const;
   void Out_unique_ticket() const;

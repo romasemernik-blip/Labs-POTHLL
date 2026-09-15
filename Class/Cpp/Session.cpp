@@ -12,6 +12,10 @@ void Session::In_hall(shared_ptr<Hall> hall_) { hall = hall_; }
 void Session::In_time_start(shared_ptr<Time> time_start_) { time_start = time_start_; }
 void Session::In_date(shared_ptr<Date> date_) { date = date_; }
 
+int Session::Seats_limit() const {
+  if (hall) return hall->Get_num_seat();
+  return 0;
+}
 void Session::Out_s() const {
   cout << "Session info" << endl;
   Out_film();

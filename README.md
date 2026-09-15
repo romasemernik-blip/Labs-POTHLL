@@ -5,10 +5,10 @@
 >add menu to do some specific task  
 >Command for create exe file from 1 lab structure  
 !https://sonarcloud.io/organizations/romasemernik-blip/projects  
->command for create exe file
-g++ -std=c++17 -g -I. `
-```    main.cpp `
-    Class/Cpp/Hall.cpp `  
+>command for create exe file  
+g++ -std=c++17 -g -I. `  
+```    main.cpp `  
+    Class/Cpp/Hall.cpp `   
     Class/Cpp/Session.cpp `   
     Class/Cpp/Ticket.cpp `   
     Class/Cpp/Ticket_system.cpp `  

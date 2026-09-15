@@ -13,10 +13,10 @@ class Ticket {
  public:
   Ticket(int row, int place, float price, std::shared_ptr<Session> session);
 
-  void In_place(int place);
-  void In_session(std::shared_ptr<Session> session_);
-  void In_price(float price);
-  void In_row(int row);
+  bool In_place(int place);
+  bool In_session(std::shared_ptr<Session> session_);
+  bool In_price(float price);
+  bool In_row(int row);
 
   void Out_t() const;
   void Out_place_and_row() const;

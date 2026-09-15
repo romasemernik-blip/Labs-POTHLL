@@ -17,13 +17,25 @@ void Change_ticket_field(vector<shared_ptr<Ticket>>& tickets,
 
   int sub = Read_int("Choice: ");
   switch (sub) {
-    case 1: tickets[idx]->In_row(Read_int("New row: ")); break;
-    case 2: tickets[idx]->In_place(Read_int("New place: ")); break;
-    case 3: tickets[idx]->In_price(Read_float("New price: ")); break;
+    case 1: {
+      int v = Read_int("New row: ");
+      if (tickets[idx]->In_row(v)) cout << "Row changed.\n";
+      break;
+    }
+    case 2: {
+      int v = Read_int("New place: ");
+      if (tickets[idx]->In_place(v)) cout << "Place changed.\n";
+      break;
+    }
+    case 3: {
+      float v = Read_float("New price: ");
+      if (tickets[idx]->In_price(v)) cout << "Price changed.\n";
+      break;
+    }
     case 4: {
       Show_session_films(sessions);
       int s = Read_int("Session index: ");
-      tickets[idx]->In_session(sessions[s]);
+      if (tickets[idx]->In_session(sessions[s])) cout << "Session changed.\n";
       break;
     }
     default:

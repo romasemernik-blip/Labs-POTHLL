@@ -11,8 +11,8 @@ Ticket::Ticket(int row, int place, float price, shared_ptr<Session> session)
       if (this->price <= 0) this->price = 1.0f;
     }
 
-bool Ticket::In_place(int place) {
-  if (place < 1) {
+bool Ticket::In_place(int place_) {
+  if (place_ < 1) {
     cout << "Error: place must be >= 1.\n";
     return false;
   }
@@ -22,7 +22,7 @@ bool Ticket::In_place(int place) {
          << session->Get_hall()->Get_num_seat() << ").\n";
     return false;
   }
-  this->place = place;
+  this->place = place_;
   return true;
 }
 
@@ -35,21 +35,21 @@ bool Ticket::In_session(shared_ptr<Session> session_) {
   return true;
 }
 
-bool Ticket::In_price(float price) {
-  if (price <= 0) {
+bool Ticket::In_price(float price_) {
+  if (price_ <= 0) {
     cout << "Error: price must be positive.\n";
     return false;
   }
-  this->price = price;
+  this->price = price_;
   return true;
 }
 
-bool Ticket::In_row(int row) {
-  if (row < 1) {
+bool Ticket::In_row(int row_) {
+  if (row_ < 1) {
     cout << "Error: row must be >= 1.\n";
     return false;
   }
-  this->row = row;
+  this->row = row_;
   return true;
 }
 void Ticket::Out_t() const {

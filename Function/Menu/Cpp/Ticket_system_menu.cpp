@@ -34,7 +34,6 @@ void Menu_ticket_system(Ticket_system& system,
       int place = Read_int("Place: ");
       float price = Read_float("Price: ");
 
-      // Показываем список сеансов с количеством свободных мест
       Show_session_films(sessions);
       int s = Read_int("Session index: ");
 

@@ -1,5 +1,9 @@
 ﻿# Labs-POTHLL
+>Roman Semernik Dmitrievich  
+>Varient 26. Cinema system  
+>Need to control ticket and add some   
 >lab for creating system of cinema, to buy control and safe ticket  
+>LAB1 ADDING CLASSES  
 >in first part i introduce classes Hall, Ticket, Ticket_system, Session.  
 >add structure Date and Time  
 >add menu to do some specific task  

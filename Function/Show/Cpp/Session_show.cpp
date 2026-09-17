@@ -8,12 +8,17 @@ void Show_all_sessions(const vector<shared_ptr<Session>>& sessions) {
   for (size_t i = 0; i < sessions.size(); ++i) {
     cout << "[" << i << "]\n";
     sessions[i]->Out_s();
+     cout << "Seats: sold " << sessions[i]->Sold_seats()
+         << " / " << sessions[i]->Seats_limit()
+         << ", free " << sessions[i]->Free_seats() << endl;
   }
 }
 
 void Show_session_films(const vector<shared_ptr<Session>>& sessions) {
   for (size_t i = 0; i < sessions.size(); ++i) {
     cout << "[" << i << "] " << sessions[i]->Get_film()
-         << " (seats: " << sessions[i]->Seats_limit() << ")" << endl;
+         << " | seats: " << sessions[i]->Sold_seats()
+         << "/" << sessions[i]->Seats_limit()
+         << " (free " << sessions[i]->Free_seats() << ")" << endl;
   }
 }

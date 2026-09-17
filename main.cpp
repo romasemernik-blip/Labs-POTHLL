@@ -17,8 +17,8 @@
 using namespace std;
 
 int main() {
-  auto hall1 = make_shared<Hall>(1, 120, "Moon");
-  auto hall2 = make_shared<Hall>(2, 240, "Spartac");
+  auto hall1 = make_shared<Hall>(1, 10, "Moon");
+  auto hall2 = make_shared<Hall>(2, 5, "Spartac");
   auto hall3 = make_shared<Hall>(3, 200, "October");
   auto hall4 = make_shared<Hall>(4, 420, "Queen");
   auto hall5 = make_shared<Hall>(5, 90, "Moon");

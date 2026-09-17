@@ -12,6 +12,7 @@ class Session {
   std::shared_ptr<Hall> hall;
   std::shared_ptr<Date> date;
   std::shared_ptr<Time> time_start;
+  int sold_seats = 0;
 
  public:
   Session(const std::string& film,
@@ -24,6 +25,12 @@ class Session {
   void In_time_start(std::shared_ptr<Time> time_start_);
   void In_date(std::shared_ptr<Date> date_);
   int Seats_limit() const;
+  int Sold_seats() const;
+  int Free_seats() const;
+
+  bool Sell_seat(); 
+  void Return_seat();
+  
   void Out_s() const;
   void Out_date() const;
   void Out_time() const;

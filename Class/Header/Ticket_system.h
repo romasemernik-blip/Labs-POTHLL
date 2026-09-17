@@ -12,7 +12,6 @@ class Ticket_system {
   vector<shared_ptr<Ticket>> reservation;
   vector<unique_ptr<Ticket>> particle;
 
-  int Sold_for_session(const shared_ptr<Session>& s) const;
 
  public:
   bool In_shared_ticket(const shared_ptr<Ticket>& ticket_sh);

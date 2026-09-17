@@ -29,12 +29,20 @@ void Menu_ticket_system(Ticket_system& system,
       Show_ticket_short_no_price(tickets);
       int idx = Read_int("Ticket index: ");
       system.In_shared_ticket(tickets[idx]);
-    } else if (choice == 3) {
+     } else if (choice == 3) {
       int row = Read_int("Row: ");
       int place = Read_int("Place: ");
       float price = Read_float("Price: ");
+
+      // Показываем список сеансов с количеством свободных мест
       Show_session_films(sessions);
       int s = Read_int("Session index: ");
+
+      if (s < 0 || s >= (int)sessions.size()) {
+        cout << "Invalid session index.\n";
+        continue;
+      }
+
       auto t = make_unique<Ticket>(row, place, price, sessions[s]);
       system.In_unique_ticket(move(t));
     } else if (choice == 4) {

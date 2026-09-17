@@ -16,6 +16,24 @@ int Session::Seats_limit() const {
   if (hall) return hall->Get_num_seat();
   return 0;
 }
+int Session::Sold_seats() const {
+  return sold_seats;
+}
+int Session::Free_seats() const {
+  int free = Seats_limit() - sold_seats;
+  return free < 0 ? 0 : free;
+}
+bool Session::Sell_seat() {
+  if (sold_seats >= Seats_limit()) {
+    return false;  
+    }
+  ++sold_seats;
+  return true;
+}  
+void Session::Return_seat() {
+  if (sold_seats > 0) --sold_seats;
+}
+
 void Session::Out_s() const {
   cout << "Session info" << endl;
   Out_film();

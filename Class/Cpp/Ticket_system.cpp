@@ -24,35 +24,43 @@ void Ticket_system::Out_t_s() const {
 size_t Ticket_system::Shared_count() const { return reservation.size(); }
 size_t Ticket_system::Unique_count() const { return particle.size(); }
 
-
-int Ticket_system::Sold_for_session(const shared_ptr<Session>& s) const {
-  int count = 0;
-  for (const auto& t : reservation) {
-    if (t->Get_session() == s) ++count;
-  }
-  for (const auto& t : particle) {
-    if (t->Get_session() == s) ++count;
-  }
-  return count;
-}
-
 bool Ticket_system::In_shared_ticket(const shared_ptr<Ticket>& ticket_sh) {
+  if (!ticket_sh) {
+    cout << "Error: ticket is null.\n";
+    return false;
+  }
   auto s = ticket_sh->Get_session();
-  if (s && Sold_for_session(s) >= s->Seats_limit()) {
-    cout << "Limit reached: no more seats for this session.\n";
+  if (!s) {
+    cout << "Error: ticket has no session.\n";
+    return false;
+  }
+  if (!s->Sell_seat()) {
+    cout << "Limit reached: no free seats for this session ("
+         << s->Sold_seats() << "/" << s->Seats_limit() << ").\n";
     return false;
   }
   reservation.push_back(ticket_sh);
-  cout << "Ticket sold.\n";
+  cout << "Ticket sold. Seats: " << s->Sold_seats()
+       << "/" << s->Seats_limit() << "\n";
   return true;
 }
 bool Ticket_system::In_unique_ticket(unique_ptr<Ticket> ticket_un) {
+  if (!ticket_un) {
+    cout << "Error: ticket is null.\n";
+    return false;
+  }
   auto s = ticket_un->Get_session();
-  if (s && Sold_for_session(s) >= s->Seats_limit()) {
-    cout << "Limit reached: no more seats for this session.\n";
+  if (!s) {
+    cout << "Error: ticket has no session.\n";
+    return false;
+  }
+  if (!s->Sell_seat()) {
+    cout << "Limit reached: no free seats for this session ("
+         << s->Sold_seats() << "/" << s->Seats_limit() << ").\n";
     return false;
   }
   particle.push_back(move(ticket_un));
-  cout << "Ticket sold.\n";
+  cout << "Ticket sold. Seats: " << s->Sold_seats()
+       << "/" << s->Seats_limit() << "\n";
   return true;
 }

@@ -39,4 +39,6 @@ case 4: {
     cout << "Session changed.\n";
   break;
 }
+    default:
+      cout << "Invalid choice.\n";
 }

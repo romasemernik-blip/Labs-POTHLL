@@ -64,8 +64,7 @@ int main() {
       Menu_ticket_system(system, tickets, sessions);
     } else if (choice == EXIT_NUMBER) {
       } else if (choice == 5) {
-  Menu_second_lab(halls, sessions, tickets, system);
-      return 0;
+      Menu_second_lab(halls, sessions, tickets, system);
     } else {
       cout << "Invalid choice.\n";
     }

@@ -89,6 +89,7 @@ bool Session::Can_change_hall(const shared_ptr<Hall>& new_hall) const {
   }
   return true;
 }
+
 bool Session::operator<(const Session& other) const {
   return Seats_limit() < other.Seats_limit();
 }

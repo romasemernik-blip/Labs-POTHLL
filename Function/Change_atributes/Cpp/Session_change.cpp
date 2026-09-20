@@ -5,6 +5,7 @@
 #include "Structure/Header/Time.h"
 #include "Function/Read/Header/Read.h"
 #include "Function/Show/Header/Hall_show.h"
+#include "Function/Show/Header/Session_show.h"
 #include <iostream>
 
 using namespace std;
@@ -22,18 +23,14 @@ void Change_session_field(vector<shared_ptr<Session>>& sessions,
     case 1:
       sessions[idx]->In_film(Read_string("New film name: "));
       break;
-    case 2: {
-      Show_hall_names(halls);
-      int h = Read_int("Hall index: ");
-
-      if (!sessions[idx]->Can_change_hall(halls[h])) {
-        break;
-      }
-
-      sessions[idx]->In_hall(halls[h]);
-      cout << "Hall changed.\n";
-      break;
-    }
+   case 2: {
+  Show_halls_bigger_than(*sessions[idx], halls);
+  int h = Read_int("Hall index (or -1 to cancel): ");
+  if (h == -1) break;
+  sessions[idx]->In_hall(halls[h]);
+  cout << "Hall changed.\n";
+  break;
+}
     case 3: {
       int y = Read_int("Year: ");
       int m = Read_int("Month: ");

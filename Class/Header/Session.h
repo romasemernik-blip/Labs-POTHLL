@@ -46,4 +46,12 @@ class Session {
 
   friend std::ostream& operator<<(std::ostream& os, const Session& s);
   friend std::istream& operator>>(std::istream& is, Session& s);
+
+  bool operator< (const Session& other) const;
+  bool operator> (const Session& other) const;
+  bool operator==(const Session& other) const;
+  bool operator!=(const Session& other) const;
+
+  bool operator< (const Hall& h) const;  
+  bool operator> (const Hall& h) const;
 };

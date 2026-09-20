@@ -22,3 +22,19 @@ void Show_session_films(const vector<shared_ptr<Session>>& sessions) {
          << " (free " << sessions[i]->Free_seats() << ")" << endl;
   }
 }
+void Show_halls_bigger_than(const Session& s,
+                            const vector<shared_ptr<Hall>>& halls) {
+  int current = s.Seats_limit();
+  cout << "Current hall size: " << current << " seats\n";
+  cout << "Halls with more seats:\n";
+
+  bool any = false;
+  for (size_t i = 0; i < halls.size(); ++i) {
+    if (s < *halls[i]) {          
+      cout << "[" << i << "] " << halls[i]->Get_name()
+           << " — " << halls[i]->Get_num_seat() << " seats\n";
+      any = true;
+    }
+  }
+  if (!any) cout << "None.\n";
+}

@@ -114,3 +114,26 @@ istream& operator>>(istream& is, Session& s) {
   is >> s.film;
   return is;
 }
+bool Session::operator<(const Session& other) const {
+  return Seats_limit() < other.Seats_limit();
+}
+
+bool Session::operator>(const Session& other) const {
+  return other < *this;
+}
+
+bool Session::operator==(const Session& other) const {
+  return Seats_limit() == other.Seats_limit();
+}
+
+bool Session::operator!=(const Session& other) const {
+  return !(*this == other);
+}
+
+bool Session::operator<(const Hall& h) const {
+  return Seats_limit() < h.Get_num_seat();
+}
+
+bool Session::operator>(const Hall& h) const {
+  return Seats_limit() > h.Get_num_seat();
+}

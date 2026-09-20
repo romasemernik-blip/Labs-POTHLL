@@ -1,6 +1,7 @@
 #pragma once
 #include <memory>
 #include <string>
+#include <iostream>
 
 #include "Class/Header/Hall.h"
 #include "Structure/Header/Date.h"

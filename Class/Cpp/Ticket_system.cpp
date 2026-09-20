@@ -99,6 +99,6 @@ Ticket_system& Ticket_system::operator-=(const shared_ptr<Ticket>& ticket_sh) {
     cout << "Null ticket.\n";
     return *this;
   }
-  return (*this) -= *ticket_sh;   
+  *this -= *ticket_sh;
+  return *this;
 }
-

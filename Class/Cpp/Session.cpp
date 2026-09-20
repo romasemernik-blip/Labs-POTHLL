@@ -71,3 +71,21 @@ string Session::Get_film() const { return film; }
 shared_ptr<Hall> Session::Get_hall() const { return hall; }
 shared_ptr<Date> Session::Get_date() const { return date; }
 shared_ptr<Time> Session::Get_time_start() const { return time_start; }
+
+bool Session::Can_change_hall(const shared_ptr<Hall>& new_hall) const {
+  if (!new_hall) {
+    cout << "Error: new hall is null.\n";
+    return false;
+  }
+  if (!hall) {
+    cout << "Error: current hall is null.\n";
+    return false;
+  }
+  if (new_hall->Get_num_seat() < hall->Get_num_seat()) {
+    cout << "Error: new hall has only " << new_hall->Get_num_seat()
+         << " seats, but current hall has " << hall->Get_num_seat()
+         << " seats. New hall must be at least as large.\n";
+    return false;
+  }
+  return true;
+}

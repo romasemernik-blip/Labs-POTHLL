@@ -41,4 +41,6 @@ class Session {
   std::shared_ptr<Hall> Get_hall() const;
   std::shared_ptr<Date> Get_date() const;
   std::shared_ptr<Time> Get_time_start() const;
+
+  bool Can_change_hall(const std::shared_ptr<Hall>& new_hall) const;
 };

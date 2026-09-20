@@ -25,7 +25,13 @@ void Change_session_field(vector<shared_ptr<Session>>& sessions,
     case 2: {
       Show_hall_names(halls);
       int h = Read_int("Hall index: ");
+
+      if (!sessions[idx]->Can_change_hall(halls[h])) {
+        break;
+      }
+
       sessions[idx]->In_hall(halls[h]);
+      cout << "Hall changed.\n";
       break;
     }
     case 3: {

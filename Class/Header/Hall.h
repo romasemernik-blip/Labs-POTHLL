@@ -24,21 +24,6 @@ class Hall {
   int Get_num_seat() const;
   std::string Get_name() const;
 
-  friend std::ostream& operator<<(std::ostream& os, const Hall& h) {
-    os << "Hall:\n"
-       << "Number of Hall: " << h.num << "\n"
-       << "Number of seats: " << h.num_seat << "\n"
-       << "Name of Hall: " << h.name << "\n";
-    return os;
-  }
-
-  friend std::istream& operator>>(std::istream& is, Hall& h) {
-    std::cout << "Number of Hall: ";
-    is >> h.num;
-    std::cout << "Number of seats: ";
-    is >> h.num_seat;
-    std::cout << "Name of Hall: ";
-    is >> h.name;
-    return is;
-  }
+  friend std::ostream& operator<<(std::ostream& os, const Hall& h);
+  friend std::istream& operator>>(std::istream& is, Hall& h);
 };

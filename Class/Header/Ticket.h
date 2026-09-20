@@ -29,26 +29,7 @@ class Ticket {
   float Get_price() const;
   std::shared_ptr<Session> Get_session() const;
 
-friend std::ostream& operator<<(std::ostream& os, const Ticket& t) {
-  os << "Ticket:\n"
-     << "Row and place of person: " << t.row << " " << t.place << "\n";
-  if (t.session) os << *t.session;
-  os << "Price of ticket: " << t.price << "$\n";
-  return os;
-}
+  friend std::ostream& operator<<(std::ostream& os, const Ticket& t);
 
-friend std::istream& operator>>(std::istream& is, Ticket& t) {
-  cout << "Row: ";
-  is >> t.row;
-  cout << "Place: ";
-  is >> t.place;
-  cout << "Price: ";
-  is >> t.price;
-  if (t.row < 1) t.row = 1;
-  if (t.place < 1) t.place = 1;
-  if (t.price <= 0) t.price = 1.0f;
-  return is;
-}
-
-  bool Ticket::operator==(const Ticket& other) const ;
+  bool operator==(const Ticket& other) const ;
 };

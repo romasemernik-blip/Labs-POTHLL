@@ -45,31 +45,7 @@ class Session {
 
   bool Can_change_hall(const std::shared_ptr<Hall>& new_hall) const;
 
-friend std::ostream& operator<<(ostream& os, const Session& s) {
-  os << "Session info\n";
-  os << "Name of session film: " << s.film << "\n";
-  if (s.hall) {
-    os << "Hall: " << s.hall->Get_name() << "\n";
-    os << "Number of Hall: " << s.hall->Get_num() << "\n";
-  }
-  if (s.date) {
-    os << "Date: ";
-    s.date->Print();
-    os << "\n";
-  }
-  if (s.time_start) {
-    os << "Time: ";
-    s.time_start->Print();
-    os << "\n";
-  }
-  return os;
-}
-
-friend std::istream& operator>>(istream& is, Session& s) {
-  cout << "Film name: ";
-  is >> s.film;
-  return is;
-}
+  friend std::ostream& operator<<(std::ostream& os, const Session& s);
 
   bool operator< (const Session& other) const;
   bool operator> (const Session& other) const;

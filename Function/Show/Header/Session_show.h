@@ -1,7 +1,8 @@
 #pragma once
 #include <memory>
 #include <vector>
-
+#include "Class/Header/Hall.h" 
+#include "Class/Header/Session.h"
 class Session;
 
 void Show_all_sessions(const std::vector<std::shared_ptr<Session>>& sessions);

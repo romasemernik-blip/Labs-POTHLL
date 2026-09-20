@@ -102,3 +102,10 @@ Ticket_system& Ticket_system::operator-=(const shared_ptr<Ticket>& ticket_sh) {
   *this -= *ticket_sh;
   return *this;
 }
+
+ostream& operator<<(ostream& os, const Ticket_system& ts) {
+  os << "Ticket System Database\n";
+  for (const auto& t : ts.reservation) os << *t;
+  for (const auto& t : ts.particle)    os << *t;
+  return os;
+}

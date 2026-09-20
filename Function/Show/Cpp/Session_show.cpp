@@ -1,5 +1,7 @@
 #include "Function/Show/Header/Session_show.h"
+#include "Class/Header/Hall.h" 
 #include "Class/Header/Session.h"
+
 #include <iostream>
 
 using namespace std;

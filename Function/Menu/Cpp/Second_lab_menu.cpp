@@ -168,8 +168,8 @@ static void Handle_second_lab_choice(int choice,
 }
 
 void Menu_second_lab(vector<shared_ptr<Hall>>& halls,
-                     vector<shared_ptr<Session>>& sessions,
-                     vector<shared_ptr<Ticket>>& tickets,
+                     const vector<shared_ptr<Session>>& sessions,
+                     const vector<shared_ptr<Ticket>>& tickets,
                      Ticket_system& system) {
   while (true) {
     Print_second_lab_menu();

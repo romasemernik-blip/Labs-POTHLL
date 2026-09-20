@@ -22,4 +22,7 @@ class Hall {
   int Get_num() const;
   int Get_num_seat() const;
   std::string Get_name() const;
+
+  friend std::ostream& operator<<(std::ostream& os, const Hall& h);
+  friend std::istream& operator>>(std::istream& is, Hall& h);
 };

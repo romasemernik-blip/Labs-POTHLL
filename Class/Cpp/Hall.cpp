@@ -25,3 +25,21 @@ void Hall::Out_h() const {
 int Hall::Get_num() const { return num; }
 int Hall::Get_num_seat() const { return num_seat; }
 string Hall::Get_name() const { return name; }
+
+ostream& operator<<(ostream& os, const Hall& h) {
+  os << "Hall:\n"
+     << "Number of Hall: " << h.num << "\n"
+     << "Number of seats: " << h.num_seat << "\n"
+     << "Name of Hall: " << h.name << "\n";
+  return os;
+}
+
+istream& operator>>(istream& is, Hall& h) {
+  cout << "Number of Hall: ";
+  is >> h.num;
+  cout << "Number of seats: ";
+  is >> h.num_seat;
+  cout << "Name of Hall: ";
+  is >> h.name;
+  return is;
+}

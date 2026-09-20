@@ -71,3 +71,48 @@ ostream& operator<<(ostream& os, const Ticket_system& ts) {
   for (const auto& t : ts.particle)    os << *t;
   return os;
 }
+
+Ticket_system& Ticket_system::operator+=(const shared_ptr<Ticket>& ticket_sh) {
+  In_shared_ticket(ticket_sh);  
+  return *this;
+}
+
+Ticket_system& Ticket_system::operator+=(unique_ptr<Ticket> ticket_un) {
+  In_unique_ticket(move(ticket_un));   
+  return *this;
+}
+
+Ticket_system& Ticket_system::operator-=(const Ticket& ticket) {
+  for (auto it = reservation.begin(); it != reservation.end(); ++it) {
+    if (*it && **it == ticket) {
+      reservation.erase(it);
+      cout << "Ticket removed from shared.\n";
+      return *this;
+    }
+  }
+  for (auto it = particle.begin(); it != particle.end(); ++it) {
+    if (*it && **it == ticket) {
+      particle.erase(it);
+      cout << "Ticket removed from unique.\n";
+      return *this;
+    }
+  }
+  cout << "Ticket not found.\n";
+  return *this;
+}
+
+Ticket_system& Ticket_system::operator-=(const shared_ptr<Ticket>& ticket_sh) {
+  if (!ticket_sh) {
+    cout << "Null ticket.\n";
+    return *this;
+  }
+  return (*this) -= *ticket_sh;   
+}
+
+Ticket_system& Ticket_system::operator-=(const unique_ptr<Ticket>& ticket_un) {
+  if (!ticket_un) {
+    cout << "Null ticket.\n";
+    return *this;
+  }
+  return (*this) -= *ticket_un;
+}

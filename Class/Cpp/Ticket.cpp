@@ -92,9 +92,14 @@ istream& operator>>(istream& is, Ticket& t) {
   is >> t.place;
   cout << "Price: ";
   is >> t.price;
-  // session не вводим — её задают через сеттер/меню
   if (t.row < 1) t.row = 1;
   if (t.place < 1) t.place = 1;
   if (t.price <= 0) t.price = 1.0f;
   return is;
+}
+bool Ticket::operator==(const Ticket& other) const {
+  return row == other.row
+      && place == other.place
+      && price == other.price
+      && session == other.session;
 }

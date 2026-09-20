@@ -30,4 +30,5 @@ class Ticket {
 
   friend std::ostream& operator<<(std::ostream& os, const Ticket& t);
   friend std::istream& operator>>(std::istream& is, Ticket& t);
+  bool Ticket::operator==(const Ticket& other) const ;
 };

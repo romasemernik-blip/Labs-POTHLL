@@ -23,4 +23,12 @@ class Ticket_system {
   std::size_t Unique_count() const;
 
   friend std::ostream& operator<<(std::ostream& os, const Ticket_system& ts);
+
+  Ticket_system& operator+=(const std::shared_ptr<Ticket>& ticket_sh);
+  Ticket_system& operator+=(std::unique_ptr<Ticket> ticket_un);
+
+
+  Ticket_system& operator-=(const Ticket& ticket);
+  Ticket_system& operator-=(const std::shared_ptr<Ticket>& ticket_sh);
+  Ticket_system& operator-=(const std::unique_ptr<Ticket>& ticket_un);
 };

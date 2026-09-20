@@ -7,6 +7,6 @@
 #include "Class/Header/Ticket_system.h"
 
 void Menu_second_lab(std::vector<std::shared_ptr<Hall>>& halls,
-                     std::vector<std::shared_ptr<Session>>& sessions,
-                     std::vector<std::shared_ptr<Ticket>>& tickets,
+                     const std::vector<std::shared_ptr<Session>>& sessions,
+                     const std::vector<std::shared_ptr<Ticket>>& tickets,
                      Ticket_system& system);

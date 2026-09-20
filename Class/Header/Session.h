@@ -43,4 +43,7 @@ class Session {
   std::shared_ptr<Time> Get_time_start() const;
 
   bool Can_change_hall(const std::shared_ptr<Hall>& new_hall) const;
+
+  friend std::ostream& operator<<(std::ostream& os, const Session& s);
+  friend std::istream& operator>>(std::istream& is, Session& s);
 };

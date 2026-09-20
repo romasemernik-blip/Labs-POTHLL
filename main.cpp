@@ -63,6 +63,7 @@ int main() {
     } else if (choice == 4) {
       Menu_ticket_system(system, tickets, sessions);
     } else if (choice == EXIT_NUMBER) {
+      return 0;
       } else if (choice == 5) {
       Menu_second_lab(halls, sessions, tickets, system);
     } else {

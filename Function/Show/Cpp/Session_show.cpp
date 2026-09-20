@@ -34,7 +34,7 @@ void Show_halls_bigger_than(const Session& s,
   for (size_t i = 0; i < halls.size(); ++i) {
     if (s < *halls[i]) {          
       cout << "[" << i << "] " << halls[i]->Get_name()
-           << " — " << halls[i]->Get_num_seat() << " seats\n";
+           << " - " << halls[i]->Get_num_seat() << " seats\n";
       any = true;
     }
   }

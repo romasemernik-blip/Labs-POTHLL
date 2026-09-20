@@ -2,16 +2,16 @@
 >Roman Semernik Dmitrievich  
 >Varient 26. Cinema system  
 >Need to control ticket and add some   
->lab for creating system of cinema, to buy control and safe ticket  
->LAB1 ADDING CLASSES  
->in first part i introduce classes Hall, Ticket, Ticket_system, Session.  
->add structure Date and Time  
->add menu to do some specific task
->LAB2 ADD OPETATORS
->ADD >> and << operators for all classes
->ADD -= and += for ticket system
->ADD == >= for session halls
->Sonarcloud to check lab   
+>lab for creating system of cinema, to buy control and safe ticket    
+>LAB1 ADDING CLASSES    
+>in first part i introduce classes Hall, Ticket, Ticket_system, Session.    
+>add structure Date and Time    
+>add menu to do some specific task  
+>LAB2 ADD OPETATORS  
+>ADD >> and << operators for all classes  
+>ADD -= and += for ticket system  
+>ADD == >= for session halls  
+>Sonarcloud to check lab     
 !https://sonarcloud.io/organizations/romasemernik-blip/projects  
 >command for create exe file
 >

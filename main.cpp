@@ -1,6 +1,7 @@
 #include <iostream>
 #include <memory>
 #include <vector>
+#include<define const.h>
 
 #include "Class/Header/Hall.h"
 #include "Class/Header/Session.h"
@@ -47,7 +48,7 @@ int main() {
     cout << "2. Session\n";
     cout << "3. Ticket\n";
     cout << "4. Ticket_system\n";
-    cout << "0. Exit\n";
+    cout << "67. Exit\n";
 
     int choice = Read_int("Choice: ");
 
@@ -59,7 +60,7 @@ int main() {
       Menu_ticket(tickets, sessions);
     } else if (choice == 4) {
       Menu_ticket_system(system, tickets, sessions);
-    } else if (choice == 0) {
+    } else if (choice == EXIT_NUMBER) {
       return 0;
     } else {
       cout << "Invalid choice.\n";

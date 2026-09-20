@@ -148,8 +148,8 @@ static void Print_second_lab_menu() {
 
 static void Handle_second_lab_choice(int choice,
                                      vector<shared_ptr<Hall>>& halls,
-                                     vector<shared_ptr<Session>>& sessions,
-                                     vector<shared_ptr<Ticket>>& tickets,
+                                    const vector<shared_ptr<Session>>& sessions,
+                                    const vector<shared_ptr<Ticket>>& tickets,
                                      Ticket_system& system) {
   switch (choice) {
     case 1:  Lab_show_halls(halls); break;

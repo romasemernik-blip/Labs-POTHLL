@@ -77,12 +77,13 @@ int Ticket::Get_place() const { return place; }
 float Ticket::Get_price() const { return price; }
 shared_ptr<Session> Ticket::Get_session() const { return session; }
 
-bool Ticket::operator==(const Ticket& other) const {
-  return row == other.row
-      && place == other.place
-      && price == other.price
-      && session == other.session;
-}
+ bool operator==(const Ticket& a, const Ticket& b) {
+    return a.row == b.row && a.place == b.place &&
+           a.price == b.price && a.session == b.session;
+  }
+  bool operator!=(const Ticket& a, const Ticket& b) {
+    return !(a == b);
+  }
 
 ostream& operator<<(ostream& os, const Ticket& t) {
   os << "Ticket:\n"

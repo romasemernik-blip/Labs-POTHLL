@@ -27,4 +27,7 @@ class Ticket {
   int Get_place() const;
   float Get_price() const;
   std::shared_ptr<Session> Get_session() const;
+
+  friend std::ostream& operator<<(std::ostream& os, const Ticket& t);
+  friend std::istream& operator>>(std::istream& is, Ticket& t);
 };

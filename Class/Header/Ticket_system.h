@@ -21,4 +21,6 @@ class Ticket_system {
 
   std::size_t Shared_count() const;
   std::size_t Unique_count() const;
+
+  friend std::ostream& operator<<(std::ostream& os, const Ticket_system& ts);
 };

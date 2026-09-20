@@ -1,13 +1,12 @@
-#pragma once
-#define MAX_DAY_IN_MONTH 31
-#define MIN_DAY_IN_MONTH 1
-#define MAX_MONTH_IN_YEAR 12
-#define MIN_MONTH_IN_YEAR 1
-#define MAX_YEAR 2100
-#define MIN_YEAR 1900
-#define MAX_MINUTE_IN_HOUR 59
-#define MIN_MINUTE_IN_HOUR 0
-#define MAX_HOUR_IN_DAY 23
-#define MIN_HOUR_IN_DAY 0
-#define ADD_0_TO_MINUTE 10
-#define EXIT_NUMBER 67
+constexpr int MAX_DAY_IN_MONTH   = 31;
+constexpr int MIN_DAY_IN_MONTH   = 1;
+constexpr int MAX_MONTH_IN_YEAR  = 12;
+constexpr int MIN_MONTH_IN_YEAR  = 1;
+constexpr int MAX_YEAR           = 2100;
+constexpr int MIN_YEAR           = 1900;
+constexpr int MAX_MINUTE_IN_HOUR = 59;
+constexpr int MIN_MINUTE_IN_HOUR = 0;
+constexpr int MAX_HOUR_IN_DAY    = 23;
+constexpr int MIN_HOUR_IN_DAY    = 0;
+constexpr int ADD_0_TO_MINUTE    = 10;
+constexpr int EXIT_NUMBER        = 67;

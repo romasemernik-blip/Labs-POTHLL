@@ -65,13 +65,6 @@ bool Ticket_system::In_unique_ticket(unique_ptr<Ticket> ticket_un) {
   return true;
 }
 
-ostream& operator<<(ostream& os, const Ticket_system& ts) {
-  os << "Ticket System Database\n";
-  for (const auto& t : ts.reservation) os << *t;
-  for (const auto& t : ts.particle)    os << *t;
-  return os;
-}
-
 Ticket_system& Ticket_system::operator+=(const shared_ptr<Ticket>& ticket_sh) {
   In_shared_ticket(ticket_sh);  
   return *this;
@@ -109,10 +102,3 @@ Ticket_system& Ticket_system::operator-=(const shared_ptr<Ticket>& ticket_sh) {
   return (*this) -= *ticket_sh;   
 }
 
-Ticket_system& Ticket_system::operator-=(const unique_ptr<Ticket>& ticket_un) {
-  if (!ticket_un) {
-    cout << "Null ticket.\n";
-    return *this;
-  }
-  return (*this) -= *ticket_un;
-}

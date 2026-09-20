@@ -22,7 +22,12 @@ class Ticket_system {
   std::size_t Shared_count() const;
   std::size_t Unique_count() const;
 
-  friend std::ostream& operator<<(std::ostream& os, const Ticket_system& ts);
+friend std::ostream& operator<<(std::ostream& os, const Ticket_system& ts) {
+  os << "Ticket System Database\n";
+  for (const auto& t : ts.reservation) os << *t;
+  for (const auto& t : ts.particle)    os << *t;
+  return os;
+}
 
   Ticket_system& operator+=(const std::shared_ptr<Ticket>& ticket_sh);
   Ticket_system& operator+=(std::unique_ptr<Ticket> ticket_un);
@@ -30,5 +35,4 @@ class Ticket_system {
 
   Ticket_system& operator-=(const Ticket& ticket);
   Ticket_system& operator-=(const std::shared_ptr<Ticket>& ticket_sh);
-  Ticket_system& operator-=(const std::unique_ptr<Ticket>& ticket_un);
 };

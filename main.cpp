@@ -33,7 +33,8 @@ int main() {
 
   auto session1 = make_shared<Session>("Breaking Bad", time1, date1, hall5);
   auto session2 = make_shared<Session>("Stranger Things", time2, date2, hall2);
-  vector<shared_ptr<Session>> sessions = {session1, session2};
+  auto session3 = make_shared<Session>("Stranger Things", time2, date2, hall2);
+  vector<shared_ptr<Session>> sessions = {session1, session2, session3};
 
   auto ticket1 = make_shared<Ticket>(2, 7, 12.3f, session1);
   auto ticket2 = make_shared<Ticket>(3, 14, 10.3f, session2);

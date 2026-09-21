@@ -40,7 +40,7 @@ int main() {
   vector<shared_ptr<Ticket>> tickets = {ticket1, ticket2};
 
   Ticket_system system;
-  system.In_shared_ticket(ticket1);
+  system.in_shared_ticket(ticket1);
 
   while (true) {
     cout << "\nMAIN MENU\n";

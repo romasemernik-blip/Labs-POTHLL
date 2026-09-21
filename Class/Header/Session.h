@@ -13,7 +13,7 @@ class Session {
   std::shared_ptr<Hall> hall;
   std::shared_ptr<Date> date;
   std::shared_ptr<Time> time_start;
-  int sold_seats = 0;
+  int sold_seats_ = 0;
 
  public:
   Session(const std::string& film,
@@ -21,29 +21,29 @@ class Session {
           std::shared_ptr<Date> date,
           std::shared_ptr<Hall> hall);
 
-  void In_film(const std::string_view& film_);
-  void In_hall(std::shared_ptr<Hall> hall_);
-  void In_time_start(std::shared_ptr<Time> time_start_);
-  void In_date(std::shared_ptr<Date> date_);
-  int Seats_limit() const;
-  int Sold_seats() const;
-  int Free_seats() const;
+  void in_film(const std::string_view& film_);
+  void in_hall(std::shared_ptr<Hall> hall_);
+  void in_time_start(std::shared_ptr<Time> time_start_);
+  void in_date(std::shared_ptr<Date> date_);
+  int seats_limit() const;
+  int sold_seats() const;
+  int free_seats() const;
 
-  bool Sell_seat(); 
-  void Return_seat();
+  bool sell_seat(); 
+  void return_seat();
   
-  void Out_s() const;
-  void Out_date() const;
-  void Out_time() const;
-  void Out_film() const;
-  void Out_hall() const;
+  void out_s() const;
+  void out_date() const;
+  void out_time() const;
+  void out_film() const;
+  void out_hall() const;
 
-  std::string Get_film() const;
-  std::shared_ptr<Hall> Get_hall() const;
-  std::shared_ptr<Date> Get_date() const;
-  std::shared_ptr<Time> Get_time_start() const;
+  std::string get_film() const;
+  std::shared_ptr<Hall> get_hall() const;
+  std::shared_ptr<Date> get_date() const;
+  std::shared_ptr<Time> get_time_start() const;
 
-  bool Can_change_hall(const std::shared_ptr<Hall>& new_hall) const;
+  bool can_change_hall(const std::shared_ptr<Hall>& new_hall) const;
 
   friend std::ostream& operator<<(std::ostream& os, const Session& s);
 

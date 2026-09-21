@@ -5,8 +5,8 @@ struct Time {
   int minute;
 
   Time(int h, int m);
-  void Print() const;
+  void print() const;
 
-  bool Set_hour(int h);
-  bool Set_minute(int m);
+  bool set_hour(int h);
+  bool set_minute(int m);
 };

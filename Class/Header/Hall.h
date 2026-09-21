@@ -11,18 +11,18 @@ class Hall {
  public:
   Hall(int num, int num_seat, const std::string& name);
 
-  void In_num(int num);
-  void In_num_seat(int num_seat);
-  void In_name(const std::string_view& name_);
+  void in_num(int num);
+  void in_num_seat(int num_seat);
+  void in_name(const std::string_view& name_);
 
-  void Out_num() const;
-  void Out_num_seat() const;
-  void Out_name() const;
-  void Out_h() const;
+  void out_num() const;
+  void out_num_seat() const;
+  void out_name() const;
+  void out_h() const;
 
-  int Get_num() const;
-  int Get_num_seat() const;
-  std::string Get_name() const;
+  int get_num() const;
+  int get_num_seat() const;
+  std::string get_name() const;
 
   friend std::ostream& operator<<(std::ostream& os, const Hall& h);
   friend std::istream& operator>>(std::istream& is, Hall& h);

@@ -9,7 +9,7 @@
 
 using namespace std;
 
-void Menu_ticket_system(Ticket_system& system,
+void menu_ticket_system(Ticket_system& system,
                         vector<shared_ptr<Ticket>>& tickets,
                         vector<shared_ptr<Session>>& sessions) {
   while (true) {
@@ -20,22 +20,22 @@ void Menu_ticket_system(Ticket_system& system,
     cout << "4. Show number of tickets\n";
     cout << "0. Back\n";
 
-    int choice = Read_int("Choice: ");
+    int choice = read_int("Choice: ");
 
     if (choice == 0) return;
     if (choice == 1) {
-      system.Out_t_s();
+      system.out_t_s();
     } else if (choice == 2) {
-      Show_ticket_short_no_price(tickets);
-      int idx = Read_int("Ticket index: ");
-      system.In_shared_ticket(tickets[idx]);
+      show_ticket_short_no_price(tickets);
+      int idx = read_int("Ticket index: ");
+      system.in_shared_ticket(tickets[idx]);
      } else if (choice == 3) {
-      int row = Read_int("Row: ");
-      int place = Read_int("Place: ");
-      float price = Read_float("Price: ");
+      int row = read_int("Row: ");
+      int place = read_int("Place: ");
+      float price = read_float("Price: ");
 
-      Show_session_films(sessions);
-      int s = Read_int("Session index: ");
+      show_session_films(sessions);
+      int s = read_int("Session index: ");
 
       if (s < 0 || s >= (int)sessions.size()) {
         cout << "Invalid session index.\n";
@@ -43,10 +43,10 @@ void Menu_ticket_system(Ticket_system& system,
       }
 
       auto t = make_unique<Ticket>(row, place, price, sessions[s]);
-      system.In_unique_ticket(move(t));
+      system.in_unique_ticket(move(t));
     } else if (choice == 4) {
-      cout << "Shared tickets: " << system.Shared_count() << endl;
-      cout << "Unique tickets: " << system.Unique_count() << endl;
+      cout << "Shared tickets: " << system.shared_count() << endl;
+      cout << "Unique tickets: " << system.unique_count() << endl;
     }
   }
 }

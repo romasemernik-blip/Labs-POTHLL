@@ -5,5 +5,5 @@
 class Session;
 class Hall;
 
-void Menu_session(std::vector<std::shared_ptr<Session>>& sessions,
+void menu_session(std::vector<std::shared_ptr<Session>>& sessions,
                   std::vector<std::shared_ptr<Hall>>& halls);

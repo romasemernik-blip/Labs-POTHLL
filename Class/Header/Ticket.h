@@ -14,20 +14,20 @@ class Ticket {
  public:
   Ticket(int row, int place, float price, std::shared_ptr<Session> session);
 
-  bool In_place(int place);
-  bool In_session(std::shared_ptr<Session> session_);
-  bool In_price(float price);
-  bool In_row(int row);
+  bool in_place(int place);
+  bool in_session(std::shared_ptr<Session> session_);
+  bool in_price(float price);
+  bool in_row(int row);
 
-  void Out_t() const;
-  void Out_place_and_row() const;
-  void Out_session() const;
-  void Out_price() const;
+  void out_t() const;
+  void out_place_and_row() const;
+  void out_session() const;
+  void out_price() const;
 
-  int Get_row() const;
-  int Get_place() const;
-  float Get_price() const;
-  std::shared_ptr<Session> Get_session() const;
+  int get_row() const;
+  int get_place() const;
+  float get_price() const;
+  std::shared_ptr<Session> get_session() const;
 
   friend std::ostream& operator<<(std::ostream& os, const Ticket& t);
 

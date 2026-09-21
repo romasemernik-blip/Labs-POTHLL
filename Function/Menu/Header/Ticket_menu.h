@@ -5,5 +5,5 @@
 class Ticket;
 class Session;
 
-void Menu_ticket(std::vector<std::shared_ptr<Ticket>>& tickets,
+void menu_ticket(std::vector<std::shared_ptr<Ticket>>& tickets,
                  std::vector<std::shared_ptr<Session>>& sessions);

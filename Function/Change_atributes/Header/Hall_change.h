@@ -4,4 +4,4 @@
 
 class Hall;
 
-void Change_hall_field(std::vector<std::shared_ptr<Hall>>& halls, int idx);
+void change_hall_field(std::vector<std::shared_ptr<Hall>>& halls, int idx);

@@ -10,7 +10,7 @@
 
 using namespace std;
 
-void Change_session_field(vector<shared_ptr<Session>>& sessions,
+void change_session_field(vector<shared_ptr<Session>>& sessions,
                           vector<shared_ptr<Hall>>& halls, int idx) {
   cout << "What to change?\n";
   cout << "1. Film name\n";
@@ -18,30 +18,30 @@ void Change_session_field(vector<shared_ptr<Session>>& sessions,
   cout << "3. Date\n";
   cout << "4. Start time\n";
 
-  int sub = Read_int("Choice: ");
+  int sub = read_int("Choice: ");
   switch (sub) {
     case 1:
-      sessions[idx]->In_film(Read_string("New film name: "));
+      sessions[idx]->in_film(read_string("New film name: "));
       break;
    case 2: {
-  Show_halls_bigger_than(*sessions[idx], halls);
-  int h = Read_int("Hall index (or -1 to cancel): ");
+  show_halls_bigger_than(*sessions[idx], halls);
+  int h = read_int("Hall index (or -1 to cancel): ");
   if (h == -1) break;
-  sessions[idx]->In_hall(halls[h]);
+  sessions[idx]->in_hall(halls[h]);
   cout << "Hall changed.\n";
   break;
 }
     case 3: {
-      int y = Read_int("Year: ");
-      int m = Read_int("Month: ");
-      int d = Read_int("Day: ");
-      sessions[idx]->In_date(make_shared<Date>(y, m, d));
+      int y = read_int("Year: ");
+      int m = read_int("Month: ");
+      int d = read_int("Day: ");
+      sessions[idx]->in_date(make_shared<Date>(y, m, d));
       break;
     }
     case 4: {
-      int h = Read_int("Hours: ");
-      int m = Read_int("Minutes: ");
-      sessions[idx]->In_time_start(make_shared<Time>(h, m));
+      int h = read_int("Hours: ");
+      int m = read_int("Minutes: ");
+      sessions[idx]->in_time_start(make_shared<Time>(h, m));
       break;
     }
     default:

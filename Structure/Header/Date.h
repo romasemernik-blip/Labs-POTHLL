@@ -6,9 +6,9 @@ struct Date {
   int day;
 
   Date(int y, int m, int d);
-  void Print() const;
+  void print() const;
 
-  bool Set_year(int y);
-  bool Set_month(int m);
-  bool Set_day(int d);
+  bool set_year(int y);
+  bool set_month(int m);
+  bool set_day(int d);
 };

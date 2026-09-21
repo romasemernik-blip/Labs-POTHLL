@@ -4,4 +4,4 @@
 
 class Hall;
 
-void Menu_hall(std::vector<std::shared_ptr<Hall>>& halls);
+void menu_hall(std::vector<std::shared_ptr<Hall>>& halls);

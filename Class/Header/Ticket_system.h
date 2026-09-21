@@ -13,15 +13,15 @@ class Ticket_system {
 
 
  public:
-  bool In_shared_ticket(const std::shared_ptr<Ticket>& ticket_sh);
-  bool In_unique_ticket(std::unique_ptr<Ticket> ticket_un);
+  bool in_shared_ticket(const std::shared_ptr<Ticket>& ticket_sh);
+  bool in_unique_ticket(std::unique_ptr<Ticket> ticket_un);
 
-  void Out_shared_ticket() const;
-  void Out_unique_ticket() const;
-  void Out_t_s() const;
+  void out_shared_ticket() const;
+  void out_unique_ticket() const;
+  void out_t_s() const;
 
-  std::size_t Shared_count() const;
-  std::size_t Unique_count() const;
+  std::size_t shared_count() const;
+  std::size_t unique_count() const;
 
   friend std::ostream& operator<<(std::ostream& os, const Ticket_system& ts);
 

@@ -51,20 +51,20 @@ int main() {
     cout << "5. For second lab\n";
     cout << "67. Exit\n";
 
-    int choice = Read_int("Choice: ");
+    int choice = read_int("Choice: ");
 
     if (choice == 1) {
-      Menu_hall(halls);
+      menu_hall(halls);
     } else if (choice == 2) {
-      Menu_session(sessions, halls);
+      menu_session(sessions, halls);
     } else if (choice == 3) {
-      Menu_ticket(tickets, sessions);
+      menu_ticket(tickets, sessions);
     } else if (choice == 4) {
-      Menu_ticket_system(system, tickets, sessions);
+      menu_ticket_system(system, tickets, sessions);
     } else if (choice == EXIT_NUMBER) {
       return 0;
       } else if (choice == 5) {
-      Menu_second_lab(halls, sessions, tickets, system);
+      menu_second_lab(halls, sessions, tickets, system);
     } else {
       cout << "Invalid choice.\n";
     }

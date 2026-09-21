@@ -2,4 +2,4 @@
 
 class Ticket_system;
 
-void Show_ticket_system(const Ticket_system& system);
+void show_ticket_system(const Ticket_system& system);

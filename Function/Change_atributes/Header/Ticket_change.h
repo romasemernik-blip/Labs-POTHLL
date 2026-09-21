@@ -5,6 +5,6 @@
 class Ticket;
 class Session;
 
-void Change_ticket_field(std::vector<std::shared_ptr<Ticket>>& tickets,
+void change_ticket_field(std::vector<std::shared_ptr<Ticket>>& tickets,
                          std::vector<std::shared_ptr<Session>>& sessions,
                          int idx);

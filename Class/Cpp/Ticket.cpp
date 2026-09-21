@@ -11,22 +11,22 @@ Ticket::Ticket(int row, int place, float price, shared_ptr<Session> session)
       if (this->price <= 0) this->price = 1.0f;
     }
 
-bool Ticket::In_place(int place_) {
+bool Ticket::in_place(int place_) {
   if (place_ < 1) {
     cout << "Error: place must be >= 1.\n";
     return false;
   }
- if (session && session->Get_hall() &&
-      place > session->Get_hall()->Get_num_seat()) {
+ if (session && session->get_hall() &&
+      place > session->get_hall()->get_num_seat()) {
     cout << "Error: place exceeds number of seats in hall ("
-         << session->Get_hall()->Get_num_seat() << ").\n";
+         << session->get_hall()->get_num_seat() << ").\n";
     return false;
   }
   this->place = place_;
   return true;
 }
 
-bool Ticket::In_session(shared_ptr<Session> session_) {
+bool Ticket::in_session(shared_ptr<Session> session_) {
   if (!session_) {
     cout << "Error: session is null.\n";
     return false;
@@ -35,7 +35,7 @@ bool Ticket::In_session(shared_ptr<Session> session_) {
   return true;
 }
 
-bool Ticket::In_price(float price_) {
+bool Ticket::in_price(float price_) {
   if (price_ <= 0) {
     cout << "Error: price must be positive.\n";
     return false;
@@ -44,7 +44,7 @@ bool Ticket::In_price(float price_) {
   return true;
 }
 
-bool Ticket::In_row(int row_) {
+bool Ticket::in_row(int row_) {
   if (row_ < 1) {
     cout << "Error: row must be >= 1.\n";
     return false;
@@ -52,30 +52,30 @@ bool Ticket::In_row(int row_) {
   this->row = row_;
   return true;
 }
-void Ticket::Out_t() const {
+void Ticket::out_t() const {
   cout << "Ticket:" << endl;
-  Out_place_and_row();
-  Out_session();
-  Out_price();
+  out_place_and_row();
+  out_session();
+  out_price();
   cout << endl;
 }
 
-void Ticket::Out_place_and_row() const {
+void Ticket::out_place_and_row() const {
   cout << "Row and place of person: " << row << " " << place << endl;
 }
 
-void Ticket::Out_session() const {
-  if (session) session->Out_s();
+void Ticket::out_session() const {
+  if (session) session->out_s();
 }
 
-void Ticket::Out_price() const {
+void Ticket::out_price() const {
   cout << "Price of ticket: " << price << "$" << endl;
 }
 
-int Ticket::Get_row() const { return row; }
-int Ticket::Get_place() const { return place; }
-float Ticket::Get_price() const { return price; }
-shared_ptr<Session> Ticket::Get_session() const { return session; }
+int Ticket::get_row() const { return row; }
+int Ticket::get_place() const { return place; }
+float Ticket::get_price() const { return price; }
+shared_ptr<Session> Ticket::get_session() const { return session; }
 
  bool operator==(const Ticket& a, const Ticket& b) {
     return a.row == b.row && a.place == b.place &&

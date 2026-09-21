@@ -6,6 +6,6 @@
 class Session;
 class Hall;
 
-void Change_session_field(std::vector<std::shared_ptr<Session>>& sessions,
+void change_session_field(std::vector<std::shared_ptr<Session>>& sessions,
                           std::vector<std::shared_ptr<Hall>>& halls,
                           int idx);

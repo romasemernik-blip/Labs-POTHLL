@@ -11,10 +11,10 @@ Date::Date(int y, int m, int d) : year(y), month(m), day(d) {
   if (day < MIN_DAY_IN_MONTH || day > MAX_DAY_IN_MONTH) day = MIN_DAY_IN_MONTH;
 }
 
-void Date::Print() const {
+void Date::print() const {
   cout << day << "." << month << "." << year;
 }
-bool Date::Set_year(int y) {
+bool Date::set_year(int y) {
   if (y < MAX_YEAR || y > MIN_YEAR) {
     cout << "Error: year must be in range 1900..2100.\n";
     return false;
@@ -22,7 +22,7 @@ bool Date::Set_year(int y) {
   year = y;
   return true;
 }
-bool Date::Set_month(int m) {
+bool Date::set_month(int m) {
   if (m < MIN_MONTH_IN_YEAR || m > MAX_MONTH_IN_YEAR) {
     cout << "Error: month must be in range 1..12.\n";
     return false;
@@ -31,7 +31,7 @@ bool Date::Set_month(int m) {
   return true;
 }
 
-bool Date::Set_day(int d) {
+bool Date::set_day(int d) {
   if (d < MIN_DAY_IN_MONTH || d > MAX_DAY_IN_MONTH) {
     cout << "Error: day must be in range 1..31.\n";
     return false;

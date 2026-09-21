@@ -7,22 +7,22 @@
 
 using namespace std;
 
-void Menu_hall(vector<shared_ptr<Hall>>& halls) {
+void menu_hall(vector<shared_ptr<Hall>>& halls) {
   while (true) {
     cout << "\n HALL MENU\n";
     cout << "1. Show all halls\n";
     cout << "2. Change hall characteristics\n";
     cout << "0. Back\n";
 
-    int choice = Read_int("Choice: ");
+    int choice = read_int("Choice: ");
 
     if (choice == 0) return;
     if (choice == 1) {
-      Show_all_halls(halls);
+      show_all_halls(halls);
     } else if (choice == 2) {
-      Show_all_halls(halls);
-      int idx = Read_int("Enter hall index: ");
-      Change_hall_field(halls, idx);
+      show_all_halls(halls);
+      int idx = read_int("Enter hall index: ");
+      change_hall_field(halls, idx);
     }
   }
 }

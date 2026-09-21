@@ -8,7 +8,7 @@
 
 using namespace std;
 
-void Menu_ticket(vector<shared_ptr<Ticket>>& tickets,
+void menu_ticket(vector<shared_ptr<Ticket>>& tickets,
                  vector<shared_ptr<Session>>& sessions) {
   while (true) {
     cout << "\nTICKET MENU\n";
@@ -16,15 +16,15 @@ void Menu_ticket(vector<shared_ptr<Ticket>>& tickets,
     cout << "2. Change ticket characteristics\n";
     cout << "0. Back\n";
 
-    int choice = Read_int("Choice: ");
+    int choice = read_int("Choice: ");
 
     if (choice == 0) return;
     if (choice == 1) {
-      Show_all_tickets(tickets);
+      show_all_tickets(tickets);
     } else if (choice == 2) {
-      Show_ticket_short(tickets);
-      int idx = Read_int("Enter ticket index: ");
-      Change_ticket_field(tickets, sessions, idx);
+      show_ticket_short(tickets);
+      int idx = read_int("Enter ticket index: ");
+      change_ticket_field(tickets, sessions, idx);
     }
   }
 }

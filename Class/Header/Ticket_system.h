@@ -31,4 +31,6 @@ class Ticket_system {
 
   Ticket_system& operator-=(const Ticket& ticket);
   Ticket_system& operator-=(const std::shared_ptr<Ticket>& ticket_sh);
+  
+  bool contains(const Ticket& ticket) const;
 };

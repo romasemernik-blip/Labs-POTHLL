@@ -66,12 +66,28 @@ bool Ticket_system::in_unique_ticket(unique_ptr<Ticket> ticket_un) {
 }
 
 Ticket_system& Ticket_system::operator+=(const shared_ptr<Ticket>& ticket_sh) {
-  in_shared_ticket(ticket_sh);  
+  if (!ticket_sh) {
+    cout << "Null ticket.\n";
+    return *this;
+  }
+  if (contains(*ticket_sh)) {
+    cout << "Error: duplicate ticket — same seat for same session.\n";
+    return *this;
+  }
+  in_shared_ticket(ticket_sh);
   return *this;
 }
 
 Ticket_system& Ticket_system::operator+=(unique_ptr<Ticket> ticket_un) {
-  in_unique_ticket(move(ticket_un));   
+  if (!ticket_un) {
+    cout << "Null ticket.\n";
+    return *this;
+  }
+  if (contains(*ticket_un)) {
+    cout << "Error: duplicate ticket — same seat for same session.\n";
+    return *this;
+  }
+  in_unique_ticket(move(ticket_un));
   return *this;
 }
 
@@ -108,4 +124,14 @@ ostream& operator<<(ostream& os, const Ticket_system& ts) {
   for (const auto& t : ts.reservation) os << *t;
   for (const auto& t : ts.particle)    os << *t;
   return os;
+}
+
+bool Ticket_system::contains(const Ticket& ticket) const {
+  for (const auto& t : reservation) {
+    if (t && *t == ticket) return true;
+  }
+  for (const auto& t : particle) {
+    if (t && *t == ticket) return true;
+  }
+  return false;
 }

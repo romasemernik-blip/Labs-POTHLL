@@ -26,7 +26,7 @@ void show_ticket_short_no_price(const vector<shared_ptr<Ticket>>& tickets) {
   }
 }
 
-bool Is_duplicate_ticket(const vector<shared_ptr<Ticket>>& tickets,
+bool is_duplicate_ticket(const vector<shared_ptr<Ticket>>& tickets,
                          const Ticket& candidate) {
   for (const auto& t : tickets) {
     if (t && *t == candidate) {          

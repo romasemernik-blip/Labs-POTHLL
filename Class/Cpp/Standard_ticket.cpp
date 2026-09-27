@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void StandardTicket::print_ticket(ostream& os) const {
+void Standard_ticket::print_ticket(ostream& os) const {
   os << "[Standard ticket]\n";
   Ticket::print_ticket(os);
 }

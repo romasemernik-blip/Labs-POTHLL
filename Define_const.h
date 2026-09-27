@@ -10,3 +10,4 @@ constexpr int MAX_HOUR_IN_DAY    = 23;
 constexpr int MIN_HOUR_IN_DAY    = 0;
 constexpr int ADD_0_TO_MINUTE    = 10;
 constexpr int EXIT_NUMBER        = 67;
+constexpr int VIP_EX_TICKET       = 1.5f;

@@ -5,7 +5,7 @@
 class Session;  
 
 class Ticket {
- private:
+ protected:
   int place;
   std::shared_ptr<Session> session;
   float price;
@@ -13,12 +13,15 @@ class Ticket {
 
  public:
   Ticket(int row, int place, float price, std::shared_ptr<Session> session);
+  virtual ~Ticket() = default;
 
   bool in_place(int place);
   bool in_session(std::shared_ptr<Session> session_);
   bool in_price(float price);
   bool in_row(int row);
 
+  virtual print(std::ostream& os ) const;
+  
   void out_t() const;
   void out_place_and_row() const;
   void out_session() const;

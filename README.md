@@ -11,6 +11,11 @@
 >ADD >> and << operators for all classes  
 >ADD -= and += for ticket system  
 >ADD == >= for session halls  
+>LAB3 ADD ENHERITANCE  
+>ADD new classes for ticket:  
+>Couple, Kids, Discount, Vip, Standart   
+>Add some virtual methods  
+>Add checking ticket for duplication    
 >Sonarcloud to check lab     
 !https://sonarcloud.io/organizations/romasemernik-blip/projects  
 >command for create exe file
@@ -19,8 +24,13 @@
     main.cpp `
     Class/Cpp/Hall.cpp `
     Class/Cpp/Session.cpp `
-    Class/Cpp/Ticket.cpp `
-    Class/Cpp/Ticket_system.cpp `
+    Class/Cpp/Ticket.cpp `  
+    Class/Cpp/Standard_ticket.cpp `  
+    Class/Cpp/Vip_ticket.cpp `  
+    Class/Cpp/Discount_ticket.cpp `  
+    Class/Cpp/Kids_ticket.cpp `  
+    Class/Cpp/Couple_ticket.cpp `  
+    Class/Cpp/Ticket_system.cpp `  
     Structure/Cpp/Date.cpp `
     Structure/Cpp/Time.cpp `
     Function/Read/Cpp/Read.cpp `
@@ -36,5 +46,6 @@
     Function/Menu/Cpp/Ticket_menu.cpp `
     Function/Menu/Cpp/Ticket_system_menu.cpp `
     Function/Menu/Cpp/Second_lab_menu.cpp `
-    -o lab2.exe
+    Function/Menu/Cpp/Third_lab_menu.cpp `  
+    -o lab3.exe
 ```

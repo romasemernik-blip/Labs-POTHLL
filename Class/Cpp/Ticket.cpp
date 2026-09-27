@@ -92,3 +92,12 @@ ostream& operator<<(ostream& os, const Ticket& t) {
   os << "Price of ticket: " << t.price << "$\n";
   return os;
 }
+float Ticket::final_price() const { return price; }
+
+void Ticket::print_ticket(ostream& os) const {
+  os << "Ticket:\n"
+     << "Row and place of person: " << row << " " << place << "\n";
+  if (session) os << *session;
+  os << "Base price: " << price << "$\n"
+     << "Final price: " << final_price() << "$\n";
+}

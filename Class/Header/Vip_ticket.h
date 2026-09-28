@@ -7,8 +7,15 @@ public:
             std::shared_ptr<Session> session,
             bool lounge_access, bool free_drinks);
 
-  float final_price() const ;
-  void print_ticket(std::ostream& os) const ;
+  float final_price() const override;
+  void print_ticket(std::ostream& os) const override;
+
+  bool has_lounge() const { return has_lounge_access; }
+  bool has_drinks() const { return has_free_drinks; }
+
+  void set_lounge(bool v) { has_lounge_access = v; }
+  void set_drinks(bool v) { has_free_drinks = v; }
+
 
 private:
   bool has_lounge_access;

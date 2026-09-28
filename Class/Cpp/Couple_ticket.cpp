@@ -45,3 +45,7 @@ void Couple_ticket::print_ticket(ostream& os) const {
      << "Second place: " << second_place << "\n"
      << "Couple price: x1.8 (for two)\n";
 }
+
+std::string Couple_ticket::discount_info() const {
+  return "couple price x1.8 for two seats";
+}

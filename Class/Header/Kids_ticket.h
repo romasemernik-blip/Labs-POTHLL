@@ -19,6 +19,7 @@ public:
   bool set_child_age(int age);
 
   std::string type_name() const override ;
+  std::string discount_info() const override;
 
 private:
   std::string child_name;

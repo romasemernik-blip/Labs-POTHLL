@@ -190,6 +190,16 @@ static void t3_show_derived_fields(const vector<shared_ptr<Ticket>>& tickets) {
   }
 }
 
+static void t3_show_types(const vector<shared_ptr<Ticket>>& tickets) {
+  if (tickets.empty()) { cout << "No tickets.\n"; return; }
+
+  cout << "Polymorphic call of virtual (non-pure) methods:\n";
+  for (size_t i = 0; i < tickets.size(); ++i) {
+    cout << "[" << i << "] type = " << tickets[i]->type_name()
+         << " | " << tickets[i]->discount_info() << "\n";
+  }
+}
+
 static void t3_print_menu() {
   cout << "\n FOR THIRD / FOURTH LAB MENU \n";
   cout << "1.  Create ticket (Standard / VIP / Discount / Kids / Couple)\n";
@@ -200,6 +210,7 @@ static void t3_print_menu() {
   cout << "6.  Show specific fields via getters (dynamic_cast)\n";
   cout << "7.  Show derived-type fields\n";
   cout << "8.  Demo dynamic polymorphism (Lab 4)\n";
+  cout << "9.  Show ticket types via virtual non-pure method\n";
   cout << "0.  Back\n";
 }
 
@@ -216,6 +227,7 @@ static void handle_third_lab_choice(int choice,
     case 6: t3_show_specific(tickets); break;
     case 7: t3_show_derived_fields(tickets); break;
     case 8: t4_demo_polymorphism(tickets); break;
+    case 9: t3_show_types(tickets); break;
     default: cout << "Invalid choice.\n";
   }
 }

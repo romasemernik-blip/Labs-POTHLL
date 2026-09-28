@@ -46,3 +46,7 @@ void Kids_ticket::print_ticket(ostream& os) const {
   os << "Child: " << child_name << ", age: " << child_age << "\n"
      << "Child discount: x0.5\n";
 }
+
+std::string Kids_ticket::discount_info() const {
+  return "child discount 50%";
+}

@@ -25,3 +25,7 @@ void Vip_ticket::print_ticket(ostream& os) const {
      << "Free drinks:   " << (has_free_drinks  ? "yes" : "no") << "\n"
      << "VIP surcharge: x1.5\n";
 }
+
+std::string Vip_ticket::discount_info() const {
+  return "VIP surcharge x1.5";
+}

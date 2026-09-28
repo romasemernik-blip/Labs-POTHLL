@@ -46,3 +46,7 @@ void Discount_ticket::print_ticket(ostream& os) const {
   os << "Holder: " << holder_name << "\n"
      << "Discount: " << discount_percent << "%\n";
 }
+
+std::string Discount_ticket::discount_info() const {
+  return std::to_string(discount_percent) + "% mn base price";
+}

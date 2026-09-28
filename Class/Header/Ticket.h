@@ -44,4 +44,6 @@ class Ticket {
   friend bool operator==(const Ticket& a, const Ticket& b) ;
   friend bool operator!=(const Ticket& a, const Ticket& b);
 
+  virtual std::string discount_info() const; 
+
 };

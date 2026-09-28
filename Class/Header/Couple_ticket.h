@@ -22,6 +22,7 @@ public:
   int get_second_place() const { return second_place; }
 
   std::string type_name() const override ;
+  std::string discount_info() const override;
 
 private:
   std::string person1;

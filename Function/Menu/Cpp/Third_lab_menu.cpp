@@ -96,11 +96,11 @@ static void t3_show_all_tickets(const vector<shared_ptr<Ticket>>& tickets) {
 static void t4_show_biggest_discount(const vector<shared_ptr<Ticket>>& tickets) {
   if (tickets.empty()) { cout << "No tickets.\n"; return; }
 
-  auto discount_of = [](const shared_ptr<Ticket>& t) -> float {
+  auto discount_of = [](const shared_ptr<Ticket>& t) {
     float base  = t->get_price();
-    float final = t->final_price();          
+    float final_price_val = t->final_price();
     if (base <= 0.0f) return 0.0f;
-    return (1.0f - final / base) * 100.0f;  
+    return (1.0f - final_price_val / base) * 100.0f;
   };
 
   auto it = std::max_element(
@@ -123,7 +123,7 @@ static void t4_show_biggest_discount(const vector<shared_ptr<Ticket>>& tickets) 
   best.print_ticket(cout);      
 }
 
-static void t4_add_5_percent_discount(vector<shared_ptr<Ticket>>& tickets) {
+static void t4_add_5_percent_discount(const vector<shared_ptr<Ticket>>& tickets) {
   if (tickets.empty()) { cout << "No tickets.\n"; return; }
 
   const float factor = 1.0f - EXTRA_DISCOUNT / 100.0f;   
@@ -132,7 +132,7 @@ static void t4_add_5_percent_discount(vector<shared_ptr<Ticket>>& tickets) {
   cout << "New base = old base * " << factor << "\n\n";
 
   int changed = 0;
-  for (auto& t : tickets) {
+  for (const auto& t : tickets) {
     float old_base  = t->get_price();
     float old_final = t->final_price();
 

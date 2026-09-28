@@ -80,9 +80,13 @@ static void t3_create_ticket(vector<shared_ptr<Ticket>>& tickets,
 }
 
 static void t3_show_all_tickets(const vector<shared_ptr<Ticket>>& tickets) {
-  if (tickets.empty()) { cout << "No tickets.\n"; return; }
+  if (tickets.empty()) {
+    cout << "No tickets.\n";
+    return;
+  }
   for (size_t i = 0; i < tickets.size(); ++i) {
-    cout << "[" << i << "]\n" << *tickets[i];
+    cout << "[" << i << "]\n";
+    tickets[i]->print_ticket(cout);          
     cout << "-----------------\n";
   }
 }

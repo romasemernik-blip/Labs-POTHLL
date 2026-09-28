@@ -5,6 +5,7 @@
 #include "Function/Read/Header/Read.h"
 #include "Function/Show/Header/Ticket_show.h"
 #include "Function/Show/Header/Session_show.h"
+#include "Class/Header/Standard_ticket.h"
 #include <iostream>
 
 using namespace std;
@@ -42,7 +43,7 @@ void menu_ticket_system(Ticket_system& system,
         continue;
       }
 
-      auto t = make_unique<Ticket>(row, place, price, sessions[s]);
+      auto t = make_unique<Standard_ticket>(row, place, price, sessions[s]);
       system.in_unique_ticket(move(t));
     } else if (choice == 4) {
       cout << "Shared tickets: " << system.shared_count() << endl;

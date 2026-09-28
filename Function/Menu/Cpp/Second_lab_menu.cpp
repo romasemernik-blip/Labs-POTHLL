@@ -3,6 +3,7 @@
 #include "Function/Show/Header/Hall_show.h"
 #include "Function/Show/Header/Session_show.h"
 #include "Function/Show/Header/Ticket_show.h"
+#include "Class/Header/Standard_ticket.h"
 #include <iostream>
 
 using namespace std;
@@ -105,7 +106,10 @@ static void lab_add_unique(Ticket_system& system,
     cout << "Invalid index.\n";
     return;
   }
-  system += make_unique<Ticket>(row, place, pr, sessions[s]);
+   std::unique_ptr<Ticket> ptr =
+      std::make_unique<Standard_ticket>(row, place, pr, sessions[s],
+                                        "Standard");
+  system += std::move(ptr);
 }
 
 static void lab_remove_by_value(Ticket_system& system,

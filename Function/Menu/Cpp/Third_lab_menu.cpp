@@ -116,6 +116,34 @@ static void t3_check_duplicate(const vector<shared_ptr<Ticket>>& tickets,
   }
 }
 
+static void t3_show_specific(const vector<shared_ptr<Ticket>>& tickets) {
+  if (tickets.empty()) { cout << "No tickets.\n"; return; }
+
+  for (size_t i = 0; i < tickets.size(); ++i) {
+    cout << "[" << i << "]\n";
+
+    if (auto st = dynamic_pointer_cast<Standard_ticket>(tickets[i])) {
+      cout << "  Standard, zone = " << st->get_zone() << "\n";
+    }
+    else if (auto vt = dynamic_pointer_cast<Vip_ticket>(tickets[i])) {
+      cout << "  VIP, lounge = " << (vt->has_lounge() ? "yes" : "no")
+           << ", drinks = "  << (vt->has_drinks()  ? "yes" : "no") << "\n";
+    }
+    else if (auto dt = dynamic_pointer_cast<Discount_ticket>(tickets[i])) {
+      cout << "  Discount " << dt->get_discount()
+           << "%, holder = " << dt->get_holder() << "\n";
+    }
+    else if (auto kt = dynamic_pointer_cast<Kids_ticket>(tickets[i])) {
+      cout << "  Kids: " << kt->get_child_name()
+           << ", age = " << kt->get_child_age() << "\n";
+    }
+    else if (auto ct = dynamic_pointer_cast<Couple_ticket>(tickets[i])) {
+      cout << "  Couple: " << ct->get_person1() << " + " << ct->get_person2()
+           << ", 2nd place = " << ct->get_second_place() << "\n";
+    }
+  }
+}
+
 static void t3_add_to_system(Ticket_system& system,
                              const vector<shared_ptr<Ticket>>& tickets) {
   if (tickets.empty()) { cout << "No tickets.\n"; return; }
@@ -135,6 +163,7 @@ static void t3_print_menu() {
   cout << "3.  Show base vs final prices (virtual Final_price)\n";
   cout << "4.  Check if seat is free (operator== duplicate check)\n";
   cout << "5.  Sell ticket via system += (with duplicate check)\n";
+  cout << "6.  Show specific fields via getters (dynamic_cast)\n";
   cout << "0.  Back\n";
 }
 
@@ -149,6 +178,7 @@ static void handle_third_lab_choice(int choice,
     case 3: t3_show_final_prices(tickets); break;
     case 4: t3_check_duplicate(tickets, sessions); break;
     case 5: t3_add_to_system(system, tickets); break;
+    case 6: t3_show_specific(tickets); break;
     default: cout << "Invalid choice.\n";
   }
 }

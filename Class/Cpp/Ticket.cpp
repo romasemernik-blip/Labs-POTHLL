@@ -78,8 +78,7 @@ float Ticket::get_price() const { return price; }
 shared_ptr<Session> Ticket::get_session() const { return session; }
 
  bool operator==(const Ticket& a, const Ticket& b) {
-    return a.row == b.row && a.place == b.place &&
-           a.price == b.price && a.session == b.session;
+    return a.row == b.row && a.place == b.place  && a.session == b.session;
   }
   bool operator!=(const Ticket& a, const Ticket& b) {
     return !(a == b);

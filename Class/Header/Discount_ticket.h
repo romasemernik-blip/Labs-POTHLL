@@ -15,6 +15,9 @@ public:
   int get_discount() const { return discount_percent; }
   std::string get_holder() const { return holder_name; }
 
+  bool set_discount(int d);
+  bool set_holder(const std::string& h);
+
 private:
   int discount_percent;
   std::string holder_name;

@@ -10,7 +10,7 @@ public:
   float final_price() const override;
 
   const std::string& get_zone() const { return zone; }
-  bool set_zone(const std::string& z);
+  bool set_zone(const std::string_view& z);
 
 private:
 std::string zone;

@@ -172,7 +172,6 @@ static void t3_print_menu() {
 }
 
 static void handle_third_lab_choice(int choice,
-                                    vector<shared_ptr<Hall>>& halls,
                                     vector<shared_ptr<Session>>& sessions,
                                     vector<shared_ptr<Ticket>>& tickets,
                                     Ticket_system& system) {
@@ -187,14 +186,13 @@ static void handle_third_lab_choice(int choice,
   }
 }
 
-void menu_third_lab(vector<shared_ptr<Hall>>& halls,
-                    vector<shared_ptr<Session>>& sessions,
+void menu_third_lab(vector<shared_ptr<Session>>& sessions,
                     vector<shared_ptr<Ticket>>& tickets,
                     Ticket_system& system) {
   while (true) {
     t3_print_menu();
     int choice = read_int("Choice: ");
     if (choice == 0) return;
-    handle_third_lab_choice(choice, halls, sessions, tickets, system);
+    handle_third_lab_choice(choice, sessions, tickets, system);
   }
 }

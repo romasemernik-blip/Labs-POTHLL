@@ -14,7 +14,7 @@ Couple_ticket::Couple_ticket(int row, int place, float price,
   if (this->second_place < 1) this->second_place = place + 1;
 }
 
-float Couple_ticket::final_price() const { return price * COUPLE_DISCOUNT; }
+float Couple_ticket::final_price() const { return get_price() * COUPLE_DISCOUNT; }
 
 void Couple_ticket::print_ticket(ostream& os) const {
   os << "[Couple ticket]\n";
@@ -24,12 +24,12 @@ void Couple_ticket::print_ticket(ostream& os) const {
      << "Second place: " << second_place << "\n";
 }
 
-bool Couple_ticket::set_person1(const string& n) {
+bool Couple_ticket::set_person1(const string_view& n) {
   if (n.empty()) { cout << "Error: name cannot be empty.\n"; return false; }
   person1 = n; return true;
 }
 
-bool Couple_ticket::set_person2(const string& n) {
+bool Couple_ticket::set_person2(const string_view& n) {
   if (n.empty()) { cout << "Error: name cannot be empty.\n"; return false; }
   person2 = n; return true;
 }

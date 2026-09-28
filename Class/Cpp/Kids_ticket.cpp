@@ -13,7 +13,7 @@ Kids_ticket::Kids_ticket(int row, int place, float price,
   if (this->child_age > MAX_KIDS_AGE) this->child_age = MAX_KIDS_AGE;
 }
 
-float Kids_ticket::final_price() const { return price * CHILD_DISCOUNT; }
+float Kids_ticket::final_price() const { return get_price() * CHILD_DISCOUNT; }
 
 void Kids_ticket::print_ticket(ostream& os) const {
   os << "[Kids ticket]\n";
@@ -21,7 +21,7 @@ void Kids_ticket::print_ticket(ostream& os) const {
   os << "Child: " << child_name << ", age: " << child_age << "\n";
 }
 
-bool Kids_ticket::set_child_name(const string& name) {
+bool Kids_ticket::set_child_name(const string_view& name) {
   if (name.empty()) {
     cout << "Error: child name cannot be empty.\n";
     return false;

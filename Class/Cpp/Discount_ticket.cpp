@@ -15,7 +15,7 @@ Discount_ticket::Discount_ticket(int row, int place, float price,
 }
 
 float Discount_ticket::final_price() const {
-  return price * (1.0f - discount_percent / 100.0f);
+  return get_price() * (1.0f - discount_percent / 100.0f);
 }
 
 void Discount_ticket::print_ticket(ostream& os) const {
@@ -35,7 +35,7 @@ bool Discount_ticket::set_discount(int d) {
   return true;
 }
 
-bool Discount_ticket::set_holder(const std::string& h) {
+bool Discount_ticket::set_holder(const std::string_view& h) {
   if (h.empty()) { cout << "Error: holder cannot be empty.\n"; return false; }
   holder_name = h;
   return true;

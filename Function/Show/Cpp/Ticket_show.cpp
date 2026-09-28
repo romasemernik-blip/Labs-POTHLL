@@ -1,6 +1,7 @@
 #include "Function/Show/Header/Ticket_show.h"
 #include "Class/Header/Ticket.h"
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
@@ -26,12 +27,12 @@ void show_ticket_short_no_price(const vector<shared_ptr<Ticket>>& tickets) {
   }
 }
 
-bool is_duplicate_ticket(const vector<shared_ptr<Ticket>>& tickets,
+#include <algorithm>
+
+bool Is_duplicate_ticket(const vector<shared_ptr<Ticket>>& tickets,
                          const Ticket& candidate) {
-  for (const auto& t : tickets) {
-    if (t && *t == candidate) {          
-      return true;
-    }
-  }
-  return false;
+  return std::any_of(tickets.begin(), tickets.end(),
+                     [&candidate](const shared_ptr<Ticket>& t) {
+                       return t && *t == candidate;
+                     });
 }

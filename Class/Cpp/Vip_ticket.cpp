@@ -10,7 +10,7 @@ Vip_ticket::Vip_ticket(int row, int place, float price,
       has_lounge_access(lounge_access),
       has_free_drinks(free_drinks) {}
 
-float Vip_ticket::final_price() const { return price * VIP_EX_TICKET ; }
+float Vip_ticket::final_price() const { return get_price() * VIP_EX_TICKET ; }
 
 void Vip_ticket::print_ticket(ostream& os) const {
   os << "[VIP ticket]\n";

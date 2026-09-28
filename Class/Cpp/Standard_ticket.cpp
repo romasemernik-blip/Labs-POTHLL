@@ -16,9 +16,9 @@ void Standard_ticket::print_ticket(ostream& os) const {
   os << "Zone: " << zone <<"\n";
 }
 
-float Standard_ticket::final_price() const { return price;}
+float Standard_ticket::final_price() const { return get_price();}
 
-bool Standard_ticket::set_zone(const string& z) {
+bool Standard_ticket::set_zone(const string_view& z) {
   if (z.empty()) {
     cout << "Error: zone cannot be empty.\n";
     return false;

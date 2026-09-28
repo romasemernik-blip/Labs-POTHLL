@@ -5,7 +5,7 @@
 class Session;  
 
 class Ticket {
- protected:
+ private:
   int place;
   std::shared_ptr<Session> session;
   float price;

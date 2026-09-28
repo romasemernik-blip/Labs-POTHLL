@@ -16,7 +16,7 @@ public:
   std::string get_holder() const { return holder_name; }
 
   bool set_discount(int d);
-  bool set_holder(const std::string& h);
+  bool set_holder(const std::string_view& h);
 
 private:
   int discount_percent;

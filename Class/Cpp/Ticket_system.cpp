@@ -3,6 +3,7 @@
 #include "Class/Header/Session.h"  
 #include <iostream>
 #include <memory>
+#include <algorithm>
 
 using namespace std;
 
@@ -127,11 +128,9 @@ ostream& operator<<(ostream& os, const Ticket_system& ts) {
 }
 
 bool Ticket_system::contains(const Ticket& ticket) const {
-  for (const auto& t : reservation) {
-    if (t && *t == ticket) return true;
-  }
-  for (const auto& t : particle) {
-    if (t && *t == ticket) return true;
-  }
-  return false;
+  auto matches = [&ticket](const auto& ptr) {
+    return ptr && *ptr == ticket;
+  };
+  return std::any_of(reservation.begin(), reservation.end(), matches)
+      || std::any_of(particle.begin(),    particle.end(),    matches);
 }

@@ -38,3 +38,5 @@ bool Couple_ticket::set_second_place(int p) {
   if (p < 1) { cout << "Error: place must be >= 1.\n"; return false; }
   second_place = p; return true;
 }
+
+std::string type_name() { return "Couple"; }

@@ -18,6 +18,8 @@ public:
   bool set_discount(int d);
   bool set_holder(const std::string_view& h);
 
+  std::string type_name() const override ;
+
 private:
   int discount_percent;
   std::string holder_name;

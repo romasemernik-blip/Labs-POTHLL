@@ -53,11 +53,7 @@ bool Ticket::in_row(int row_) {
   return true;
 }
 void Ticket::out_t() const {
-  cout << "Ticket:" << endl;
-  out_place_and_row();
-  out_session();
-  out_price();
-  cout << endl;
+  print_ticket(cout);       
 }
 
 void Ticket::out_place_and_row() const {
@@ -85,17 +81,6 @@ shared_ptr<Session> Ticket::get_session() const { return session; }
   }
 
 ostream& operator<<(ostream& os, const Ticket& t) {
-  os << "Ticket:\n"
-     << "Row and place of person: " << t.row << " " << t.place << "\n";
-  if (t.session) os << *t.session;
-  os << "Price of ticket: " << t.price << "$\n";
+  t.print_ticket(os);    
   return os;
-}
-
-void Ticket::print_ticket(ostream& os) const {
-  os << "Ticket:\n"
-     << "Row and place of person: " << row << " " << place << "\n";
-  if (session) os << *session;
-  os << "Base price: " << price << "$\n"
-     << "Final price: " << final_price() << "$\n";
 }

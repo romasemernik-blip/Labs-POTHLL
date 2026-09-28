@@ -26,3 +26,5 @@ bool Standard_ticket::set_zone(const string_view& z) {
   zone = z;
   return true;
 }
+
+std::string type_name() { return "Standard"; }

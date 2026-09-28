@@ -11,6 +11,8 @@ public:
 
   const std::string& get_zone() const { return zone; }
   bool set_zone(const std::string_view& z);
+  
+  std::string type_name() const override ;
 
 private:
 std::string zone;

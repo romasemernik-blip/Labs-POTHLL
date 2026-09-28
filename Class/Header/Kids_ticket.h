@@ -18,6 +18,8 @@ public:
   bool set_child_name(const std::string_view& name);
   bool set_child_age(int age);
 
+  std::string type_name() const override ;
+
 private:
   std::string child_name;
   int child_age;

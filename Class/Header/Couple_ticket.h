@@ -21,6 +21,8 @@ public:
   const std::string& get_person2() const { return person2; }
   int get_second_place() const { return second_place; }
 
+  std::string type_name() const override ;
+
 private:
   std::string person1;
   std::string person2;

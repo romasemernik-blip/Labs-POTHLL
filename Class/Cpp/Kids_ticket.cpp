@@ -39,3 +39,5 @@ bool Kids_ticket::set_child_age(int age) {
   child_age = age;
   return true;
 }
+
+std::string type_name() { return "Kids"; }

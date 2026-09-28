@@ -19,3 +19,4 @@ void Vip_ticket::print_ticket(ostream& os) const {
      << "Free drinks: "   << (has_free_drinks  ? "yes" : "no") << "\n";
 }
 
+std::string type_name() { return "VIP"; }

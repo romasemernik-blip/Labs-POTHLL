@@ -20,3 +20,22 @@ void Kids_ticket::print_ticket(ostream& os) const {
   Ticket::print_ticket(os);
   os << "Child: " << child_name << ", age: " << child_age << "\n";
 }
+
+bool Kids_ticket::set_child_name(const string& name) {
+  if (name.empty()) {
+    cout << "Error: child name cannot be empty.\n";
+    return false;
+  }
+  child_name = name;
+  return true;
+}
+
+bool Kids_ticket::set_child_age(int age) {
+  if (age < MIN_KIDS_AGE || age > MAX_KIDS_AGE) {
+    cout << "Error: age must be in range "
+         << MIN_KIDS_AGE << ".." << MAX_KIDS_AGE << ".\n";
+    return false;
+  }
+  child_age = age;
+  return true;
+}

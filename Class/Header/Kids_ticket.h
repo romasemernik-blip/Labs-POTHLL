@@ -12,6 +12,12 @@ public:
   float final_price() const override;
   void print_ticket(std::ostream& os) const override;
 
+  const std::string& get_child_name() const { return child_name; }
+  int get_child_age() const { return child_age; }
+
+  bool set_child_name(const std::string& name);
+  bool set_child_age(int age);
+
 private:
   std::string child_name;
   int child_age;

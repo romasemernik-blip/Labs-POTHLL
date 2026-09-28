@@ -79,7 +79,7 @@ int main() {
       } else if (choice == 5) {
       menu_second_lab(halls, sessions, tickets, system);
       } else if (choice == 6) {                                  
-      menu_third_lab(halls, sessions, tickets, system);
+      menu_third_lab( sessions, tickets, system);
     } else {
       cout << "Invalid choice.\n";
     }

@@ -1,4 +1,5 @@
 #include "Class/Header/Couple_ticket.h"
+#include "Class/Header/Session.h"
 #include <Define_const.h>
 
 using namespace std;
@@ -16,14 +17,6 @@ Couple_ticket::Couple_ticket(int row, int place, float price,
 
 float Couple_ticket::final_price() const { return get_price() * COUPLE_DISCOUNT; }
 
-void Couple_ticket::print_ticket(ostream& os) const {
-  os << "[Couple ticket]\n";
-  Ticket::print_ticket(os);
-  os << "Person 1: " << person1 << "\n"
-     << "Person 2: " << person2 << "\n"
-     << "Second place: " << second_place << "\n";
-}
-
 bool Couple_ticket::set_person1(const string_view& n) {
   if (n.empty()) { cout << "Error: name cannot be empty.\n"; return false; }
   person1 = n; return true;
@@ -40,3 +33,15 @@ bool Couple_ticket::set_second_place(int p) {
 }
 
 std::string type_name() { return "Couple"; }
+
+void Couple_ticket::print_ticket(ostream& os) const {
+  os << "[" << type_name() << " ticket]\n";
+  os << "Row and place: " << get_row() << " " << get_place() << "\n";
+  if (get_session()) os << *get_session();
+  os << "Base price:  " << get_price() << "$\n"
+     << "Final price: " << final_price() << "$\n";
+  os << "Person 1: " << person1 << "\n"
+     << "Person 2: " << person2 << "\n"
+     << "Second place: " << second_place << "\n"
+     << "Couple price: x1.8 (for two)\n";
+}

@@ -1,4 +1,5 @@
 #include "Class/Header/Discount_ticket.h"
+#include "Class/Header/Session.h"
 #include<Define_const.h>
 
 using namespace std;
@@ -18,13 +19,6 @@ float Discount_ticket::final_price() const {
   return get_price() * (1.0f - discount_percent / 100.0f);
 }
 
-void Discount_ticket::print_ticket(ostream& os) const {
-  os << "[Discount ticket]\n";
-  Ticket::print_ticket(os);
-  os << "Holder: " << holder_name << "\n"
-     << "Discount: " << discount_percent << "%\n";
-}
-
 bool Discount_ticket::set_discount(int d) {
   if (d < MIN_DISCOUNT || d > MAX_DISCOUNT) {
     cout << "Error: discount must be in range "
@@ -42,3 +36,13 @@ bool Discount_ticket::set_holder(const std::string_view& h) {
 }
 
 std::string type_name() { return "Discount"; }
+
+void Discount_ticket::print_ticket(ostream& os) const {
+  os << "[" << type_name() << " ticket]\n";
+  os << "Row and place: " << get_row() << " " << get_place() << "\n";
+  if (get_session()) os << *get_session();
+  os << "Base price:  " << get_price() << "$\n"
+     << "Final price: " << final_price() << "$\n";
+  os << "Holder: " << holder_name << "\n"
+     << "Discount: " << discount_percent << "%\n";
+}

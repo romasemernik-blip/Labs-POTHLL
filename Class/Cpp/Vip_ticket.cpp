@@ -1,4 +1,5 @@
 #include "Class/Header/Vip_ticket.h"
+#include "Class/Header/Session.h"
 #include<Define_const.h>
 
 using namespace std;
@@ -12,11 +13,15 @@ Vip_ticket::Vip_ticket(int row, int place, float price,
 
 float Vip_ticket::final_price() const { return get_price() * VIP_EX_TICKET ; }
 
-void Vip_ticket::print_ticket(ostream& os) const {
-  os << "[VIP ticket]\n";
-  Ticket::print_ticket(os);
-  os << "Lounge access: " << (has_lounge_access ? "yes" : "no") << "\n"
-     << "Free drinks: "   << (has_free_drinks  ? "yes" : "no") << "\n";
-}
-
 std::string type_name() { return "VIP"; }
+
+void Vip_ticket::print_ticket(ostream& os) const {
+  os << "[" << type_name() << " ticket]\n";
+  os << "Row and place: " << get_row() << " " << get_place() << "\n";
+  if (get_session()) os << *get_session();
+  os << "Base price:  " << get_price() << "$\n"
+     << "Final price: " << final_price() << "$\n";
+  os << "Lounge access: " << (has_lounge_access ? "yes" : "no") << "\n"
+     << "Free drinks:   " << (has_free_drinks  ? "yes" : "no") << "\n"
+     << "VIP surcharge: x1.5\n";
+}

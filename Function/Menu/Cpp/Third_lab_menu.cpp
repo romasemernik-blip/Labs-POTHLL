@@ -8,7 +8,9 @@
 #include "Function/Show/Header/Hall_show.h"
 #include "Function/Show/Header/Session_show.h"
 #include "Function/Show/Header/Ticket_show.h"
+#include<Define_const.h>
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
@@ -89,6 +91,64 @@ static void t3_show_all_tickets(const vector<shared_ptr<Ticket>>& tickets) {
     tickets[i]->print_ticket(cout);          
     cout << "-----------------\n";
   }
+}
+
+static void t4_show_biggest_discount(const vector<shared_ptr<Ticket>>& tickets) {
+  if (tickets.empty()) { cout << "No tickets.\n"; return; }
+
+  auto discount_of = [](const shared_ptr<Ticket>& t) -> float {
+    float base  = t->get_price();
+    float final = t->final_price();          
+    if (base <= 0.0f) return 0.0f;
+    return (1.0f - final / base) * 100.0f;  
+  };
+
+  auto it = std::max_element(
+      tickets.begin(), tickets.end(),
+      [&](const shared_ptr<Ticket>& a, const shared_ptr<Ticket>& b) {
+        return discount_of(a) < discount_of(b);
+      });
+
+  size_t idx = std::distance(tickets.begin(), it);
+  const auto& best = **it;
+
+  cout << "Ticket with the biggest discount:\n";
+  cout << "Index : " << idx << "\n";
+  cout << "Type  : " << best.type_name() << "\n";
+  cout << "Info  : " << best.discount_info() << "\n";
+  cout << "Base  : " << best.get_price()  << "$\n";
+  cout << "Final : " << best.final_price() << "$\n";
+  cout << "Effective discount: " << discount_of(*it) << "%\n";
+  cout << "-----------------\n";
+  best.print_ticket(cout);      
+}
+
+static void t4_add_5_percent_discount(vector<shared_ptr<Ticket>>& tickets) {
+  if (tickets.empty()) { cout << "No tickets.\n"; return; }
+
+  const float factor = 1.0f - EXTRA_DISCOUNT / 100.0f;   
+
+  cout << "Mass action: apply extra " << EXTRA_DISCOUNT << "% discount to all tickets\n";
+  cout << "New base = old base * " << factor << "\n\n";
+
+  int changed = 0;
+  for (auto& t : tickets) {
+    float old_base  = t->get_price();
+    float old_final = t->final_price();
+
+    if (!t->in_price(old_base * factor)) {
+      cout << "  skip " << t->type_name() << " (invalid price)\n";
+      continue;
+    }
+
+    float new_final = t->final_price();
+
+    cout << "[" << changed << "] " << t->type_name()
+         << "  base " << old_base  << " -> " << t->get_price()
+         << "  final " << old_final << " -> " << new_final << "$\n";
+    ++changed;
+  }
+  cout << "Updated " << changed << " / " << tickets.size() << " tickets.\n";
 }
 
 static void t3_show_final_prices(const vector<shared_ptr<Ticket>>& tickets) {
@@ -211,6 +271,8 @@ static void t3_print_menu() {
   cout << "7.  Show derived-type fields\n";
   cout << "8.  Demo dynamic polymorphism (Lab 4)\n";
   cout << "9.  Show ticket types via virtual non-pure method\n";
+  cout << "10. Show biggest discount (polymorphic search)\n";
+  cout << "11. Apply 5%  /extra discount to ALL tickets (mass action)\n";
   cout << "0.  Back\n";
 }
 
@@ -228,6 +290,8 @@ static void handle_third_lab_choice(int choice,
     case 7: t3_show_derived_fields(tickets); break;
     case 8: t4_demo_polymorphism(tickets); break;
     case 9: t3_show_types(tickets); break;
+    case 10: t4_show_biggest_discount(tickets);        break;
+    case 11: t4_add_5_percent_discount(tickets);       break;
     default: cout << "Invalid choice.\n";
   }
 }

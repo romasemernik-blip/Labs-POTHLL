@@ -17,3 +17,4 @@ constexpr int MAX_KIDS_AGE      = 12;
 constexpr int MIN_KIDS_AGE      = 1;
 constexpr float CHILD_DISCOUNT     = 0.5f;
 constexpr float COUPLE_DISCOUNT  = 1.8f ;
+constexpr float EXTRA_DISCOUNT   = 5.0f ;

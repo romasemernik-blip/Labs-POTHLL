@@ -22,7 +22,7 @@ bool Standard_ticket::set_zone(const string_view& z) {
   return true;
 }
 
-std::string type_name() { return "Standard"; }
+std::string Standard_ticket::type_name() const  { return "Standard"; }
 
 void Standard_ticket::print_ticket(ostream& os) const {
   os << "[" << type_name() << " ticket]\n";

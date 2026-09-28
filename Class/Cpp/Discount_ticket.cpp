@@ -35,7 +35,7 @@ bool Discount_ticket::set_holder(const std::string_view& h) {
   return true;
 }
 
-std::string type_name() { return "Discount"; }
+std::string Discount_ticket::type_name() const { return "Discount"; }
 
 void Discount_ticket::print_ticket(ostream& os) const {
   os << "[" << type_name() << " ticket]\n";

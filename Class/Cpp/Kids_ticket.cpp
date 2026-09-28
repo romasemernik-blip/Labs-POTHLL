@@ -35,7 +35,7 @@ bool Kids_ticket::set_child_age(int age) {
   return true;
 }
 
-std::string type_name() { return "Kids"; }
+std::string Kids_ticket::type_name() const { return "Kids"; }
 
 void Kids_ticket::print_ticket(ostream& os) const {
   os << "[" << type_name() << " ticket]\n";

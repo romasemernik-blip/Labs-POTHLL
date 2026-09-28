@@ -13,7 +13,7 @@ Vip_ticket::Vip_ticket(int row, int place, float price,
 
 float Vip_ticket::final_price() const { return get_price() * VIP_EX_TICKET ; }
 
-std::string type_name() { return "VIP"; }
+std::string Vip_ticket::type_name() const { return "VIP"; }
 
 void Vip_ticket::print_ticket(ostream& os) const {
   os << "[" << type_name() << " ticket]\n";

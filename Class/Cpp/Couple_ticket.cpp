@@ -32,7 +32,7 @@ bool Couple_ticket::set_second_place(int p) {
   second_place = p; return true;
 }
 
-std::string type_name() { return "Couple"; }
+std::string Couple_ticket::type_name() const { return "Couple"; }
 
 void Couple_ticket::print_ticket(ostream& os) const {
   os << "[" << type_name() << " ticket]\n";

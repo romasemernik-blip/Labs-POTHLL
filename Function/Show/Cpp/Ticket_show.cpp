@@ -2,7 +2,6 @@
 #include "Class/Header/Ticket.h"
 #include <iostream>
 #include <algorithm>
-
 using namespace std;
 
 void show_all_tickets(const vector<shared_ptr<Ticket>>& tickets) {
@@ -26,8 +25,6 @@ void show_ticket_short_no_price(const vector<shared_ptr<Ticket>>& tickets) {
          << ", place " << tickets[i]->get_place() << endl;
   }
 }
-
-#include <algorithm>
 
 bool Is_duplicate_ticket(const vector<shared_ptr<Ticket>>& tickets,
                          const Ticket& candidate) {

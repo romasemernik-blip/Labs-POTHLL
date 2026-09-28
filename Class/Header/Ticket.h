@@ -11,6 +11,9 @@ class Ticket {
   float price;
   int row;
 
+ protected:
+  Ticket() = default; 
+  
  public:
   Ticket(int row, int place, float price, std::shared_ptr<Session> session);
 
@@ -23,6 +26,7 @@ class Ticket {
 
   virtual void print_ticket(std::ostream& os ) const = 0;
   virtual float final_price() const = 0;
+  virtual std::string type_name() const = 0;
 
   void out_t() const;
   void out_place_and_row() const;
@@ -32,10 +36,12 @@ class Ticket {
   int get_row() const;
   int get_place() const;
   float get_price() const;
+
   std::shared_ptr<Session> get_session() const;
 
   friend std::ostream& operator<<(std::ostream& os, const Ticket& t);
 
-   friend bool operator==(const Ticket& a, const Ticket& b) ;
+  friend bool operator==(const Ticket& a, const Ticket& b) ;
   friend bool operator!=(const Ticket& a, const Ticket& b);
+
 };

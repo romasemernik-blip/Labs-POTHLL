@@ -18,3 +18,4 @@ void Vip_ticket::print_ticket(ostream& os) const {
   os << "Lounge access: " << (has_lounge_access ? "yes" : "no") << "\n"
      << "Free drinks: "   << (has_free_drinks  ? "yes" : "no") << "\n";
 }
+

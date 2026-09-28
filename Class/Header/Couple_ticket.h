@@ -13,6 +13,14 @@ public:
   float final_price() const override;
   void print_ticket(std::ostream& os) const override;
 
+  bool set_person1(const std::string& n);
+  bool set_person2(const std::string& n);
+  bool set_second_place(int p);
+
+  const std::string& get_person1() const { return person1; }
+  const std::string& get_person2() const { return person2; }
+  int get_second_place() const { return second_place; }
+
 private:
   std::string person1;
   std::string person2;

@@ -23,3 +23,18 @@ void Couple_ticket::print_ticket(ostream& os) const {
      << "Person 2: " << person2 << "\n"
      << "Second place: " << second_place << "\n";
 }
+
+bool Couple_ticket::set_person1(const string& n) {
+  if (n.empty()) { cout << "Error: name cannot be empty.\n"; return false; }
+  person1 = n; return true;
+}
+
+bool Couple_ticket::set_person2(const string& n) {
+  if (n.empty()) { cout << "Error: name cannot be empty.\n"; return false; }
+  person2 = n; return true;
+}
+
+bool Couple_ticket::set_second_place(int p) {
+  if (p < 1) { cout << "Error: place must be >= 1.\n"; return false; }
+  second_place = p; return true;
+}

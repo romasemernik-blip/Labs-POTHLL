@@ -160,6 +160,36 @@ static void t3_add_to_system(Ticket_system& system,
   system += tickets[idx];
 }
 
+static void t4_demo_polymorphism(const vector<shared_ptr<Ticket>>& tickets) {
+  if (tickets.empty()) { cout << "No tickets.\n"; return; }
+
+  cout << "=== Dynamic polymorphism demo ===\n";
+  cout << "Calling Print(), Final_price(), Type_name() through\n"
+          "pointer to abstract base class Ticket*.\n\n";
+
+  for (size_t i = 0; i < tickets.size(); ++i) {
+    const Ticket* base = tickets[i].get();    // указатель на абстрактный класс
+
+    cout << "[" << i << "] Type_name() -> " << base->type_name() << "\n";
+    cout << "    Final_price() -> " << base->final_price() << "$\n";
+    cout << "    Print() ->\n";
+    base->print_ticket(cout);
+    cout << "-----------------\n";
+  }
+
+  cout << "Note: the same call base->Final_price() returned different\n"
+          "values because the actual object type is different.\n";
+}
+static void t3_show_derived_fields(const vector<shared_ptr<Ticket>>& tickets) {
+  if (tickets.empty()) { cout << "No tickets.\n"; return; }
+
+  for (size_t i = 0; i < tickets.size(); ++i) {
+    cout << "[" << i << "]\n";
+    tickets[i]->print_ticket(cout);
+    cout << "-----------------\n";
+  }
+}
+
 static void t3_print_menu() {
   cout << "\n FOR THIRD / FOURTH LAB MENU \n";
   cout << "1.  Create ticket (Standard / VIP / Discount / Kids / Couple)\n";
@@ -168,6 +198,8 @@ static void t3_print_menu() {
   cout << "4.  Check if seat is free (operator== duplicate check)\n";
   cout << "5.  Sell ticket via system += (with duplicate check)\n";
   cout << "6.  Show specific fields via getters (dynamic_cast)\n";
+  cout << "7.  Show derived-type fields\n";
+  cout << "8.  Demo dynamic polymorphism (Lab 4)\n";
   cout << "0.  Back\n";
 }
 
@@ -182,6 +214,8 @@ static void handle_third_lab_choice(int choice,
     case 4: t3_check_duplicate(tickets, sessions); break;
     case 5: t3_add_to_system(system, tickets); break;
     case 6: t3_show_specific(tickets); break;
+    case 7: t3_show_derived_fields(tickets); break;
+    case 8: t4_demo_polymorphism(tickets); break;
     default: cout << "Invalid choice.\n";
   }
 }

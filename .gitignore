@@ -11,3 +11,277 @@ my.exe
 lab2.exe
 lab3.exe
 lab4.exe
+# ============================================
+# .gitignore для C++ проекта (кинотеатр, Qt/CLion/VS)
+# ============================================
+
+# ---------- Скомпилированные файлы и бинарники ----------
+*.exe
+*.out
+*.app
+*.bin
+*.elf
+*.so
+*.so.*
+*.dylib
+*.dll
+*.lib
+*.a
+*.o
+*.obj
+*.lo
+*.la
+*.lai
+*.class
+*.pyc
+*.pyo
+*.pyd
+
+# ---------- Отладочная и промежуточная информация ----------
+*.pdb
+*.idb
+*.ilk
+*.exp
+*.map
+*.gcno
+*.gcda
+*.gcov
+*.su
+*.dSYM/
+*.dSYM
+
+# ---------- CMake ----------
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+Testing/
+_deps/
+build/
+Build/
+build-*/
+out/
+Out/
+cmake-build-*/
+cmake-build-*/*
+
+# ---------- Make ----------
+Makefile
+makefile
+*.make
+*.mk
+*.dep
+
+# ---------- Visual Studio ----------
+.vs/
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.props
+*.targets
+*.aps
+*.ncb
+*.opendb
+*.opensdf
+*.sdf
+*.cachefile
+*.VC.db
+*.VC.opendb
+ipch/
+Debug/
+Release/
+x64/
+x86/
+ARM/
+ARM64/
+
+# ---------- CLion / JetBrains ----------
+.idea/
+*.iml
+*.iws
+*.ipr
+cmake-build-debug/
+cmake-build-release/
+cmake-build-relwithdebinfo/
+cmake-build-minsizerel/
+
+# ---------- VS Code ----------
+.vscode/
+!.vscode/launch.json
+!.vscode/tasks.json
+!.vscode/settings.json
+*.code-workspace
+
+# ---------- Qt ----------
+*.pro.user
+*.pro.user.*
+*.qmlc
+*.jsc
+*.moc
+moc_*.cpp
+moc_*.h
+qrc_*.cpp
+ui_*.h
+*.qmake.stash
+*.qmake.cache
+.qmake.stash
+Makefile.Debug
+Makefile.Release
+debug/
+release/
+
+# ---------- Code::Blocks ----------
+*.cbp
+*.depend
+*.layout
+
+# ---------- Dev-C++ / CodeLite ----------
+*.dev
+*.cproject
+*.project
+*.mk
+*.session
+*.tags
+*.workspace
+
+# ---------- Xcode ----------
+*.xcodeproj/
+*.xcworkspace/
+xcuserdata/
+*.xcuserstate
+DerivedData/
+*.moved-aside
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# ---------- Eclipse (CDT) ----------
+.settings/
+.cproject
+.project
+.metadata/
+RemoteSystemsTempFiles/
+*.launch
+
+# ---------- NetBeans ----------
+nbproject/
+nbproject/private/
+nbbuild/
+nbdist/
+.nb-gradle/
+build/
+dist/
+
+# ---------- CLion/Conan/vcpkg ----------
+conan/
+conanbuildinfo.cmake
+conanbuildinfo.txt
+conaninfo.txt
+graph_info.json
+vcpkg_installed/
+
+# ---------- Пакетные менеджеры ----------
+node_modules/
+package-lock.json
+yarn.lock
+Pipfile.lock
+poetry.lock
+venv/
+.venv/
+env/
+ENV/
+
+# ---------- Логи и дампы ----------
+*.log
+*.log.*
+logs/
+*.dump
+core
+core.*
+vgcore.*
+crash-*
+*.stackdump
+
+# ---------- Временные файлы редакторов ----------
+*~
+*.swp
+*.swo
+*.swn
+*.tmp
+*.temp
+*.bak
+*.orig
+*.rej
+*.old
+*.save
+*.autosave
+.#*
+\#*\#
+*.pid
+
+# ---------- Файлы ОС ----------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# ---------- Кэш и файлы инструментов ----------
+.cache/
+.ccache/
+.clangd/
+.clang-format.cache/
+tags
+TAGS
+GTAGS
+GRTAGS
+GPATH
+
+# ---------- Документация, генерируемая Doxygen ----------
+docs/html/
+docs/latex/
+docs/xml/
+html/
+latex/
+
+# ---------- Прочее ----------
+*.user
+*.opensdf
+*.sdf
+*.suo
+*.userprefs
+*.userdata
+*.su
+*.idb
+*.pgc
+*.pgd
+*.rsp
+*.pch
+*.gch
+*.res
+*.resources
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# ---------- Файлы проекта (при необходимости) ----------
+# Если нужно игнорировать свои вспомогательные данные:
+# data/
+# temp/
+# *.csv
+# *.json
+# !config.json

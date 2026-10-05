@@ -228,7 +228,7 @@ static void t4_demo_polymorphism(const vector<shared_ptr<Ticket>>& tickets) {
           "pointer to abstract base class Ticket*.\n\n";
 
   for (size_t i = 0; i < tickets.size(); ++i) {
-    const Ticket* base = tickets[i].get();    // указатель на абстрактный класс
+    const Ticket* base = tickets[i].get();    
 
     cout << "[" << i << "] Type_name() -> " << base->type_name() << "\n";
     cout << "    Final_price() -> " << base->final_price() << "$\n";

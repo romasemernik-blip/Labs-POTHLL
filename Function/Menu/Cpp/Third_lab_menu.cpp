@@ -256,7 +256,7 @@ static void t3_show_types(const vector<shared_ptr<Ticket>>& tickets) {
   cout << "Polymorphic call of virtual (non-pure) methods:\n";
   for (size_t i = 0; i < tickets.size(); ++i) {
     cout << "[" << i << "] type = " << tickets[i]->type_name()
-         << " | " << tickets[i]->discount_info() << "\n";
+         << " |discount info " << tickets[i]->discount_info() << "%\n";
   }
 }
 

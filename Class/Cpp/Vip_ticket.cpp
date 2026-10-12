@@ -4,6 +4,8 @@
 
 using namespace std;
 
+constexpr float VIP_EX_TICKET      = 1.5f;
+
 Vip_ticket::Vip_ticket(int row, int place, float price,
                      shared_ptr<Session> session,
                      bool lounge_access, bool free_drinks)
@@ -23,9 +25,9 @@ void Vip_ticket::print_ticket(ostream& os) const {
      << "Final price: " << final_price() << "$\n";
   os << "Lounge access: " << (has_lounge_access ? "yes" : "no") << "\n"
      << "Free drinks:   " << (has_free_drinks  ? "yes" : "no") << "\n"
-     << "VIP surcharge: x1.5\n";
+     << "VIP surcharge: " << VIP_EX_TICKET*PERCENT<< "%\n";
 }
 
-std::string Vip_ticket::discount_info() const {
-  return "VIP surcharge x1.5";
+double  Vip_ticket::discount_info() const {
+  return VIP_EX_TICKET*PERCENT;
 }

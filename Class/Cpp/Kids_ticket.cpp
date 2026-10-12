@@ -4,6 +4,8 @@
 
 using namespace std;
 
+constexpr float CHILD_DISCOUNT    = 0.5f;
+
 Kids_ticket::Kids_ticket(int row, int place, float price,
                        shared_ptr<Session> session,
                        const string& child_name,
@@ -44,9 +46,9 @@ void Kids_ticket::print_ticket(ostream& os) const {
   os << "Base price:  " << get_price() << "$\n"
      << "Final price: " << final_price() << "$\n";
   os << "Child: " << child_name << ", age: " << child_age << "\n"
-     << "Child discount: x0.5\n";
+     << "Child discount:" << CHILD_DISCOUNT*PERCENT<< "%\n";
 }
 
-std::string Kids_ticket::discount_info() const {
-  return "child discount 50%";
+double  Kids_ticket::discount_info() const {
+  return CHILD_DISCOUNT*PERCENT;
 }

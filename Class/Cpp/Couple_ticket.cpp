@@ -4,6 +4,8 @@
 
 using namespace std;
 
+constexpr float COUPLE_DISCOUNT  = 1.8f ;
+
 Couple_ticket::Couple_ticket(int row, int place, float price,
                            shared_ptr<Session> session,
                            const string& person1,
@@ -43,9 +45,9 @@ void Couple_ticket::print_ticket(ostream& os) const {
   os << "Person 1: " << person1 << "\n"
      << "Person 2: " << person2 << "\n"
      << "Second place: " << second_place << "\n"
-     << "Couple price: x1.8 (for two)\n";
+     << "Couple price:" << COUPLE_DISCOUNT*PERCENT<< "%(for two)\n";
 }
 
-std::string Couple_ticket::discount_info() const {
-  return "couple price x1.8 for two seats";
+double  Couple_ticket::discount_info() const {
+  return COUPLE_DISCOUNT*PERCENT;
 }

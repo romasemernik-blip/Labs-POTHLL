@@ -85,6 +85,6 @@ ostream& operator<<(ostream& os, const Ticket& t) {
   return os;
 }
 
-std::string Ticket::discount_info() const {
-  return "no discount";
+double Ticket::discount_info() const {
+  return 0;
 }

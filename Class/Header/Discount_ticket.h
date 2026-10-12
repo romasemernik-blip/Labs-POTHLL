@@ -19,7 +19,7 @@ public:
   bool set_holder(const std::string_view& h);
 
   std::string type_name() const override ;
-  std::string discount_info() const override;
+  double  discount_info() const override;
 
 private:
   int discount_percent;

@@ -88,3 +88,12 @@ ostream& operator<<(ostream& os, const Ticket& t) {
 double Ticket::discount_info() const {
   return 0;
 }
+
+ void Ticket::print_ticket(std::ostream& os ) const 
+ {
+    os << "[" << type_name() << " ticket]\n";
+  os << "Row and place: " << get_row() << " " << get_place() << "\n";
+  if (get_session()) os << *get_session();
+  os << "Base price:  " << get_price() << "$\n";
+
+ }

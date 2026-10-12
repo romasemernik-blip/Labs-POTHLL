@@ -38,11 +38,8 @@ bool Discount_ticket::set_holder(const std::string_view& h) {
 std::string Discount_ticket::type_name() const { return "Discount"; }
 
 void Discount_ticket::print_ticket(ostream& os) const {
-  os << "[" << type_name() << " ticket]\n";
-  os << "Row and place: " << get_row() << " " << get_place() << "\n";
-  if (get_session()) os << *get_session();
-  os << "Base price:  " << get_price() << "$\n"
-     << "Final price: " << final_price() << "$\n";
+  Ticket::print_ticket(os);
+  os << "Final price: " << final_price() << "$\n";
   os << "Holder: " << holder_name << "\n"
      << "Discount: " << discount_percent << "%\n";
 }

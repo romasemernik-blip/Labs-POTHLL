@@ -24,7 +24,7 @@ class Ticket {
   bool in_price(float price);
   bool in_row(int row);
 
-  virtual void print_ticket(std::ostream& os ) const = 0;
+  virtual void print_ticket(std::ostream& os ) const ;
   virtual float final_price() const = 0;
   virtual std::string type_name() const = 0;
 

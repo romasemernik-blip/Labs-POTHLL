@@ -25,9 +25,6 @@ bool Standard_ticket::set_zone(const string_view& z) {
 std::string Standard_ticket::type_name() const  { return "Standard"; }
 
 void Standard_ticket::print_ticket(ostream& os) const {
-  os << "[" << type_name() << " ticket]\n";
-  os << "Row and place: " << get_row() << " " << get_place() << "\n";
-  if (get_session()) os << *get_session();
-  os << "Base price:  " << get_price() << "$\n"
-     << "Final price: " << final_price() << "$\n";
+  Ticket::print_ticket(os);
+  os << "Final price: " << final_price() << "$\n";
 }

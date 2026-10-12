@@ -40,11 +40,8 @@ bool Kids_ticket::set_child_age(int age) {
 std::string Kids_ticket::type_name() const { return "Kids"; }
 
 void Kids_ticket::print_ticket(ostream& os) const {
-  os << "[" << type_name() << " ticket]\n";
-  os << "Row and place: " << get_row() << " " << get_place() << "\n";
-  if (get_session()) os << *get_session();
-  os << "Base price:  " << get_price() << "$\n"
-     << "Final price: " << final_price() << "$\n";
+  Ticket::print_ticket(os);
+  os << "Final price: " << final_price() << "$\n";
   os << "Child: " << child_name << ", age: " << child_age << "\n"
      << "Child discount:" << CHILD_DISCOUNT*PERCENT<< "%\n";
 }

@@ -37,11 +37,8 @@ bool Couple_ticket::set_second_place(int p) {
 std::string Couple_ticket::type_name() const { return "Couple"; }
 
 void Couple_ticket::print_ticket(ostream& os) const {
-  os << "[" << type_name() << " ticket]\n";
-  os << "Row and place: " << get_row() << " " << get_place() << "\n";
-  if (get_session()) os << *get_session();
-  os << "Base price:  " << get_price() << "$\n"
-     << "Final price: " << final_price() << "$\n";
+  Ticket::print_ticket(os);
+  os << "Final price: " << final_price() << "$\n";
   os << "Person 1: " << person1 << "\n"
      << "Person 2: " << person2 << "\n"
      << "Second place: " << second_place << "\n"

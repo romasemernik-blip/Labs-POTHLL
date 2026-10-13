@@ -4,8 +4,6 @@
 
 using namespace std;
 
-constexpr float VIP_EX_TICKET      = 1.5f;
-
 Vip_ticket::Vip_ticket(int row, int place, float price,
                      shared_ptr<Session> session,
                      bool lounge_access, bool free_drinks)

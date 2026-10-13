@@ -4,8 +4,6 @@
 
 using namespace std;
 
-constexpr float COUPLE_DISCOUNT  = 1.8f ;
-
 Couple_ticket::Couple_ticket(int row, int place, float price,
                            shared_ptr<Session> session,
                            const string& person1,

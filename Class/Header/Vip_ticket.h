@@ -22,4 +22,5 @@ public:
 private:
   bool has_lounge_access;
   bool has_free_drinks;
+  float VIP_EX_TICKET      = 1.5f;
 };

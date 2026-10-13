@@ -28,4 +28,5 @@ private:
   std::string person1;
   std::string person2;
   int second_place;
+  float COUPLE_DISCOUNT  = 1.8f ;
 };

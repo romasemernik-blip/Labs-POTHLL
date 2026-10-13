@@ -24,4 +24,5 @@ public:
 private:
   std::string child_name;
   int child_age;
+  float CHILD_DISCOUNT    = 0.5f;
 };

@@ -4,8 +4,6 @@
 
 using namespace std;
 
-constexpr float CHILD_DISCOUNT    = 0.5f;
-
 Kids_ticket::Kids_ticket(int row, int place, float price,
                        shared_ptr<Session> session,
                        const string& child_name,

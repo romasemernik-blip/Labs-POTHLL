@@ -1,11 +1,13 @@
 #include "Function/Menu/Header/Fifth_lab_menu.h"
 #include "Template/Collection.h"
 #include "Class/Header/Ticket.h"
+#include "Class/Header/Standard_ticket.h"
 #include "Class/Header/Session.h"
 #include "Function/Read/Header/Read.h"
 #include <iostream>
 #include <string>
 #include <string_view>
+#include <memory>
 
 using namespace std;
 
@@ -44,7 +46,8 @@ static void handle_get(Collection<shared_ptr<Ticket>>& tc, Collection<string>& s
     }
 }
 
-static void handle_modify(Collection<shared_ptr<Ticket>>& tc, Collection<string>& strc, int choice) {
+static void handle_modify(Collection<shared_ptr<Ticket>>& tc, Collection<string>& strc, 
+                          const vector<shared_ptr<Session>>& sessions, int choice) {
     if (choice == 9) {
         int r = read_int("Row: ");
         int p = read_int("Place: ");
@@ -52,12 +55,34 @@ static void handle_modify(Collection<shared_ptr<Ticket>>& tc, Collection<string>
         if (idx != -1) cout << "Found at index " << idx << "\n";
         else cout << "Not found.\n";
     } else if (choice == 10) {
-        if (int idx = read_int("Index to remove: "); idx >= 0 && tc.remove_at(idx)) {
-            cout << "Removed. New size: " << tc.size() << "\n";
+        if (int idx = read_int("Index to remove ticket: "); idx >= 0 && tc.remove_at(idx)) {
+            cout << "Ticket removed. New size: " << tc.size() << "\n";
         } else cout << "Invalid index.\n";
     } else if (choice == 11) {
         strc.clear();
         cout << "String collection cleared. New size: " << strc.size() << "\n";
+    } else if (choice == 16) { 
+        string s = read_string("Enter new string to add: ");
+        strc.add(s);
+        cout << "String added. New size: " << strc.size() << "\n";
+    } else if (choice == 17) { 
+        if (int idx = read_int("Index to remove string: "); idx >= 0 && strc.remove_at(idx)) {
+            cout << "String removed. New size: " << strc.size() << "\n";
+        } else cout << "Invalid index.\n";
+    } else if (choice == 18) { 
+        if (sessions.empty()) {
+            cout << "Cannot add ticket: no sessions available.\n";
+            return;
+        }
+        int r = read_int("New ticket row: ");
+        int p = read_int("New ticket place: ");
+        float pr = read_float("New ticket price: ");
+        auto new_ticket = make_shared<Standard_ticket>(r, p, pr, sessions[0], "Standard");
+        tc.add(new_ticket);
+        cout << "New Standard_ticket added to collection. New size: " << tc.size() << "\n";
+    } else if (choice == 19) { 
+        tc.clear();
+        cout << "Ticket collection cleared. New size: " << tc.size() << "\n";
     }
 }
 
@@ -96,21 +121,35 @@ void menu_fifth_lab(const vector<shared_ptr<Ticket>>& tickets,
 
     while (true) {
         cout << "\nLAB 5: TEMPLATES (COLLECTION<T>)\n";
+        cout << "--- User-defined types (Ticket) ---\n";
         cout << "1. [print] Show Ticket Collection\n";
-        cout << "2. [print] Show Session Collection\n";
-        cout << "3. [print] Show String Collection\n";
-        cout << "4. [size]  Get size of Ticket Collection\n";
-        cout << "5. [size]  Get size of Session Collection\n";
-        cout << "6. [size]  Get size of String Collection\n";
-        cout << "7. [get]   Get Ticket by index\n";
-        cout << "8. [get]   Get String by index\n";
-        cout << "9. [findIf] Find Ticket by row and place\n";
         cout << "10.[removeAt] Remove Ticket by index\n";
+        cout << "18.[add]     Add new Ticket to Collection\n";
+        cout << "19.[clear]   Clear Ticket Collection\n";  
+        
+        cout << "--- User-defined types (Session) ---\n";
+        cout << "2. [print] Show Session Collection\n";
+        cout << "5. [size]  Get size of Session Collection\n";
+        
+        cout << "--- Base types (string) ---\n";
+        cout << "3. [print] Show String Collection\n";
+        cout << "6. [size]  Get size of String Collection\n";
+        cout << "8. [get]   Get String by index\n";
         cout << "11.[clear] Clear String Collection\n";
+        cout << "16.[add]   Add new string to Collection\n"; 
+        cout << "17.[removeAt] Remove string by index\n"; 
+        
+        cout << "--- Other methods ---\n";
+        cout << "4. [size]  Get size of Ticket Collection\n";
+        cout << "7. [get]   Get Ticket by index\n";
+        cout << "9. [findIf] Find Ticket by row and place\n";
+        
+        cout << "--- Template Functions ---\n";
         cout << "12.[findBest] Find most expensive ticket\n";
         cout << "13.[findBest] Find longest string\n";
         cout << "14.[countIf] Count VIP tickets\n";
         cout << "15.[filter]  Filter strings starting with 'B'\n";
+        
         cout << "0. Back\n";
 
         int choice = read_int("Choice: ");
@@ -119,7 +158,8 @@ void menu_fifth_lab(const vector<shared_ptr<Ticket>>& tickets,
         if (choice >= 1 && choice <= 3) handle_print(ticket_coll, session_coll, string_coll, choice);
         else if (choice >= 4 && choice <= 6) handle_size(ticket_coll, session_coll, string_coll, choice);
         else if (choice == 7 || choice == 8) handle_get(ticket_coll, string_coll, choice);
-        else if (choice >= 9 && choice <= 11) handle_modify(ticket_coll, string_coll, choice);
+        else if ((choice >= 9 && choice <= 11) || (choice >= 16 && choice <= 19)) 
+            handle_modify(ticket_coll, string_coll, sessions, choice);
         else if (choice >= 12 && choice <= 15) handle_algorithms(ticket_coll, string_coll, choice);
         else cout << "Invalid choice.\n";
     }

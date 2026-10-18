@@ -12,7 +12,7 @@ public:
         items.push_back(item);
     }
 
-    bool removeAt(size_t index) {
+    bool remove_at(size_t index) {
         if (index >= items.size()) return false;
         items.erase(items.begin() + index);
         return true;
@@ -34,7 +34,7 @@ public:
     }
 
     template <typename Predicate>
-    int findIf(Predicate pred) const {
+    int find_if(Predicate pred) const {
         for (size_t i = 0; i < items.size(); ++i) {
             if (pred(items[i])) return static_cast<int>(i);
         }
@@ -60,7 +60,7 @@ public:
 };
 
 template <typename T, typename Comparator>
-T findBest(const Collection<T>& coll, Comparator comp) {
+T find_best(const Collection<T>& coll, Comparator comp) {
     T best = coll.get(0); 
     for (size_t i = 1; i < coll.size(); ++i) {
         if (comp(coll.get(i), best)) {
@@ -70,9 +70,8 @@ T findBest(const Collection<T>& coll, Comparator comp) {
     return best;
 }
 
-// 9. Шаблонная функция: Подсчет элементов по критерию
 template <typename T, typename Predicate>
-int countIf(const Collection<T>& coll, Predicate pred) {
+int count_if(const Collection<T>& coll, Predicate pred) {
     int count = 0;
     for (size_t i = 0; i < coll.size(); ++i) {
         if (pred(coll.get(i))) {
@@ -82,7 +81,6 @@ int countIf(const Collection<T>& coll, Predicate pred) {
     return count;
 }
 
-// 10. Шаблонная функция: Фильтрация (создает новую коллекцию)
 template <typename T, typename Predicate>
 Collection<T> filter(const Collection<T>& coll, Predicate pred) {
     Collection<T> result;

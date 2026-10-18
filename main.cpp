@@ -20,6 +20,7 @@
 #include "Function/Menu/Header/Ticket_system_menu.h"
 #include "Function/Menu/Header/Second_lab_menu.h"
 #include "Function/Menu/Header/Third_lab_menu.h"
+#include "Function/Menu/Header/Fifth_lab_menu.h"
 #include<Define_const.h>
 
 using namespace std;
@@ -62,6 +63,7 @@ int main() {
     cout << "4. Ticket_system\n";
     cout << "5. For second lab\n";
     cout << "6. For third/fourth lab\n"; 
+    cout << "7. For fifth lab (Templates)\n";
     cout << "67. Exit\n";
 
     int choice = read_int("Choice: ");
@@ -76,10 +78,12 @@ int main() {
       menu_ticket_system(system, tickets, sessions);
     } else if (choice == EXIT_NUMBER) {
       return 0;
-      } else if (choice == 5) {
+     } else if (choice == 5) {
       menu_second_lab(halls, sessions, tickets, system);
-      } else if (choice == 6) {                                  
+    } else if (choice == 6) {                                  
       menu_third_lab( sessions, tickets, system);
+    } else if (choice == 7) {                                  
+      menu_fifth_lab(tickets, sessions);
     } else {
       cout << "Invalid choice.\n";
     }

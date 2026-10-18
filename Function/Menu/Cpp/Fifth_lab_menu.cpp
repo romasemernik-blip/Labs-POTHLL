@@ -24,21 +24,24 @@ void menu_fifth_lab(vector<shared_ptr<Ticket>>& tickets,
     string_coll.add("Blueberry");
 
     while (true) {
-        cout << "\n--- LAB 5: TEMPLATES (COLLECTION<T>) ---\n";
-        cout << "1. Print Ticket Collection\n";
-        cout << "2. Print Session Collection\n";
-        cout << "3. Print String Collection (Independent of domain)\n";
-        cout << "---------------------------------------\n";
-        cout << "4. Find max (final_price) in Ticket Collection [findBest]\n";
-        cout << "5. Find max (seats_limit) in Session Collection [findBest]\n";
-        cout << "6. Find longest string in String Collection [findBest]\n";
-        cout << "---------------------------------------\n";
-        cout << "7. Count VIP tickets [countIf template function]\n";
-        cout << "8. Filter strings starting with 'B' [filter template function]\n";
-        cout << "---------------------------------------\n";
-        cout << "9. Remove item by index (Ticket)\n";
-        cout << "10. Clear String Collection\n";
-        cout << "0. Back\n";
+        cout << "\n LAB 5: TEMPLATES (COLLECTION<T>)\n";
+        cout << "Base Container Methods\n";
+        cout << "1.  [print]     Show Ticket Collection (Cinema domain)\n";
+        cout << "2.  [print]     Show Session Collection (Cinema domain)\n";
+        cout << "3.  [print]     Show String Collection (Independent domain)\n";
+        cout << "4.  [get, size] Get Ticket by index\n";
+        cout << "5.  [findIf]    Find Ticket by row and place\n";
+        cout << "6.  [removeAt]  Remove Ticket by index\n";
+        cout << "7.  [clear]     Clear String Collection\n";
+        
+        cout << "\nTemplate Functions (Algorithms)\n";
+        cout << "8.  [findBest]  Find most expensive ticket\n";
+        cout << "9.  [findBest]  Find longest string\n";
+        cout << "10. [countIf]   Count VIP tickets\n";
+        cout << "11. [filter]    Filter strings starting with 'B'\n";
+        
+        cout << "\n";
+        cout << "0.  Back\n";
 
         int choice = read_int("Choice: ");
         if (choice == 0) break;
@@ -60,6 +63,36 @@ void menu_fifth_lab(vector<shared_ptr<Ticket>>& tickets,
                 });
                 break;
             case 4: {
+                int idx = read_int("Enter ticket index: ");
+                if (idx >= 0 && idx < ticket_coll.size()) {
+                    cout << "Ticket at index " << idx << ":\n";
+                    ticket_coll.get(idx)->print_ticket(cout);
+                } else {
+                    cout << "Index out of bounds.\n";
+                }
+                break;
+            }
+            case 5: {
+                int r = read_int("Row: ");
+                int p = read_int("Place: ");
+                int idx = ticket_coll.find_if([r, p](const shared_ptr<Ticket>& t) {
+                    return t->get_row() == r && t->get_place() == p;
+                });
+                if (idx != -1) cout << "Found at index " << idx << "\n";
+                else cout << "Not found.\n";
+                break;
+            }
+            case 6: {
+                int idx = read_int("Index to remove: ");
+                if (ticket_coll.remove_at(idx)) cout << "Removed. New size: " << ticket_coll.size() << "\n";
+                else cout << "Invalid index.\n";
+                break;
+            }
+            case 7:
+                string_coll.clear();
+                cout << "String collection cleared. New size: " << string_coll.size() << "\n";
+                break;
+            case 8: {
                 auto best = find_best(ticket_coll, [](const shared_ptr<Ticket>& a, const shared_ptr<Ticket>& b) {
                     return a->final_price() > b->final_price();
                 });
@@ -67,28 +100,21 @@ void menu_fifth_lab(vector<shared_ptr<Ticket>>& tickets,
                 best->print_ticket(cout);
                 break;
             }
-            case 5: {
-                auto best = find_best(session_coll, [](const shared_ptr<Session>& a, const shared_ptr<Session>& b) {
-                    return a->seats_limit() > b->seats_limit();
-                });
-                cout << "Session with max seats: " << best->get_film() << "\n";
-                break;
-            }
-            case 6: {
+            case 9: {
                 auto best = find_best(string_coll, [](const string& a, const string& b) {
                     return a.length() > b.length();
                 });
                 cout << "Longest string: " << best << "\n";
                 break;
             }
-            case 7: {
+            case 10: {
                 int count = count_if(ticket_coll, [](const shared_ptr<Ticket>& t) {
                     return t->type_name() == "VIP";
                 });
                 cout << "Number of VIP tickets: " << count << "\n";
                 break;
             }
-            case 8: {
+            case 11: {
                 Collection<string> filtered = filter(string_coll, [](const string& s) {
                     return !s.empty() && s[0] == 'B';
                 });
@@ -98,16 +124,6 @@ void menu_fifth_lab(vector<shared_ptr<Ticket>>& tickets,
                 });
                 break;
             }
-            case 9: {
-                int idx = read_int("Index to remove from Ticket Collection: ");
-                if (ticket_coll.remove_at(idx)) cout << "Removed.\n";
-                else cout << "Invalid index.\n";
-                break;
-            }
-            case 10:
-                string_coll.clear();
-                cout << "String collection cleared.\n";
-                break;
             default:
                 cout << "Invalid choice.\n";
         }

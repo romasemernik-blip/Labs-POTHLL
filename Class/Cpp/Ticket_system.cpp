@@ -93,23 +93,22 @@ Ticket_system& Ticket_system::operator+=(unique_ptr<Ticket> ticket_un) {
 }
 
 Ticket_system& Ticket_system::operator-=(const Ticket& ticket) {
-  int idx_res = reservation.find_if([&ticket](const shared_ptr<Ticket>& t) { return *t == ticket; });
-  if (idx_res != -1) {
-    if (reservation.get(idx_res)->get_session()) reservation.get(idx_res)->get_session()->return_seat();
-    reservation.remove_at(idx_res);
-    cout << "Ticket removed from shared.\n";
-    return *this;
-  }
+    if (int idx_res = reservation.find_if([&ticket](const shared_ptr<Ticket>& t) { return *t == ticket; }); idx_res != -1) {
+        if (reservation.get(idx_res)->get_session()) reservation.get(idx_res)->get_session()->return_seat();
+        reservation.remove_at(idx_res);
+        cout << "Ticket removed from shared.\n";
+        return *this;
+    }
 
-  int idx_part = particle.find_if([&ticket](const unique_ptr<Ticket>& t) { return *t == ticket; });
-  if (idx_part != -1) {
-    if (particle.get(idx_part)->get_session()) particle.get(idx_part)->get_session()->return_seat();
-    particle.remove_at(idx_part);
-    cout << "Ticket removed from unique.\n";
+    if (int idx_part = particle.find_if([&ticket](const unique_ptr<Ticket>& t) { return *t == ticket; }); idx_part != -1) {
+        if (particle.get(idx_part)->get_session()) particle.get(idx_part)->get_session()->return_seat();
+        particle.remove_at(idx_part);
+        cout << "Ticket removed from unique.\n";
+        return *this;
+    }
+    
+    cout << "Ticket not found.\n";
     return *this;
-  }
-  cout << "Ticket not found.\n";
-  return *this;
 }
 
 Ticket_system& Ticket_system::operator-=(const shared_ptr<Ticket>& ticket_sh) {

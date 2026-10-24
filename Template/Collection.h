@@ -8,8 +8,21 @@ private:
     std::vector<T> items;
 
 public:
+    using iterator = typename std::vector<T>::iterator;
+    using const_iterator = typename std::vector<T>::const_iterator;
+
+    iterator begin() { return items.begin(); }
+    iterator end() { return items.end(); }
+    
+    const_iterator begin() const { return items.begin(); }
+    const_iterator end() const { return items.end(); }
+
     void add(const T& item) {
         items.push_back(item);
+    }
+
+    void add(T&& item) {
+        items.push_back(std::move(item));
     }
 
     bool remove_at(size_t index) {

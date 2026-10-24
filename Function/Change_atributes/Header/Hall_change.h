@@ -1,7 +1,7 @@
 #pragma once
 #include <memory>
-#include <vector>
+#include "Template/Collection.h"
 
 class Hall;
 
-void change_hall_field(std::vector<std::shared_ptr<Hall>>& halls, int idx);
+void change_hall_field(Collection<std::shared_ptr<Hall>>& halls, int idx);

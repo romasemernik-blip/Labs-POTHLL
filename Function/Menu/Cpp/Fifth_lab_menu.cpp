@@ -101,7 +101,7 @@ static void handle_algorithms(const Collection<shared_ptr<Ticket>>& tc, const Co
 }
 
 void menu_fifth_lab(Collection<shared_ptr<Ticket>>& tickets,
-                    Collection<shared_ptr<Session>>& sessions) {
+                    const Collection<shared_ptr<Session>>& sessions) {
 
     Collection<string> string_coll;
     string_coll.add("Apple");

@@ -6,4 +6,4 @@ class Ticket;
 class Session;
 
 void menu_fifth_lab( Collection<std::shared_ptr<Ticket>>& tickets,
-                    Collection<std::shared_ptr<Session>>& sessions);
+                    const Collection<std::shared_ptr<Session>>& sessions);

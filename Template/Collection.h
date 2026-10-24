@@ -16,9 +16,13 @@ public:
 
     const_iterator begin() const { return items.begin(); }
     const_iterator end() const { return items.end(); }
-    
+
     T& operator[](size_t index) { return items[index]; }
     const T& operator[](size_t index) const { return items[index]; }
+    
+    void push_back(const T& item) { items.push_back(item); }
+    void push_back(T&& item) { items.push_back(std::move(item)); }
+    bool empty() const { return items.empty(); }
 
     void add(const T& item) {
         items.push_back(item);

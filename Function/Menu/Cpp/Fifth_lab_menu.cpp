@@ -47,7 +47,7 @@ static void handle_get(Collection<shared_ptr<Ticket>>& tc, Collection<string>& s
 }
 
 static void handle_modify(Collection<shared_ptr<Ticket>>& tc, Collection<string>& strc, 
-                          const vector<shared_ptr<Session>>& sessions, int choice) {
+                          const Collection<shared_ptr<Session>>& sessions, int choice) {
     if (choice == 9) {
         int r = read_int("Row: ");
         int p = read_int("Place: ");
@@ -70,14 +70,10 @@ static void handle_modify(Collection<shared_ptr<Ticket>>& tc, Collection<string>
             cout << "String removed. New size: " << strc.size() << "\n";
         } else cout << "Invalid index.\n";
     } else if (choice == 18) { 
-        if (sessions.empty()) {
-            cout << "Cannot add ticket: no sessions available.\n";
-            return;
-        }
         int r = read_int("New ticket row: ");
         int p = read_int("New ticket place: ");
         float pr = read_float("New ticket price: ");
-        auto new_ticket = make_shared<Standard_ticket>(r, p, pr, sessions[0], "Standard");
+        auto new_ticket = make_shared<Standard_ticket>(r, p, pr, sessions.index[i], "Standard");
         tc.add(new_ticket);
         cout << "New Standard_ticket added to collection. New size: " << tc.size() << "\n";
     } else if (choice == 19) { 
@@ -104,14 +100,8 @@ static void handle_algorithms(const Collection<shared_ptr<Ticket>>& tc, const Co
     }
 }
 
-void menu_fifth_lab(const vector<shared_ptr<Ticket>>& tickets,
-                    const vector<shared_ptr<Session>>& sessions) {
-
-    Collection<shared_ptr<Ticket>> ticket_coll;
-    for (const auto& t : tickets) ticket_coll.add(t);
-
-    Collection<shared_ptr<Session>> session_coll;
-    for (const auto& s : sessions) session_coll.add(s);
+void menu_fifth_lab(Collection<shared_ptr<Ticket>>& tickets,
+                    Collection<shared_ptr<Session>>& sessions) {
 
     Collection<string> string_coll;
     string_coll.add("Apple");
@@ -155,12 +145,12 @@ void menu_fifth_lab(const vector<shared_ptr<Ticket>>& tickets,
         int choice = read_int("Choice: ");
         if (choice == 0) break;
 
-        if (choice >= 1 && choice <= 3) handle_print(ticket_coll, session_coll, string_coll, choice);
-        else if (choice >= 4 && choice <= 6) handle_size(ticket_coll, session_coll, string_coll, choice);
-        else if (choice == 7 || choice == 8) handle_get(ticket_coll, string_coll, choice);
+        if (choice >= 1 && choice <= 3) handle_print(tickets, sessions, string_coll, choice);
+        else if (choice >= 4 && choice <= 6) handle_size(tickets, sessions, string_coll, choice);
+        else if (choice == 7 || choice == 8) handle_get(tickets, string_coll, choice);
         else if ((choice >= 9 && choice <= 11) || (choice >= 16 && choice <= 19)) 
-            handle_modify(ticket_coll, string_coll, sessions, choice);
-        else if (choice >= 12 && choice <= 15) handle_algorithms(ticket_coll, string_coll, choice);
+            handle_modify(tickets, string_coll, sessions, choice);
+        else if (choice >= 12 && choice <= 15) handle_algorithms(tickets, string_coll, choice);
         else cout << "Invalid choice.\n";
     }
 }

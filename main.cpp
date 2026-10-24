@@ -21,6 +21,7 @@
 #include "Function/Menu/Header/Second_lab_menu.h"
 #include "Function/Menu/Header/Third_lab_menu.h"
 #include "Function/Menu/Header/Fifth_lab_menu.h"
+#include "Template/Collection.h"
 #include<Define_const.h>
 
 using namespace std;
@@ -32,7 +33,12 @@ int main() {
   auto hall4 = make_shared<Hall>(4, 420, "Queen");
   auto hall5 = make_shared<Hall>(5, 90, "Moon");
 
-  vector<shared_ptr<Hall>> halls = {hall1, hall2, hall3, hall4, hall5};
+  Collection<shared_ptr<Hall>> halls;
+  halls.add(hall1); 
+  halls.add(hall2);
+  halls.add(hall3); 
+  halls.add(hall4); 
+  halls.add(hall5);
 
   auto date1 = make_shared<Date>(2026, 2, 12);
   auto date2 = make_shared<Date>(2025, 12, 12);
@@ -42,7 +48,7 @@ int main() {
   auto session1 = make_shared<Session>("Breaking Bad", time1, date1, hall5);
   auto session2 = make_shared<Session>("Stranger Things", time2, date2, hall2);
   auto session3 = make_shared<Session>("Stranger Things", time2, date2, hall2);
-  vector<shared_ptr<Session>> sessions = {session1, session2, session3};
+
 
   auto ticket1 = make_shared<Standard_ticket>(2, 7, 12.3f, session1);
   auto ticket2 = make_shared<Vip_ticket>(3, 14, 10.3f, session2, true, true);
@@ -50,7 +56,19 @@ int main() {
   auto ticket4 = make_shared<Kids_ticket>(4, 10, 8.0f, session1, "Petya", 8);
   auto ticket5 = make_shared<Couple_ticket>(5, 20, 12.0f, session2, "Anna", "Oleg", 21);
 
-  vector<shared_ptr<Ticket>> tickets = {ticket1, ticket2, ticket3, ticket4, ticket5};
+  Collection<shared_ptr<Ticket>> tickets;
+  tickets.add(ticket1);
+  tickets.add(ticket2);
+  tickets.add(ticket3);
+  tickets.add(ticket4);
+  tickets.add(ticket5);
+
+  Collection<shared_ptr<Session>> sessions;
+  sessions.add(session1);
+  sessions.add(session2);
+  sessions.add(session3);
+
+
 
   Ticket_system system;
   system.in_shared_ticket(ticket1);

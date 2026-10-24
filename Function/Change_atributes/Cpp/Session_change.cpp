@@ -10,8 +10,8 @@
 
 using namespace std;
 
-void change_session_field(vector<shared_ptr<Session>>& sessions,
-                          vector<shared_ptr<Hall>>& halls, int idx) {
+void change_session_field(Collection<shared_ptr<Session>>& sessions,
+                          Collection<shared_ptr<Hall>>& halls, int idx) {
   cout << "What to change?\n";
   cout << "1. Film name\n";
   cout << "2. Hall\n";

@@ -7,8 +7,8 @@
 
 using namespace std;
 
-void change_ticket_field(vector<shared_ptr<Ticket>>& tickets,
-                         vector<shared_ptr<Session>>& sessions, int idx) {
+void change_ticket_field(Collection<shared_ptr<Ticket>>& tickets,
+                         Collection<shared_ptr<Session>>& sessions, int idx) {
   cout << "What to change?\n";
   cout << "1. Row\n";
   cout << "2. Place\n";

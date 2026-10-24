@@ -5,7 +5,7 @@
 
 using namespace std;
 
-void change_hall_field(vector<shared_ptr<Hall>>& halls, int idx) {
+void change_hall_field(Collection<shared_ptr<Hall>>& halls, int idx) {
   cout << "What to change?\n";
   cout << "1. Hall number\n";
   cout << "2. Number of seats\n";

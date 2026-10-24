@@ -1,4 +1,5 @@
 #pragma once
+#include "Template/Collection.h"
 
 class Ticket_system;
 

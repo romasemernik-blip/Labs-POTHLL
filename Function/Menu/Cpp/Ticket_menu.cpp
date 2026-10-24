@@ -8,8 +8,8 @@
 
 using namespace std;
 
-void menu_ticket(vector<shared_ptr<Ticket>>& tickets,
-                 vector<shared_ptr<Session>>& sessions) {
+void menu_ticket(Collection<shared_ptr<Ticket>>& tickets,
+                 Collection<shared_ptr<Session>>& sessions) {
   while (true) {
     cout << "\nTICKET MENU\n";
     cout << "1. Show all tickets\n";

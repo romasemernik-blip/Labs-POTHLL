@@ -8,11 +8,11 @@
 
 using namespace std;
 
-static void lab_show_halls(const vector<shared_ptr<Hall>>& halls) {
+static void lab_show_halls(const Collection<shared_ptr<Hall>>& halls) {
   show_all_halls(halls);
 }
 
-static void lab_edit_hall(vector<shared_ptr<Hall>>& halls) {
+static void lab_edit_hall(Collection<shared_ptr<Hall>>& halls) {
   show_all_halls(halls);
   int idx = read_int("Hall index to edit: ");
   if (idx < 0 || idx >= (int)halls.size()) {
@@ -23,7 +23,7 @@ static void lab_edit_hall(vector<shared_ptr<Hall>>& halls) {
   cout << "Updated:\n" << *halls[idx];
 }
 
-static void lab_show_session(const vector<shared_ptr<Session>>& sessions) {
+static void lab_show_session(const Collection<shared_ptr<Session>>& sessions) {
   show_all_sessions(sessions);
   int idx = read_int("Session index: ");
   if (idx < 0 || idx >= (int)sessions.size()) {
@@ -33,7 +33,7 @@ static void lab_show_session(const vector<shared_ptr<Session>>& sessions) {
   cout << *sessions[idx];
 }
 
-static void lab_show_ticket(const vector<shared_ptr<Ticket>>& tickets) {
+static void lab_show_ticket(const Collection<shared_ptr<Ticket>>& tickets) {
   show_all_tickets(tickets);
   int idx = read_int("Ticket index: ");
   if (idx < 0 || idx >= (int)tickets.size()) {
@@ -47,7 +47,7 @@ static void lab_show_system(const Ticket_system& system) {
   cout << system;
 }
 
-static void lab_compare_sessions(const vector<shared_ptr<Session>>& sessions) {
+static void lab_compare_sessions(const Collection<shared_ptr<Session>>& sessions) {
   if (sessions.size() < 2) {
     cout << "Need at least 2 sessions.\n";
     return;
@@ -73,8 +73,8 @@ static void lab_compare_sessions(const vector<shared_ptr<Session>>& sessions) {
 }
 
 static void lab_show_bigger_halls(
-    const vector<shared_ptr<Session>>& sessions,
-    const vector<shared_ptr<Hall>>& halls) {
+    const Collection<shared_ptr<Session>>& sessions,
+    const Collection<shared_ptr<Hall>>& halls) {
   show_session_films(sessions);
   int idx = read_int("Session index: ");
   if (idx < 0 || idx >= (int)sessions.size()) {
@@ -85,7 +85,7 @@ static void lab_show_bigger_halls(
 }
 
 static void lab_add_shared(Ticket_system& system,
-                           const vector<shared_ptr<Ticket>>& tickets) {
+                           const Collection<shared_ptr<Ticket>>& tickets) {
   show_ticket_short_no_price(tickets);
   int idx = read_int("Ticket index: ");
   if (idx < 0 || idx >= (int)tickets.size()) {
@@ -96,7 +96,7 @@ static void lab_add_shared(Ticket_system& system,
 }
 
 static void lab_add_unique(Ticket_system& system,
-                           const vector<shared_ptr<Session>>& sessions) {
+                           const Collection<shared_ptr<Session>>& sessions) {
   int row   = read_int("Row: ");
   int place = read_int("Place: ");
   float pr  = read_float("Price: ");
@@ -113,7 +113,7 @@ static void lab_add_unique(Ticket_system& system,
 }
 
 static void lab_remove_by_value(Ticket_system& system,
-                                const vector<shared_ptr<Ticket>>& tickets) {
+                                const Collection<shared_ptr<Ticket>>& tickets) {
   show_ticket_short(tickets);
   int idx = read_int("Ticket index to remove: ");
   if (idx < 0 || idx >= (int)tickets.size()) {
@@ -124,7 +124,7 @@ static void lab_remove_by_value(Ticket_system& system,
 }
 
 static void lab_remove_shared(Ticket_system& system,
-                              const vector<shared_ptr<Ticket>>& tickets) {
+                              const Collection<shared_ptr<Ticket>>& tickets) {
   show_ticket_short(tickets);
   int idx = read_int("Ticket index to remove: ");
   if (idx < 0 || idx >= (int)tickets.size()) {
@@ -151,9 +151,9 @@ static void print_second_lab_menu() {
 }
 
 static void handle_second_lab_choice(int choice,
-                                     vector<shared_ptr<Hall>>& halls,
-                                    const vector<shared_ptr<Session>>& sessions,
-                                    const vector<shared_ptr<Ticket>>& tickets,
+                                     Collection<shared_ptr<Hall>>& halls,
+                                    const Collection<shared_ptr<Session>>& sessions,
+                                    const Collection<shared_ptr<Ticket>>& tickets,
                                      Ticket_system& system) {
   switch (choice) {
     case 1:  lab_show_halls(halls); break;
@@ -171,9 +171,9 @@ static void handle_second_lab_choice(int choice,
   }
 }
 
-void menu_second_lab(vector<shared_ptr<Hall>>& halls,
-                     const vector<shared_ptr<Session>>& sessions,
-                     const vector<shared_ptr<Ticket>>& tickets,
+void menu_second_lab(Collection<shared_ptr<Hall>>& halls,
+                     const Collection<shared_ptr<Session>>& sessions,
+                     const Collection<shared_ptr<Ticket>>& tickets,
                      Ticket_system& system) {
   while (true) {
     print_second_lab_menu();

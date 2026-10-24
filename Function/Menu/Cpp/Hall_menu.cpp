@@ -7,7 +7,7 @@
 
 using namespace std;
 
-void menu_hall(vector<shared_ptr<Hall>>& halls) {
+void menu_hall(Collection<shared_ptr<Hall>>& halls) {
   while (true) {
     cout << "\n HALL MENU\n";
     cout << "1. Show all halls\n";

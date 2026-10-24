@@ -14,8 +14,8 @@
 
 using namespace std;
 
-static void t3_create_ticket(vector<shared_ptr<Ticket>>& tickets,
-                             vector<shared_ptr<Session>>& sessions) {
+static void t3_create_ticket(Collection<shared_ptr<Ticket>>& tickets,
+                             Collection<shared_ptr<Session>>& sessions) {
   cout << "Ticket type:\n"
        << "1. Standard\n"
        << "2. VIP\n"
@@ -81,7 +81,7 @@ static void t3_create_ticket(vector<shared_ptr<Ticket>>& tickets,
   cout << "Ticket created.\n";
 }
 
-static void t3_show_all_tickets(const vector<shared_ptr<Ticket>>& tickets) {
+static void t3_show_all_tickets(const Collection<shared_ptr<Ticket>>& tickets) {
   if (tickets.empty()) {
     cout << "No tickets.\n";
     return;
@@ -93,7 +93,7 @@ static void t3_show_all_tickets(const vector<shared_ptr<Ticket>>& tickets) {
   }
 }
 
-static void t4_show_biggest_discount(const vector<shared_ptr<Ticket>>& tickets) {
+static void t4_show_biggest_discount(const Collection<shared_ptr<Ticket>>& tickets) {
   if (tickets.empty()) { cout << "No tickets.\n"; return; }
 
   auto discount_of = [](const shared_ptr<Ticket>& t) {
@@ -123,7 +123,7 @@ static void t4_show_biggest_discount(const vector<shared_ptr<Ticket>>& tickets) 
   best.print_ticket(cout);      
 }
 
-static void t4_add_5_percent_discount(const vector<shared_ptr<Ticket>>& tickets) {
+static void t4_add_5_percent_discount(const Collection<shared_ptr<Ticket>>& tickets) {
   if (tickets.empty()) { cout << "No tickets.\n"; return; }
 
   const float factor = 1.0f - EXTRA_DISCOUNT / 100.0f;   
@@ -151,7 +151,7 @@ static void t4_add_5_percent_discount(const vector<shared_ptr<Ticket>>& tickets)
   cout << "Updated " << changed << " / " << tickets.size() << " tickets.\n";
 }
 
-static void t3_show_final_prices(const vector<shared_ptr<Ticket>>& tickets) {
+static void t3_show_final_prices(const Collection<shared_ptr<Ticket>>& tickets) {
   if (tickets.empty()) { cout << "No tickets.\n"; return; }
   cout << "Base vs Final price (polymorphism via virtual Final_price):\n";
   for (size_t i = 0; i < tickets.size(); ++i) {
@@ -160,8 +160,8 @@ static void t3_show_final_prices(const vector<shared_ptr<Ticket>>& tickets) {
   }
 }
 
-static void t3_check_duplicate(const vector<shared_ptr<Ticket>>& tickets,
-                               const vector<shared_ptr<Session>>& sessions) {
+static void t3_check_duplicate(const Collection<shared_ptr<Ticket>>& tickets,
+                               const Collection<shared_ptr<Session>>& sessions) {
   if (sessions.empty()) { cout << "No sessions.\n"; return; }
   int row   = read_int("Row: ");
   int place = read_int("Place: ");
@@ -180,7 +180,7 @@ static void t3_check_duplicate(const vector<shared_ptr<Ticket>>& tickets,
   }
 }
 
-static void t3_show_specific(const vector<shared_ptr<Ticket>>& tickets) {
+static void t3_show_specific(const Collection<shared_ptr<Ticket>>& tickets) {
   if (tickets.empty()) { cout << "No tickets.\n"; return; }
 
   for (size_t i = 0; i < tickets.size(); ++i) {
@@ -209,7 +209,7 @@ static void t3_show_specific(const vector<shared_ptr<Ticket>>& tickets) {
 }
 
 static void t3_add_to_system(Ticket_system& system,
-                             const vector<shared_ptr<Ticket>>& tickets) {
+                             const Collection<shared_ptr<Ticket>>& tickets) {
   if (tickets.empty()) { cout << "No tickets.\n"; return; }
   show_ticket_short_no_price(tickets);
   int idx = read_int("Ticket index: ");
@@ -220,7 +220,7 @@ static void t3_add_to_system(Ticket_system& system,
   system += tickets[idx];
 }
 
-static void t4_demo_polymorphism(const vector<shared_ptr<Ticket>>& tickets) {
+static void t4_demo_polymorphism(const Collection<shared_ptr<Ticket>>& tickets) {
   if (tickets.empty()) { cout << "No tickets.\n"; return; }
 
   cout << "=== Dynamic polymorphism demo ===\n";
@@ -240,7 +240,7 @@ static void t4_demo_polymorphism(const vector<shared_ptr<Ticket>>& tickets) {
   cout << "Note: the same call base->Final_price() returned different\n"
           "values because the actual object type is different.\n";
 }
-static void t3_show_derived_fields(const vector<shared_ptr<Ticket>>& tickets) {
+static void t3_show_derived_fields(const Collection<shared_ptr<Ticket>>& tickets) {
   if (tickets.empty()) { cout << "No tickets.\n"; return; }
 
   for (size_t i = 0; i < tickets.size(); ++i) {
@@ -250,7 +250,7 @@ static void t3_show_derived_fields(const vector<shared_ptr<Ticket>>& tickets) {
   }
 }
 
-static void t3_show_types(const vector<shared_ptr<Ticket>>& tickets) {
+static void t3_show_types(const Collection<shared_ptr<Ticket>>& tickets) {
   if (tickets.empty()) { cout << "No tickets.\n"; return; }
 
   cout << "Polymorphic call of virtual (non-pure) methods:\n";
@@ -277,8 +277,8 @@ static void t3_print_menu() {
 }
 
 static void handle_third_lab_choice(int choice,
-                                    vector<shared_ptr<Session>>& sessions,
-                                    vector<shared_ptr<Ticket>>& tickets,
+                                    Collection<shared_ptr<Session>>& sessions,
+                                    Collection<shared_ptr<Ticket>>& tickets,
                                     Ticket_system& system) {
   switch (choice) {
     case 1: t3_create_ticket(tickets, sessions); break;
@@ -296,8 +296,8 @@ static void handle_third_lab_choice(int choice,
   }
 }
 
-void menu_third_lab(vector<shared_ptr<Session>>& sessions,
-                    vector<shared_ptr<Ticket>>& tickets,
+void menu_third_lab(Collection<shared_ptr<Session>>& sessions,
+                    Collection<shared_ptr<Ticket>>& tickets,
                     Ticket_system& system) {
   while (true) {
     t3_print_menu();

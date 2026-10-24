@@ -11,8 +11,8 @@
 using namespace std;
 
 void menu_ticket_system(Ticket_system& system,
-                        vector<shared_ptr<Ticket>>& tickets,
-                        vector<shared_ptr<Session>>& sessions) {
+                        Collection<shared_ptr<Ticket>>& tickets,
+                        Collection<shared_ptr<Session>>& sessions) {
   while (true) {
     cout << "\nTICKET_SYSTEM MENU\n";
     cout << "1. Show system contents\n";

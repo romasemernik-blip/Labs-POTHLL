@@ -2,15 +2,16 @@
 #include <memory>      
 #include <vector>
 #include <iostream>
+#include "Template/Collection.h" 
+#include "Class/Header/Ticket.h"
 
 class Ticket;
 class Session;
 
 class Ticket_system {
  private:
-  std::vector<std::shared_ptr<Ticket>> reservation;
-  std::vector<std::unique_ptr<Ticket>> particle;
-
+  Collection<std::shared_ptr<Ticket>> reservation;
+  Collection<std::unique_ptr<Ticket>> particle; 
 
  public:
   bool in_shared_ticket(const std::shared_ptr<Ticket>& ticket_sh);

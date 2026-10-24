@@ -40,7 +40,7 @@ bool Ticket_system::in_shared_ticket(const shared_ptr<Ticket>& ticket_sh) {
          << s->sold_seats() << "/" << s->seats_limit() << ").\n";
     return false;
   }
-  reservation.push_back(ticket_sh);
+   reservation.add(ticket_sh); 
   cout << "Ticket sold. Seats: " << s->sold_seats()
        << "/" << s->seats_limit() << "\n";
   return true;
@@ -60,7 +60,7 @@ bool Ticket_system::in_unique_ticket(unique_ptr<Ticket> ticket_un) {
          << s->sold_seats() << "/" << s->seats_limit() << ").\n";
     return false;
   }
-  particle.push_back(move(ticket_un));
+   particle.add(move(ticket_un)); 
   cout << "Ticket sold. Seats: " << s->sold_seats()
        << "/" << s->seats_limit() << "\n";
   return true;
@@ -93,19 +93,20 @@ Ticket_system& Ticket_system::operator+=(unique_ptr<Ticket> ticket_un) {
 }
 
 Ticket_system& Ticket_system::operator-=(const Ticket& ticket) {
-  for (auto it = reservation.begin(); it != reservation.end(); ++it) {
-    if (*it && **it == ticket) {
-      reservation.erase(it);
-      cout << "Ticket removed from shared.\n";
-      return *this;
-    }
+  int idx_res = reservation.find_if([&ticket](const shared_ptr<Ticket>& t) { return *t == ticket; });
+  if (idx_res != -1) {
+    if (reservation.get(idx_res)->get_session()) reservation.get(idx_res)->get_session()->return_seat();
+    reservation.remove_at(idx_res);
+    cout << "Ticket removed from shared.\n";
+    return *this;
   }
-  for (auto it = particle.begin(); it != particle.end(); ++it) {
-    if (*it && **it == ticket) {
-      particle.erase(it);
-      cout << "Ticket removed from unique.\n";
-      return *this;
-    }
+
+  int idx_part = particle.find_if([&ticket](const unique_ptr<Ticket>& t) { return *t == ticket; });
+  if (idx_part != -1) {
+    if (particle.get(idx_part)->get_session()) particle.get(idx_part)->get_session()->return_seat();
+    particle.remove_at(idx_part);
+    cout << "Ticket removed from unique.\n";
+    return *this;
   }
   cout << "Ticket not found.\n";
   return *this;

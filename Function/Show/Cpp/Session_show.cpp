@@ -6,7 +6,7 @@
 
 using namespace std;
 
-void show_all_sessions(const vector<shared_ptr<Session>>& sessions) {
+void show_all_sessions(const Collection<shared_ptr<Session>>& sessions) {
   for (size_t i = 0; i < sessions.size(); ++i) {
     cout << "[" << i << "]\n";
     sessions[i]->out_s();
@@ -16,7 +16,7 @@ void show_all_sessions(const vector<shared_ptr<Session>>& sessions) {
   }
 }
 
-void show_session_films(const vector<shared_ptr<Session>>& sessions) {
+void show_session_films(const Collection<shared_ptr<Session>>& sessions) {
   for (size_t i = 0; i < sessions.size(); ++i) {
     cout << "[" << i << "] " << sessions[i]->get_film()
          << " | seats: " << sessions[i]->sold_seats()
@@ -25,7 +25,7 @@ void show_session_films(const vector<shared_ptr<Session>>& sessions) {
   }
 }
 void show_halls_bigger_than(const Session& s,
-                            const vector<shared_ptr<Hall>>& halls) {
+                            const Collection<shared_ptr<Hall>>& halls) {
   int current = s.seats_limit();
   cout << "Current hall size: " << current << " seats\n";
   cout << "Halls with more seats:\n";

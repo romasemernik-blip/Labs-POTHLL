@@ -16,6 +16,9 @@ public:
 
     const_iterator begin() const { return items.begin(); }
     const_iterator end() const { return items.end(); }
+    
+    T& operator[](size_t index) { return items[index]; }
+    const T& operator[](size_t index) const { return items[index]; }
 
     void add(const T& item) {
         items.push_back(item);

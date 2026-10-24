@@ -4,14 +4,14 @@
 #include <algorithm>
 using namespace std;
 
-void show_all_tickets(const vector<shared_ptr<Ticket>>& tickets) {
+void show_all_tickets(const Collection<shared_ptr<Ticket>>& tickets) {
   for (size_t i = 0; i < tickets.size(); ++i) {
     cout << "[" << i << "]\n";
     tickets[i]->out_t();
   }
 }
 
-void show_ticket_short(const vector<shared_ptr<Ticket>>& tickets) {
+void show_ticket_short(const Collection<shared_ptr<Ticket>>& tickets) {
   for (size_t i = 0; i < tickets.size(); ++i) {
     cout << "[" << i << "] Row " << tickets[i]->get_row()
          << ", place " << tickets[i]->get_place()
@@ -19,14 +19,14 @@ void show_ticket_short(const vector<shared_ptr<Ticket>>& tickets) {
   }
 }
 
-void show_ticket_short_no_price(const vector<shared_ptr<Ticket>>& tickets) {
+void show_ticket_short_no_price(const Collection<shared_ptr<Ticket>>& tickets) {
   for (size_t i = 0; i < tickets.size(); ++i) {
     cout << "[" << i << "] Row " << tickets[i]->get_row()
          << ", place " << tickets[i]->get_place() << endl;
   }
 }
 
-bool is_duplicate_ticket(const vector<shared_ptr<Ticket>>& tickets,
+bool is_duplicate_ticket(const Collection<shared_ptr<Ticket>>& tickets,
                          const Ticket& candidate) {
   return std::any_of(tickets.begin(), tickets.end(),
                      [&candidate](const shared_ptr<Ticket>& t) {

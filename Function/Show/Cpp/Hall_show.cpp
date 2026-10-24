@@ -4,14 +4,14 @@
 
 using namespace std;
 
-void show_all_halls(const vector<shared_ptr<Hall>>& halls) {
+void show_all_halls(const Collection<shared_ptr<Hall>>& halls) {
   for (size_t i = 0; i < halls.size(); ++i) {
     cout << "[" << i << "] ";
     halls[i]->out_h();
   }
 }
 
-void show_hall_names(const vector<shared_ptr<Hall>>& halls) {
+void show_hall_names(const Collection<shared_ptr<Hall>>& halls) {
   for (size_t i = 0; i < halls.size(); ++i) {
     cout << "[" << i << "] ";
     halls[i]->out_name();

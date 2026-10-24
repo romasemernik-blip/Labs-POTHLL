@@ -5,7 +5,8 @@
 #include "Class/Header/Session.h"
 #include "Class/Header/Ticket.h"
 #include "Class/Header/Ticket_system.h"
+#include "Template/Collection.h"
 
-void menu_third_lab(std::vector<std::shared_ptr<Session>>& sessions,
-                    std::vector<std::shared_ptr<Ticket>>& tickets,
+void menu_third_lab(Collection<std::shared_ptr<Session>>& sessions,
+                    Collection<std::shared_ptr<Ticket>>& tickets,
                     Ticket_system& system);

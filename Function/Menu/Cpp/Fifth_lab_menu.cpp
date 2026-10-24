@@ -73,7 +73,7 @@ static void handle_modify(Collection<shared_ptr<Ticket>>& tc, Collection<string>
         int r = read_int("New ticket row: ");
         int p = read_int("New ticket place: ");
         float pr = read_float("New ticket price: ");
-        auto new_ticket = make_shared<Standard_ticket>(r, p, pr, sessions.index[i], "Standard");
+        auto new_ticket = make_shared<Standard_ticket>(r, p, pr, sessions, "Standard");
         tc.add(new_ticket);
         cout << "New Standard_ticket added to collection. New size: " << tc.size() << "\n";
     } else if (choice == 19) { 

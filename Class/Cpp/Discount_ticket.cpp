@@ -1,5 +1,6 @@
 #include "Class/Header/Discount_ticket.h"
 #include "Class/Header/Session.h"
+#include "Exception/Header/Invalid_data_exception.h"
 #include<Define_const.h>
 
 using namespace std;
@@ -11,8 +12,12 @@ Discount_ticket::Discount_ticket(int row, int place, float price,
     : Ticket(row, place, price, session),
       discount_percent(discount_percent),
       holder_name(holder_name) {
-  if (this->discount_percent < MIN_DISCOUNT)   this->discount_percent = MIN_DISCOUNT;
-  if (this->discount_percent > MAX_DISCOUNT)  this->discount_percent = MAX_DISCOUNT;
+  if (this->discount_percent < MIN_DISCOUNT || this->discount_percent > MAX_DISCOUNT) {
+    throw Invalid_Data_Exception("Discount " + std::to_string(this->discount_percent) + "% out of range");
+  }
+  if (this->holder_name.empty()) {
+    throw Invalid_Data_Exception("Holder name cannot be empty");
+  }
 }
 
 float Discount_ticket::final_price() const {
@@ -21,16 +26,16 @@ float Discount_ticket::final_price() const {
 
 bool Discount_ticket::set_discount(int d) {
   if (d < MIN_DISCOUNT || d > MAX_DISCOUNT) {
-    cout << "Error: discount must be in range "
-         << MIN_DISCOUNT << ".." << MAX_DISCOUNT << ".\n";
-    return false;
+    throw Invalid_Data_Exception("Discount " + std::to_string(d) + "% out of range");
   }
   discount_percent = d;
   return true;
 }
 
 bool Discount_ticket::set_holder(const std::string_view& h) {
-  if (h.empty()) { cout << "Error: holder cannot be empty.\n"; return false; }
+  if (h.empty()) {
+    throw Invalid_Data_Exception("Holder name cannot be empty");
+  }
   holder_name = h;
   return true;
 }

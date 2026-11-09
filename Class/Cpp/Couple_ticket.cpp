@@ -1,5 +1,6 @@
 #include "Class/Header/Couple_ticket.h"
 #include "Class/Header/Session.h"
+#include "Exception/Header/Invalid_data_exception.h"
 #include <Define_const.h>
 
 using namespace std;
@@ -12,23 +13,28 @@ Couple_ticket::Couple_ticket(int row, int place, float price,
     : Ticket(row, place, price, session),
       person1(person1), person2(person2),
       second_place(second_place) {
-  if (this->second_place < 1) this->second_place = place + 1;
+  if (this->second_place < 1) {
+    throw Invalid_Data_Exception("Second place must be >= 1");
+  }
+  if (this->person1.empty() || this->person2.empty()) {
+    throw Invalid_Data_Exception("Person names cannot be empty");
+  }
 }
 
 float Couple_ticket::final_price() const { return get_price() * COUPLE_DISCOUNT; }
 
 bool Couple_ticket::set_person1(const string_view& n) {
-  if (n.empty()) { cout << "Error: name cannot be empty.\n"; return false; }
+  if (n.empty()) throw Invalid_Data_Exception("Person 1 name cannot be empty");
   person1 = n; return true;
 }
 
 bool Couple_ticket::set_person2(const string_view& n) {
-  if (n.empty()) { cout << "Error: name cannot be empty.\n"; return false; }
+  if (n.empty()) throw Invalid_Data_Exception("Person 2 name cannot be empty");
   person2 = n; return true;
 }
 
 bool Couple_ticket::set_second_place(int p) {
-  if (p < 1) { cout << "Error: place must be >= 1.\n"; return false; }
+  if (p < 1) throw Invalid_Data_Exception("Second place must be >= 1");
   second_place = p; return true;
 }
 

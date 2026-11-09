@@ -34,6 +34,5 @@ void menu_hall(Collection<shared_ptr<Hall>>& halls) {
     catch (const Out_Of_Range_Exception& e)      { cout << "[RANGE] " << e.what() << "\n"; }
     catch (const Invalid_Data_Exception& e)      { cout << "[DATA] " << e.what() << "\n"; }
     catch (const Cinema_Exception& e)            { cout << "[ERROR] " << e.what() << "\n"; }
-    catch (...)                                  { cout << "[UNKNOWN ERROR]\n"; }
   }
 }

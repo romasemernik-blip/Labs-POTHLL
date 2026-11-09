@@ -34,9 +34,6 @@ void menu_session(Collection<shared_ptr<Session>>& sessions, Collection<shared_p
     }
     catch (const Out_Of_Range_Exception& e)      { cout << "[RANGE] " << e.what() << "\n"; }
     catch (const Invalid_Data_Exception& e)      { cout << "[DATA] " << e.what() << "\n"; }
-    catch (const Limit_Exceeded_Exception& e)    { cout << "[LIMIT] " << e.what() << "\n"; }
-    catch (const Relation_Exception& e)          { cout << "[RELATION] " << e.what() << "\n"; }
     catch (const Cinema_Exception& e)            { cout << "[ERROR] " << e.what() << "\n"; }
-    catch (...)                                  { cout << "[UNKNOWN ERROR]\n"; }
   }
 }

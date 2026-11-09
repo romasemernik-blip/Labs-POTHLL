@@ -1,6 +1,10 @@
 #include "Class/Header/Ticket_system.h"
 #include "Class/Header/Ticket.h"    
-#include "Class/Header/Session.h"  
+#include "Class/Header/Session.h" 
+#include "Exception/Header/DuplicateId_exception.h"
+#include "Exception/Header/Object_not_found_exception.h"
+#include "Exception/Header/Invalid_data_exception.h"
+#include "Exception/Header/Relation_exception.h" 
 #include <iostream>
 #include <memory>
 #include <algorithm>
@@ -26,43 +30,47 @@ size_t Ticket_system::shared_count() const { return reservation.size(); }
 size_t Ticket_system::unique_count() const { return particle.size(); }
 
 bool Ticket_system::in_shared_ticket(const shared_ptr<Ticket>& ticket_sh) {
-  if (!ticket_sh) {
-    cout << "Error: ticket is null.\n";
-    return false;
-  }
+  if (!ticket_sh) throw Invalid_Data_Exception("Ticket is null");
   auto s = ticket_sh->get_session();
-  if (!s) {
-    cout << "Error: ticket has no session.\n";
-    return false;
+  if (!s) throw Relation_Exception("Ticket has no session");
+
+  if (contains(*ticket_sh)) {
+    throw Duplicate_Id_Exception("Seat (row " + std::to_string(ticket_sh->get_row()) + 
+                                 ", place " + std::to_string(ticket_sh->get_place()) + ") is already sold");
   }
-  if (!s->sell_seat()) {
-    cout << "Limit reached: no free seats for this session ("
-         << s->sold_seats() << "/" << s->seats_limit() << ").\n";
-    return false;
+
+  s->sell_seat(); 
+
+  try {
+    reservation.add(ticket_sh); 
+  } catch (...) {
+    s->return_seat(); 
+    throw;            
   }
-   reservation.add(ticket_sh); 
-  cout << "Ticket sold. Seats: " << s->sold_seats()
-       << "/" << s->seats_limit() << "\n";
+  
+  cout << "Ticket sold. Seats: " << s->sold_seats() << "/" << s->seats_limit() << "\n";
   return true;
 }
+
 bool Ticket_system::in_unique_ticket(unique_ptr<Ticket> ticket_un) {
-  if (!ticket_un) {
-    cout << "Error: ticket is null.\n";
-    return false;
-  }
+  if (!ticket_un) throw Invalid_Data_Exception("Ticket is null");
   auto s = ticket_un->get_session();
-  if (!s) {
-    cout << "Error: ticket has no session.\n";
-    return false;
+  if (!s) throw Relation_Exception("Ticket has no session");
+
+  if (contains(*ticket_un)) {
+    throw Duplicate_Id_Exception("Seat is already sold");
   }
-  if (!s->sell_seat()) {
-    cout << "Limit reached: no free seats for this session ("
-         << s->sold_seats() << "/" << s->seats_limit() << ").\n";
-    return false;
+
+  s->sell_seat(); 
+
+  try {
+    particle.add(move(ticket_un)); 
+  } catch (...) {
+    s->return_seat();
+    throw;
   }
-   particle.add(move(ticket_un)); 
-  cout << "Ticket sold. Seats: " << s->sold_seats()
-       << "/" << s->seats_limit() << "\n";
+  
+  cout << "Ticket sold. Seats: " << s->sold_seats() << "/" << s->seats_limit() << "\n";
   return true;
 }
 
@@ -107,14 +115,12 @@ Ticket_system& Ticket_system::operator-=(const Ticket& ticket) {
         return *this;
     }
     
-    cout << "Ticket not found.\n";
-    return *this;
+    throw Object_Not_Found_Exception("Ticket to remove not found in system");
 }
 
 Ticket_system& Ticket_system::operator-=(const shared_ptr<Ticket>& ticket_sh) {
   if (!ticket_sh) {
-    cout << "Null ticket.\n";
-    return *this;
+    throw Invalid_Data_Exception("Ticket is null");
   }
   *this -= *ticket_sh;
   return *this;

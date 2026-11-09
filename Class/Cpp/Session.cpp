@@ -1,4 +1,8 @@
 #include "Class/Header/Session.h"
+#include "Exception/Header/Relation_exception.h"
+#include "Exception/Header/Limit_exceeded_exception.h"
+#include "Exception/Header/Invalid_operation_exception.h"
+#include "Exception/Header/Invalid_data_exception.h"
 #include <iostream>
 
 using namespace std;
@@ -7,15 +11,31 @@ Session::Session(const string& film, shared_ptr<Time> time_start,
                  shared_ptr<Date> date, shared_ptr<Hall> hall)
     : film(film), hall(hall), date(date), time_start(time_start) {}
 
-void Session::in_film(const string_view& film_) { film = film_; }
-void Session::in_hall(shared_ptr<Hall> hall_) { hall = hall_; }
-void Session::in_time_start(shared_ptr<Time> time_start_) { time_start = time_start_; }
-void Session::in_date(shared_ptr<Date> date_) { date = date_; }
+void Session::in_film(const string_view& film_) { 
+    if (film_.empty()) throw Invalid_Data_Exception("Film name cannot be empty");
+    film = film_; 
+}
+
+void Session::in_hall(shared_ptr<Hall> hall_) { 
+    if (!hall_) throw Relation_Exception("Session cannot be linked to null hall");
+    hall = hall_; 
+}
+
+void Session::in_time_start(shared_ptr<Time> time_start_) { 
+    if (!time_start_) throw Relation_Exception("Time start cannot be null");
+    time_start = time_start_; 
+}
+
+void Session::in_date(shared_ptr<Date> date_) { 
+    if (!date_) throw Relation_Exception("Date cannot be null");
+    date = date_; 
+}
 
 int Session::seats_limit() const {
-  if (hall) return hall->get_num_seat();
-  return 0;
+    if (!hall) throw Relation_Exception("Session has no hall assigned to calculate seats limit");
+    return hall->get_num_seat();
 }
+
 int Session::sold_seats() const {
   return sold_seats_;
 }
@@ -23,15 +43,19 @@ int Session::free_seats() const {
   int free = seats_limit() - sold_seats_;
   return free < 0 ? 0 : free;
 }
+
 bool Session::sell_seat() {
-  if (sold_seats_ >= seats_limit()) {
-    return false;  
+    if (sold_seats_ >= seats_limit()) {
+        throw Limit_Exceeded_Exception("No free seats in session '" + film + "'");
     }
-  ++sold_seats_;
-  return true;
-}  
+    ++sold_seats_;
+    return true;
+}
+
 void Session::return_seat() {
-  if (sold_seats_ > 0) --sold_seats_;
+    if (sold_seats_ == 0) 
+        throw Invalid_Operation_Exception("Cannot return seat: no seats were sold");
+    --sold_seats_;
 }
 
 void Session::out_s() const {
@@ -73,21 +97,15 @@ shared_ptr<Date> Session::get_date() const { return date; }
 shared_ptr<Time> Session::get_time_start() const { return time_start; }
 
 bool Session::can_change_hall(const shared_ptr<Hall>& new_hall) const {
-  if (!new_hall) {
-    cout << "Error: new hall is null.\n";
-    return false;
-  }
-  if (!hall) {
-    cout << "Error: current hall is null.\n";
-    return false;
-  }
-  if (new_hall->get_num_seat() < hall->get_num_seat()) {
-    cout << "Error: new hall has only " << new_hall->get_num_seat()
-         << " seats, but current hall has " << hall->get_num_seat()
-         << " seats. New hall must be at least as large.\n";
-    return false;
-  }
-  return true;
+    if (!new_hall) throw Relation_Exception("New hall is null");
+    if (!hall) throw Relation_Exception("Current hall is null");
+    
+    if (new_hall->get_num_seat() < hall->get_num_seat()) {
+        throw Limit_Exceeded_Exception("New hall has fewer seats (" + 
+            std::to_string(new_hall->get_num_seat()) + ") than current (" + 
+            std::to_string(hall->get_num_seat()) + ")");
+    }
+    return true;
 }
 
 bool Session::operator<(const Session& other) const {

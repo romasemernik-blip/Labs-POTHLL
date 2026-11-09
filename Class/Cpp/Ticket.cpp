@@ -1,26 +1,28 @@
 #include "Class/Header/Ticket.h"
 #include "Class/Header/Session.h"   
+#include "Exception/Header/Invalid_data_exception.h"
+#include "Exception/Header/Out_of_range_exception.h"
+#include "Exception/Header/Relation_exception.h"
 #include <iostream>
 
 using namespace std;
 
 Ticket::Ticket(int row, int place, float price, shared_ptr<Session> session)
     : place(place), session(session), price(price), row(row) {
-      if (this->row < 1) this->row = 1;
-      if (this->place < 1) this->place = 1;
-      if (this->price <= 0) this->price = 1.0f;
-    }
+  if (row < 1) throw Invalid_Data_Exception("Row cannot be less than 1");
+  if (place < 1) throw Invalid_Data_Exception("Place cannot be less than 1");
+  if (price <= 0) throw Invalid_Data_Exception("Price must be > 0");
+  if (!session) throw Relation_Exception("Ticket cannot be created without a session");
+}
 
 bool Ticket::in_place(int place_) {
   if (place_ < 1) {
-    cout << "Error: place must be >= 1.\n";
-    return false;
+    throw Invalid_Data_Exception("Place must be >= 1");
   }
- if (session && session->get_hall() &&
-      place > session->get_hall()->get_num_seat()) {
-    cout << "Error: place exceeds number of seats in hall ("
-         << session->get_hall()->get_num_seat() << ").\n";
-    return false;
+  if (session && session->get_hall() && place_ > session->get_hall()->get_num_seat()) {
+    throw Out_Of_Range_Exception("Place " + std::to_string(place_) + 
+                                 " exceeds number of seats in hall (" + 
+                                 std::to_string(session->get_hall()->get_num_seat()) + ")");
   }
   this->place = place_;
   return true;
@@ -28,8 +30,7 @@ bool Ticket::in_place(int place_) {
 
 bool Ticket::in_session(shared_ptr<Session> session_) {
   if (!session_) {
-    cout << "Error: session is null.\n";
-    return false;
+    throw Relation_Exception("Session is null");
   }
   session = session_;
   return true;
@@ -37,8 +38,7 @@ bool Ticket::in_session(shared_ptr<Session> session_) {
 
 bool Ticket::in_price(float price_) {
   if (price_ <= 0) {
-    cout << "Error: price must be positive.\n";
-    return false;
+    throw Invalid_Data_Exception("Price must be positive");
   }
   this->price = price_;
   return true;
@@ -46,12 +46,12 @@ bool Ticket::in_price(float price_) {
 
 bool Ticket::in_row(int row_) {
   if (row_ < 1) {
-    cout << "Error: row must be >= 1.\n";
-    return false;
+    throw Invalid_Data_Exception("Row must be >= 1");
   }
   this->row = row_;
   return true;
 }
+
 void Ticket::out_t() const {
   print_ticket(cout);       
 }

@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <iostream>
+#include "Exception/Header/Out_of_range_exception.h"
 
 template <typename T>
 class Collection {
@@ -17,8 +18,20 @@ public:
     const_iterator begin() const { return items.begin(); }
     const_iterator end() const { return items.end(); }
 
-    T& operator[](size_t index) { return items[index]; }
-    const T& operator[](size_t index) const { return items[index]; }
+    T& at(size_t index) {
+        if (index >= items.size())
+            throw Out_Of_Range_Exception("Collection index out of bounds");
+        return items[index];
+    }
+    const T& at(size_t index) const {
+        return const_cast<Collection*>(this)->at(index);
+    }
+
+    T& operator[](size_t index) { return at(index); }
+    const T& operator[](size_t index) const { return at(index); }
+    
+    T& get(size_t index) { return at(index); }
+    const T& get(size_t index) const { return at(index); }
     
     void push_back(const T& item) { items.push_back(item); }
     void push_back(T&& item) { items.push_back(std::move(item)); }
@@ -36,14 +49,6 @@ public:
         if (index >= items.size()) return false;
         items.erase(items.begin() + index);
         return true;
-    }
-
-    T& get(size_t index) {
-        return items[index];
-    }
-
-    const T& get(size_t index) const {
-        return items[index];
     }
 
     int find(const T& item) const {
@@ -87,6 +92,7 @@ T find_best(const Collection<T>& coll, Comparator comp) {
             best = coll.get(i);
         }
     }
+    if (coll.empty()) throw Out_Of_Range_Exception("find_best called on empty collection");
     return best;
 }
 

@@ -1,5 +1,5 @@
 #include "Class/Header/Hall.h"
-#include "Exception/Header/Invalid_data_exception.h".
+#include "Exception/Header/Invalid_data_exception.h"
 #include <iostream>
 
 using namespace std;

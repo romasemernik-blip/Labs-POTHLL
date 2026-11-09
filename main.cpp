@@ -95,30 +95,19 @@ int main() {
 
     int choice = read_int("Choice: ");
 
-    if (choice == 1) {
-      menu_hall(halls);
-    } else if (choice == 2) {
-      menu_session(sessions, halls);
-    } else if (choice == 3) {
-      menu_ticket(tickets, sessions);
-    } else if (choice == 4) {
-      menu_ticket_system(system, tickets, sessions);
-    } else if (choice == EXIT_NUMBER) {
-      return 0;
-     } else if (choice == 5) {
-      menu_second_lab(halls, sessions, tickets, system);
-    } else if (choice == 6) {                                  
-      menu_third_lab( sessions, tickets, system);
-    } else if (choice == 7) {                                  
-      menu_fifth_lab(tickets, sessions);
-    } else if (choice == 8) {                                  
-      menu_sixth_lab(system, sessions, tickets, halls);
-    } else if (choice == EXIT_NUMBER) {
-      return 0;
-    } else {
-      cout << "Invalid choice.\n";
+     switch (choice) {
+          case 1: menu_hall(halls); break;
+          case 2: menu_session(sessions, halls); break;
+          case 3: menu_ticket(tickets, sessions); break;
+          case 4: menu_ticket_system(system, tickets, sessions); break;
+          case 5: menu_second_lab(halls, sessions, tickets, system); break;
+          case 6: menu_third_lab(sessions, tickets, system); break;
+          case 7: menu_fifth_lab(tickets, sessions); break;
+          case 8: menu_sixth_lab(system, sessions, tickets, halls); break;
+          case EXIT_NUMBER: return 0;
+          default: cout << "Invalid choice.\n"; break;
+      }
     }
-  }
     catch (const Duplicate_Id_Exception& e)      { cout << "[SEAT BUSY] " << e.what() << "\n"; }
     catch (const Object_Not_Found_Exception& e)  { cout << "[NOT FOUND] " << e.what() << "\n"; }
     catch (const Limit_Exceeded_Exception& e)    { cout << "[LIMIT] " << e.what() << "\n"; }

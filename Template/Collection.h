@@ -23,10 +23,14 @@ public:
             throw Out_Of_Range_Exception("Collection index out of bounds");
         return items[index];
     }
-    const T& at(size_t index) const {
-        return const_cast<Collection*>(this)->at(index);
-    }
 
+     const T& at(size_t index) const {
+        if (index >= items.size())
+            throw Out_Of_Range_Exception("Collection index " + std::to_string(index) +
+                " >= size " + std::to_string(items.size()));
+        return items[index];
+    }
+    
     T& operator[](size_t index) { return at(index); }
     const T& operator[](size_t index) const { return at(index); }
     

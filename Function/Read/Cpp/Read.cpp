@@ -11,7 +11,7 @@ int read_int(const string& info) {
       int v;
       cout << info;
       if (cin >> v) return v;
-      if (cin.eof()) throw runtime_error("EOF");
+      if (cin.eof()) throw Invalid_Data_Exception("End of input reached");
       cin.clear();
       cin.ignore(numeric_limits<streamsize>::max(), '\n');
       throw Invalid_Data_Exception("Expected an integer");
@@ -28,7 +28,7 @@ float read_float(const string& info) {
       cout << info;
       if (cin >> v) return v;
       
-      if (cin.eof()) throw std::runtime_error("End of input reached");
+     if (cin.eof()) throw Invalid_Data_Exception("End of input reached");
       
       cin.clear();
       cin.ignore(numeric_limits<streamsize>::max(), '\n');

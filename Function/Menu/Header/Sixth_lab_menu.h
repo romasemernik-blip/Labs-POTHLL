@@ -2,7 +2,7 @@
 #include <memory>
 #include "Template/Collection.h"
 
-class Ticket_System;
+class Ticket_system;
 class Ticket;
 class Session;
 class Hall;

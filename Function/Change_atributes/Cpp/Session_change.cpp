@@ -19,29 +19,36 @@ void change_session_field(Collection<shared_ptr<Session>>& sessions,
   cout << "4. Start time\n";
 
   int sub = read_int("Choice: ");
+  
   switch (sub) {
     case 1:
-      sessions[idx]->in_film(read_string("New film name: "));
+      sessions.at(idx)->in_film(read_string("New film name: "));
+      cout << "Film name changed.\n";
       break;
-   case 2: {
-  show_halls_bigger_than(*sessions[idx], halls);
-  int h = read_int("Hall index (or -1 to cancel): ");
-  if (h == -1) break;
-  sessions[idx]->in_hall(halls[h]);
-  cout << "Hall changed.\n";
-  break;
-}
+    case 2: {
+      show_halls_bigger_than(*sessions.at(idx), halls);
+      int h = read_int("Hall index (or -1 to cancel): ");
+      if (h == -1) break;
+
+      sessions.at(idx)->can_change_hall(halls.at(h)); 
+      sessions.at(idx)->in_hall(halls.at(h));
+      
+      cout << "Hall changed.\n";
+      break;
+    }
     case 3: {
       int y = read_int("Year: ");
       int m = read_int("Month: ");
       int d = read_int("Day: ");
-      sessions[idx]->in_date(make_shared<Date>(y, m, d));
+      sessions.at(idx)->in_date(make_shared<Date>(y, m, d));
+      cout << "Date changed.\n";
       break;
     }
     case 4: {
       int h = read_int("Hours: ");
       int m = read_int("Minutes: ");
-      sessions[idx]->in_time_start(make_shared<Time>(h, m));
+      sessions.at(idx)->in_time_start(make_shared<Time>(h, m));
+      cout << "Time changed.\n";
       break;
     }
     default:

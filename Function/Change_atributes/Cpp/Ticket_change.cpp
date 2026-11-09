@@ -16,29 +16,32 @@ void change_ticket_field(Collection<shared_ptr<Ticket>>& tickets,
   cout << "4. Session\n";
 
   int sub = read_int("Choice: ");
+  
   switch (sub) {
     case 1: {
-  if (int v = read_int("New row: "); tickets[idx]->in_row(v))
-    cout << "Row changed.\n";
-  break;
-}
-case 2: {
-  if (int v = read_int("New place: "); tickets[idx]->in_place(v))
-    cout << "Place changed.\n";
-  break;
-}
-case 3: {
-  if (float v = read_float("New price: "); tickets[idx]->in_price(v))
-    cout << "Price changed.\n";
-  break;
-}
-case 4: {
-  show_session_films(sessions);
-  if (int s = read_int("Session index: ");
-      tickets[idx]->in_session(sessions[s]))
-    cout << "Session changed.\n";
-  break;
-}
+      tickets.at(idx)->in_row(read_int("New row: "));
+      cout << "Row changed.\n";
+      break;
+    }
+    case 2: {
+      tickets.at(idx)->in_place(read_int("New place: "));
+      cout << "Place changed.\n";
+      break;
+    }
+    case 3: {
+      tickets.at(idx)->in_price(read_float("New price: "));
+      cout << "Price changed.\n";
+      break;
+    }
+    case 4: {
+      show_session_films(sessions);
+      int s = read_int("Session index: ");
+      
+      tickets.at(idx)->in_session(sessions.at(s));
+      cout << "Session changed.\n";
+      break;
+    }
     default:
       cout << "Invalid choice.\n";
-}}
+  }
+}

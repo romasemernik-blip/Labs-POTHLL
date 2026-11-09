@@ -12,10 +12,20 @@ void change_hall_field(Collection<shared_ptr<Hall>>& halls, int idx) {
   cout << "3. Name\n";
 
   int sub = read_int("Choice: ");
-  switch (sub) {
-    case 1: halls[idx]->in_num(read_int("New number: ")); break;
-    case 2: halls[idx]->in_num_seat(read_int("New number of seats: ")); break;
-    case 3: halls[idx]->in_name(read_string("New name: ")); break;
-    default: cout << "Invalid choice.\n";
+    switch (sub) {
+    case 1: 
+      halls.at(idx)->in_num(read_int("New number: ")); 
+      cout << "Hall number changed.\n";
+      break;
+    case 2: 
+      halls.at(idx)->in_num_seat(read_int("New number of seats: ")); 
+      cout << "Hall seats changed.\n";
+      break;
+    case 3: 
+      halls.at(idx)->in_name(read_string("New name: ")); 
+      cout << "Hall name changed.\n";
+      break;
+    default: 
+      cout << "Invalid choice.\n";
   }
 }

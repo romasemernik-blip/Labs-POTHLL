@@ -46,11 +46,8 @@ void menu_ticket_system(Ticket_system& system, Collection<shared_ptr<Ticket>>& t
       handle_system_choice(choice, system, tickets, sessions);
 
     }
-    catch (const Duplicate_Id_Exception& e)      { cout << "[SEAT BUSY] " << e.what() << "\n"; }
     catch (const Out_Of_Range_Exception& e)      { cout << "[RANGE] " << e.what() << "\n"; }
     catch (const Invalid_Data_Exception& e)      { cout << "[DATA] " << e.what() << "\n"; }
-    catch (const Relation_Exception& e)          { cout << "[RELATION] " << e.what() << "\n"; }
     catch (const Cinema_Exception& e)            { cout << "[ERROR] " << e.what() << "\n"; }
-    catch (...)                                  { cout << "[UNKNOWN ERROR]\n"; }
   }
 }

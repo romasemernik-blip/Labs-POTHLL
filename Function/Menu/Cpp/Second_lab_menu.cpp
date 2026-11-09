@@ -4,6 +4,7 @@
 #include "Function/Show/Header/Session_show.h"
 #include "Function/Show/Header/Ticket_show.h"
 #include "Class/Header/Standard_ticket.h"
+#include "Exception/Header/All_exceptions.h"
 #include <iostream>
 
 using namespace std;

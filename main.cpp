@@ -1,6 +1,5 @@
 #include <iostream>
 #include <memory>
-#include <vector>
 
 #include "Class/Header/Hall.h"
 #include "Class/Header/Session.h"
@@ -22,18 +21,25 @@
 #include "Function/Menu/Header/Third_lab_menu.h"
 #include "Function/Menu/Header/Fifth_lab_menu.h"
 #include "Template/Collection.h"
+#include "Exception/Header/All_exceptions.h"
 #include<Define_const.h>
 
 using namespace std;
 
 int main() {
+
+    Collection<shared_ptr<Ticket>> tickets;
+    Collection<shared_ptr<Hall>> halls;
+    Collection<shared_ptr<Session>> sessions;
+    Ticket_system system;
+
+  try {
   auto hall1 = make_shared<Hall>(1, 10, "Moon");
   auto hall2 = make_shared<Hall>(2, 5, "Spartac");
   auto hall3 = make_shared<Hall>(3, 200, "October");
   auto hall4 = make_shared<Hall>(4, 420, "Queen");
   auto hall5 = make_shared<Hall>(5, 90, "Moon");
 
-  Collection<shared_ptr<Hall>> halls;
   halls.add(hall1); 
   halls.add(hall2);
   halls.add(hall3); 
@@ -56,24 +62,25 @@ int main() {
   auto ticket4 = make_shared<Kids_ticket>(4, 10, 8.0f, session1, "Petya", 8);
   auto ticket5 = make_shared<Couple_ticket>(5, 20, 12.0f, session2, "Anna", "Oleg", 21);
 
-  Collection<shared_ptr<Ticket>> tickets;
   tickets.add(ticket1);
   tickets.add(ticket2);
   tickets.add(ticket3);
   tickets.add(ticket4);
   tickets.add(ticket5);
 
-  Collection<shared_ptr<Session>> sessions;
   sessions.add(session1);
   sessions.add(session2);
   sessions.add(session3);
 
-
-
-  Ticket_system system;
-  system.in_shared_ticket(ticket1);
+  system += ticket1;
+  }
+  catch (const Cinema_Exception& e) {
+    cout << "Initialization failed: " << e.what() << "\n";
+    return 1; 
+  }
 
   while (true) {
+    try {
     cout << "\nMAIN MENU\n";
     cout << "1. Hall\n";
     cout << "2. Session\n";
@@ -106,4 +113,15 @@ int main() {
       cout << "Invalid choice.\n";
     }
   }
+    catch (const Duplicate_Id_Exception& e)      { cout << "[SEAT BUSY] " << e.what() << "\n"; }
+    catch (const Object_Not_Found_Exception& e)  { cout << "[NOT FOUND] " << e.what() << "\n"; }
+    catch (const Limit_Exceeded_Exception& e)    { cout << "[LIMIT] " << e.what() << "\n"; }
+    catch (const Out_Of_Range_Exception& e)      { cout << "[RANGE] " << e.what() << "\n"; }
+    catch (const Invalid_Operation_Exception& e) { cout << "[BAD OP] " << e.what() << "\n"; }
+    catch (const Relation_Exception& e)          { cout << "[RELATION] " << e.what() << "\n"; }
+    catch (const Invalid_Data_Exception& e)      { cout << "[DATA] " << e.what() << "\n"; }
+    catch (const Cinema_Exception& e)            { cout << "[ERROR] " << e.what() << "\n"; }
+    catch (const std::exception& e)              { cout << "[STD] " << e.what() << "\n"; }
+    catch (...)                                  { cout << "[UNKNOWN ERROR]\n"; }
+}
 }

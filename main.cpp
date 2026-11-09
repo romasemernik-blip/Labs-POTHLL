@@ -22,6 +22,7 @@
 #include "Function/Menu/Header/Fifth_lab_menu.h"
 #include "Template/Collection.h"
 #include "Exception/Header/All_exceptions.h"
+#include "Function/Menu/Header/Sixth_lab_menu.h"
 #include<Define_const.h>
 
 using namespace std;
@@ -89,6 +90,7 @@ int main() {
     cout << "5. For second lab\n";
     cout << "6. For third/fourth lab\n"; 
     cout << "7. For fifth lab (Templates)\n";
+    cout << "8. For sixth lab (Exceptions Demo)\n";
     cout << "67. Exit\n";
 
     int choice = read_int("Choice: ");
@@ -109,6 +111,10 @@ int main() {
       menu_third_lab( sessions, tickets, system);
     } else if (choice == 7) {                                  
       menu_fifth_lab(tickets, sessions);
+    } else if (choice == 8) {                                  
+      menu_sixth_lab(system, sessions, tickets, halls);
+    } else if (choice == EXIT_NUMBER) {
+      return 0;
     } else {
       cout << "Invalid choice.\n";
     }

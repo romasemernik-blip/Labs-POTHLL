@@ -7,6 +7,7 @@
 #include "Structure/Header/Date.h"
 #include "Function/Read/Header/Read.h"
 #include <iostream>
+#include <limits>
 #include "Exception/Header/All_exceptions.h"
 
 using namespace std;
@@ -103,12 +104,52 @@ static void demo_relation(Collection<shared_ptr<Session>>& sessions) {
     }
 }
 
+static void menu_input_error_demo() {
+    while (true) {
+        cout << "\nNESTED MENU: KEYBOARD INPUT ERRORS\n";
+        cout << "1. Type text instead of a number (Parse Error)\n";
+        cout << "2. Enter a number out of valid range (Validation Error)\n";
+        cout << "0. Back\n";
+
+        int choice = read_int("Choice: ");
+        if (choice == 0) return;
+
+        if (choice == 1) {
+            try {
+                cout << "Enter an integer (deliberately type 'abc' to fail): ";
+                int val;
+                if (!(cin >> val)) {
+                    cin.clear(); 
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    throw Invalid_Data_Exception("Input stream failed: expected integer, got text");
+                }
+                cout << "Success: " << val << "\n";
+            }
+            catch (const Invalid_Data_Exception& e) {
+                cout << "[CAUGHT] " << e.what() << "\n";
+            }
+        }
+        else if (choice == 2) {
+            try {
+                int month = read_int("Enter a month (1-12): ");
+                if (month < 1 || month > 12) {
+                    throw Invalid_Data_Exception("Month " + to_string(month) + " is out of range 1..12");
+                }
+                cout << "Success: valid month\n";
+            }
+            catch (const Invalid_Data_Exception& e) {
+                cout << "[CAUGHT] " << e.what() << "\n";
+            }
+        }
+    }
+}
+
 void menu_sixth_lab(Ticket_system& system,
                     Collection<shared_ptr<Session>>& sessions,
                     Collection<shared_ptr<Ticket>>& tickets,
                     Collection<shared_ptr<Hall>>& halls) {
     while (true) {
-        cout << "\n--- LAB 6: EXCEPTION HANDLING DEMO ---\n";
+        cout << "\nLAB 6: EXCEPTION HANDLING DEMO\n";
         cout << "1. Trigger Invalid_Data_Exception (Bad Date)\n";
         cout << "2. Trigger Object_Not_Found_Exception (Remove fake ticket)\n";
         cout << "3. Trigger Duplicate_Id_Exception (Sell same seat twice)\n";
@@ -116,6 +157,7 @@ void menu_sixth_lab(Ticket_system& system,
         cout << "5. Trigger Out_Of_Range_Exception (Bad collection index)\n";
         cout << "6. Trigger Invalid_Operation_Exception (Return non-existent seat)\n";
         cout << "7. Trigger Relation_Exception (Link to null hall)\n";
+        cout << "8. Test Keyboard Input Exceptions (Nested Menu)\n";
         cout << "0. Back to Main Menu\n";
 
         int choice = read_int("Choice: ");
@@ -129,6 +171,7 @@ void menu_sixth_lab(Ticket_system& system,
             case 5: demo_out_of_range(tickets); break;
             case 6: demo_invalid_operation(sessions); break;
             case 7: demo_relation(sessions); break;
+            case 8: menu_input_error_demo(); break;
             default: cout << "Invalid choice.\n"; break;
         }
         cout << "=> Program continues to work normally.\n";

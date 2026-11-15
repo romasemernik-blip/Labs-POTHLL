@@ -1,9 +1,3 @@
-#include "Function/Read/Header/Read.h"
-#include <iostream>
-#include "Exception/Header/Invalid_data_exception.h"
-#include <limits>
-
-using namespace std;
 
 #include "Function/Read/Header/Read.h"
 #include "Exception/Header/Invalid_data_exception.h"

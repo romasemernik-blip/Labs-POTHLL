@@ -130,17 +130,16 @@ static void menu_input_error_demo() {
             }
         }
         else if (choice == 2) {
-            try {
-                int month = read_int("Enter a month (1-12): ");
-                if (month < 1 || month > 12) {
-                    throw Invalid_Data_Exception("Month " + to_string(month) + " is out of range 1..12");
-                }
-                cout << "Success: valid month\n";
-            }
-            catch (const Invalid_Data_Exception& e) {
-                cout << "[CAUGHT] " << e.what() << "\n";
-            }
+    try {
+        if (int month = read_int("Enter a month (1-12): "); month < 1 || month > 12) {
+            throw Invalid_Data_Exception("Month " + to_string(month) + " is out of range 1..12");
         }
+        cout << "Success: valid month\n";
+    }
+    catch (const Invalid_Data_Exception& e) {
+        cout << "[CAUGHT] " << e.what() << "\n";
+    }
+}
     }
 }
 

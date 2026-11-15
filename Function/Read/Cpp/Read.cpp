@@ -1,4 +1,3 @@
-
 #include "Function/Read/Header/Read.h"
 #include "Exception/Header/Invalid_data_exception.h"
 #include <iostream>
@@ -6,6 +5,53 @@
 #include <limits>
 
 using namespace std;
+
+static int parse_int_strict(const string& input) {
+    if (input.empty()) {
+        throw Invalid_Data_Exception("Input cannot be empty");
+    }
+
+    size_t pos = 0;
+    int val = 0;
+    try {
+        val = stoi(input, &pos);
+    } 
+    catch (const invalid_argument&) {
+        throw Invalid_Data_Exception("Expected an integer, but got text");
+    } 
+    catch (const out_of_range&) {
+        throw Invalid_Data_Exception("Integer is out of allowed range");
+    }
+    if (pos != input.length()) {
+        throw Invalid_Data_Exception("Input '" + input + "' contains invalid characters after number");
+    }
+
+    return val;
+}
+
+static float parse_float_strict(const string& input) {
+    if (input.empty()) {
+        throw Invalid_Data_Exception("Input cannot be empty");
+    }
+
+    size_t pos = 0;
+    float val = 0.0f;
+    try {
+        val = stof(input, &pos);
+    } 
+    catch (const invalid_argument&) {
+        throw Invalid_Data_Exception("Expected a number, but got text");
+    } 
+    catch (const out_of_range&) {
+        throw Invalid_Data_Exception("Number is out of allowed range");
+    }
+
+    if (pos != input.length()) {
+        throw Invalid_Data_Exception("Input '" + input + "' contains invalid characters after number");
+    }
+
+    return val;
+}
 
 int read_int(const string& info) {
     while (true) {
@@ -15,26 +61,7 @@ int read_int(const string& info) {
             if (!getline(cin >> ws, input)) {
                 throw Invalid_Data_Exception("End of input reached");
             }
-            if (input.empty()) {
-                throw Invalid_Data_Exception("Input cannot be empty");
-            }
-
-            size_t pos = 0;
-            int val = 0;
-            try {
-                val = stoi(input, &pos);
-            } 
-            catch (const invalid_argument&) {
-                throw Invalid_Data_Exception("Expected an integer, but got text");
-            } 
-            catch (const out_of_range&) {
-                throw Invalid_Data_Exception("Integer is out of allowed range");
-            }
-            if (pos != input.length()) {
-                throw Invalid_Data_Exception("Input '" + input + "' contains invalid characters after number");
-            }
-
-            return val;
+            return parse_int_strict(input);
         }
         catch (const Invalid_Data_Exception& e) {
             cout << "[RETRY] " << e.what() << " - try again.\n";
@@ -50,27 +77,7 @@ float read_float(const string& info) {
             if (!getline(cin >> ws, input)) {
                 throw Invalid_Data_Exception("End of input reached");
             }
-            if (input.empty()) {
-                throw Invalid_Data_Exception("Input cannot be empty");
-            }
-
-            size_t pos = 0;
-            float val = 0.0f;
-            try {
-                val = stof(input, &pos);
-            } 
-            catch (const invalid_argument&) {
-                throw Invalid_Data_Exception("Expected a number, but got text");
-            } 
-            catch (const out_of_range&) {
-                throw Invalid_Data_Exception("Number is out of allowed range");
-            }
-
-            if (pos != input.length()) {
-                throw Invalid_Data_Exception("Input '" + input + "' contains invalid characters after number");
-            }
-
-            return val;
+            return parse_float_strict(input);
         }
         catch (const Invalid_Data_Exception& e) {
             cout << "[RETRY] " << e.what() << " - try again.\n";
@@ -78,11 +85,9 @@ float read_float(const string& info) {
     }
 }
 
-
-
 string read_string(const string& info) {
-  cout << info;
-  string s;
-  if (!std::getline(cin >> std::ws, s)) s.clear();
-  return s;
+    cout << info;
+    string s;
+    if (!std::getline(cin >> std::ws, s)) s.clear();
+    return s;
 }

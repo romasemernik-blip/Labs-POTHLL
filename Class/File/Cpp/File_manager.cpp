@@ -101,7 +101,7 @@ static void load_sessions(ifstream& in, Collection<shared_ptr<Session>>& session
     sessions.add(make_shared<Session>(film, t, dt, halls.at(hall_idx)));
 }
 
-static shared_ptr<Ticket> create_ticket_from_file(ifstream& in, const string& type, 
+static shared_ptr<Ticket> create_ticket_from_file(ifstream& in, const string_view& type, 
                                                   int row, int place, float price, 
                                                   shared_ptr<Session> session) {
     string tag;

@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <memory>
+#include <string_view>
 #include "Template/Collection.h"
 
 class Hall;

@@ -15,6 +15,9 @@
 #include <iomanip>
 #include <iostream>
 #include <ctime>
+#include <array>    
+#include <chrono>   
+#include <iomanip>  
 
 using namespace std;
 
@@ -66,7 +69,9 @@ static void save_tickets(ofstream& out, const Ticket_system& system) {
 }
 
 static void load_halls(ifstream& in, Collection<shared_ptr<Hall>>& halls) {
-    int num, seats; string name;
+    int num;
+    int seats;  
+    string name;
     in >> num >> seats >> quoted(name);
     if (in.fail()) throw Invalid_Data_Exception("Corrupted HALL data");
 
@@ -77,7 +82,14 @@ static void load_halls(ifstream& in, Collection<shared_ptr<Hall>>& halls) {
 }
 
 static void load_sessions(ifstream& in, Collection<shared_ptr<Session>>& sessions, const Collection<shared_ptr<Hall>>& halls) {
-    string film; int h, m, y, mo, d, hall_num;
+    string film; 
+    int h;
+    int m;
+    int y;
+    int mo;
+    int d;
+    int hall_num;
+
     in >> quoted(film) >> h >> m >> y >> mo >> d >> hall_num;
     if (in.fail()) throw Invalid_Data_Exception("Corrupted SESSION data");
 
@@ -89,7 +101,7 @@ static void load_sessions(ifstream& in, Collection<shared_ptr<Session>>& session
     sessions.add(make_shared<Session>(film, t, dt, halls.at(hall_idx)));
 }
 
-static shared_ptr<Ticket> create_ticket_from_file(ifstream& in, const string& type, 
+static shared_ptr<Ticket> create_ticket_from_file(ifstream& in, string& type, 
                                                   int row, int place, float price, 
                                                   shared_ptr<Session> session) {
     string tag;
@@ -116,12 +128,21 @@ static shared_ptr<Ticket> create_ticket_from_file(ifstream& in, const string& ty
 }
 
 static void load_tickets(ifstream& in, Ticket_system& system, const Collection<shared_ptr<Session>>& sessions) {
-    string type; int row, place; float price;
-    string film; int y, mo, d, h, m, hall_num;
+    string type;
+    int row;
+    int place;  
+    float price;
+    string film; 
+    int h;
+    int m;
+    int y;
+    int mo;
+    int d;
+    int hall_num;
     in >> type >> row >> place >> price >> quoted(film) >> y >> mo >> d >> h >> m >> hall_num;
     if (in.fail()) throw Invalid_Data_Exception("Corrupted TICKET data");
 
-    int sess_idx = sessions.find_if([&](const auto& s){
+    int sess_idx = sessions.find_if([film, y, mo, d, h, m, hall_num](const auto& s){
         return s->get_film() == film && s->get_date()->year == y && 
                s->get_date()->month == mo && s->get_date()->day == d &&
                s->get_time_start()->hour == h && s->get_time_start()->minute == m &&
@@ -185,13 +206,16 @@ void File_Manager::load_system(const string& filename,
 void File_Manager::log_action(const string& message) {
     ofstream log("system_log.txt", ios::app);
     if (!log.is_open()) return;
+    auto now = chrono::system_clock::now();
+    time_t now_time = chrono::system_clock::to_time_t(now);
+    tm timeinfo{};
+#ifdef _WIN32
+    localtime_s(&timeinfo, &now_time);
+#else
+    localtime_r(&now_time, &timeinfo);
+#endif
 
-    time_t now = time(0);
-    struct tm* timeinfo = localtime(&now);
-    char buffer[80];
-    strftime(buffer, 80, "%Y-%m-%d %H:%M:%S", timeinfo);
-    
-    log << "[" << buffer << "] " << message << "\n";
+    log << "[" << put_time(&timeinfo, "%Y-%m-%d %H:%M:%S") << "] " << message << "\n";
 }
 
 void File_Manager::generate_report(const string& filename,

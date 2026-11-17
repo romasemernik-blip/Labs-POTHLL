@@ -161,11 +161,7 @@ void menu_seventh_lab(Ticket_system& system,
                     cout << "Invalid choice.\n";
             }
         }
-        catch (const Cinema_Exception& e) {
+       catch (const Cinema_Exception& e) {
             cout << "[ERROR] " << e.what() << "\n";
-        }
-        catch (const std::exception& e) {
-            cout << "[STD ERROR] " << e.what() << "\n";
-        }
     }
 }

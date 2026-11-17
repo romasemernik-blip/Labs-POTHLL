@@ -23,6 +23,7 @@
 #include "Template/Collection.h"
 #include "Exception/Header/All_exceptions.h"
 #include "Function/Menu/Header/Sixth_lab_menu.h"
+#include "Function/Menu/Header/Seventh_lab_menu.h"
 #include<Define_const.h>
 
 using namespace std;
@@ -74,6 +75,11 @@ int main() {
   sessions.add(session3);
 
   system += ticket1;
+  system += ticket2;
+  system += ticket3;
+  system += ticket4;
+  system += ticket5;
+
   }
   catch (const Cinema_Exception& e) {
     cout << "Initialization failed: " << e.what() << "\n";
@@ -91,6 +97,7 @@ int main() {
     cout << "6. For third/fourth lab\n"; 
     cout << "7. For fifth lab (Templates)\n";
     cout << "8. For sixth lab (Exceptions Demo)\n";
+    cout << "9. For seventh lab (File I/O)\n";
     cout << "67. Exit\n";
 
     int choice = read_int("Choice: ");
@@ -104,6 +111,7 @@ int main() {
           case 6: menu_third_lab(sessions, tickets, system); break;
           case 7: menu_fifth_lab(tickets, sessions); break;
           case 8: menu_sixth_lab(system, sessions, tickets, halls); break;
+          case 9: menu_seventh_lab(system, halls, sessions); break;
           case EXIT_NUMBER: return 0;
           default: cout << "Invalid choice.\n"; break;
       }

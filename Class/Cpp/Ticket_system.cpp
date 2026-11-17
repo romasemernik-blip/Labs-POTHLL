@@ -140,3 +140,11 @@ bool Ticket_system::contains(const Ticket& ticket) const {
   return std::any_of(reservation.begin(), reservation.end(), matches)
       || std::any_of(particle.begin(),    particle.end(),    matches);
 }
+
+const Collection<std::shared_ptr<Ticket>>& Ticket_system::get_reservation() const { return reservation; }
+const Collection<std::unique_ptr<Ticket>>& Ticket_system::get_particle() const { return particle; }
+
+void Ticket_system::clear_all() {
+      reservation.clear();
+      particle.clear();
+  }

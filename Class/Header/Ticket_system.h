@@ -29,9 +29,12 @@ class Ticket_system {
   Ticket_system& operator+=(const std::shared_ptr<Ticket>& ticket_sh);
   Ticket_system& operator+=(std::unique_ptr<Ticket> ticket_un);
 
+  const Collection<std::shared_ptr<Ticket>>& get_reservation() const; 
+  const Collection<std::unique_ptr<Ticket>>& get_particle() const; 
 
   Ticket_system& operator-=(const Ticket& ticket);
   Ticket_system& operator-=(const std::shared_ptr<Ticket>& ticket_sh);
   
   bool contains(const Ticket& ticket) const;
+  void clear_all();
 };

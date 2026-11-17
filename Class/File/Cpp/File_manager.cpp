@@ -101,26 +101,36 @@ static void load_sessions(ifstream& in, Collection<shared_ptr<Session>>& session
     sessions.add(make_shared<Session>(film, t, dt, halls.at(hall_idx)));
 }
 
-static shared_ptr<Ticket> create_ticket_from_file(ifstream& in, string& type, 
+static shared_ptr<Ticket> create_ticket_from_file(ifstream& in, const string& type, 
                                                   int row, int place, float price, 
                                                   shared_ptr<Session> session) {
     string tag;
     shared_ptr<Ticket> t;
 
     if (type == "Standard") {
-        string zone; in >> tag >> quoted(zone);
+        string zone;
+         in >> tag >> quoted(zone);
         t = make_shared<Standard_ticket>(row, place, price, session, zone);
     } else if (type == "VIP") {
-        bool lounge, drinks; in >> tag >> lounge >> tag >> drinks;
+        bool lounge;
+        bool drinks;
+         in >> tag >> lounge >> tag >> drinks;
         t = make_shared<Vip_ticket>(row, place, price, session, lounge, drinks);
     } else if (type == "Discount") {
-        int disc; string holder; in >> tag >> disc >> tag >> quoted(holder);
+        int disc; 
+        string holder;
+         in >> tag >> disc >> tag >> quoted(holder);
         t = make_shared<Discount_ticket>(row, place, price, session, disc, holder);
     } else if (type == "Kids") {
-        string child; int age; in >> tag >> quoted(child) >> tag >> age;
+        string child; 
+        int age;
+         in >> tag >> quoted(child) >> tag >> age;
         t = make_shared<Kids_ticket>(row, place, price, session, child, age);
     } else if (type == "Couple") {
-        string p1, p2; int second; in >> tag >> quoted(p1) >> tag >> quoted(p2) >> tag >> second;
+        string p1; 
+        string p2;
+         int second;
+          in >> tag >> quoted(p1) >> tag >> quoted(p2) >> tag >> second;
         t = make_shared<Couple_ticket>(row, place, price, session, p1, p2, second);
     }
 

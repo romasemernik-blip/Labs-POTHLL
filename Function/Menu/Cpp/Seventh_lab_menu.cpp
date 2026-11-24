@@ -165,3 +165,4 @@ void menu_seventh_lab(Ticket_system& system,
             cout << "[ERROR] " << e.what() << "\n";
     }
 }
+                      }

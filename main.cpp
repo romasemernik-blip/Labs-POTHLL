@@ -159,4 +159,5 @@ int main() {
         File_Manager::log_action("ERROR: Unknown exception caught");
     }                       { cout << "[UNKNOWN ERROR]\n"; }
 }
+return 0;
 }

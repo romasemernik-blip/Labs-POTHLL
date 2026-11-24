@@ -161,13 +161,21 @@ void menu_seventh_lab(Ticket_system& system,
                     cout << "Invalid choice.\n";
             }
         }
-        catch (const Cinema_Exception& e) {
-            cout << "[ERROR] " << e.what() << "\n";
-            File_Manager::log_action(string("LAB7 ERROR: ") + e.what()); 
+       catch (const Invalid_Data_Exception& e) {
+            cout << "[DATA ERROR] " << e.what() << "\n";
+            File_Manager::log_action(string("LAB7 DATA ERROR: ") + e.what());
         }
-        catch (const std::exception& e) {
-            cout << "[STD ERROR] " << e.what() << "\n";
-            File_Manager::log_action(string("LAB7 STD ERROR: ") + e.what()); 
+        catch (const Duplicate_Id_Exception& e) {
+            cout << "[DUPLICATE] " << e.what() << "\n";
+            File_Manager::log_action(string("LAB7 DUPLICATE: ") + e.what());
+        }
+        catch (const Relation_Exception& e) {
+            cout << "[RELATION] " << e.what() << "\n";
+            File_Manager::log_action(string("LAB7 RELATION: ") + e.what());
+        }
+        catch (const Out_Of_Range_Exception& e) {
+            cout << "[RANGE] " << e.what() << "\n";
+            File_Manager::log_action(string("LAB7 RANGE: ") + e.what());
         }
 }
                       }

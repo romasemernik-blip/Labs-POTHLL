@@ -170,7 +170,9 @@ void File_Manager::save_system(const string& filename,
                                const Ticket_system& system) {
     ofstream out(filename);
     if (!out.is_open()) {
-        throw Invalid_Data_Exception("Cannot open file for writing: " + filename);
+        string err = "Cannot open file for writing: " + filename;
+        log_action("FILE ERROR: " + err); 
+        throw Invalid_Data_Exception(err);
     }
 
     try {
@@ -179,7 +181,9 @@ void File_Manager::save_system(const string& filename,
         save_tickets(out, system);
     }
     catch (const exception& e) {
-        throw Invalid_Data_Exception(string("Write error: ") + e.what());
+        string err = string("Write error: ") + e.what();
+        log_action("FILE ERROR: " + err); 
+        throw Invalid_Data_Exception(err);
     }
 }
 
@@ -189,9 +193,10 @@ void File_Manager::load_system(const string& filename,
                                Ticket_system& system) {
     ifstream in(filename);
     if (!in.is_open()) {
-        throw Invalid_Data_Exception("Cannot open file for reading: " + filename);
+        string err = "Cannot open file for reading: " + filename;
+        log_action("FILE ERROR: " + err); 
+        throw Invalid_Data_Exception(err);
     }
-
     halls.clear();
     sessions.clear();
     system.clear_all();
@@ -208,7 +213,9 @@ void File_Manager::load_system(const string& filename,
             }
         }
         catch (const Cinema_Exception& e) {
-            throw Invalid_Data_Exception(string("Error loading data: ") + e.what());
+            string err = string("Error loading data: ") + e.what();
+            log_action("FILE ERROR: " + err); 
+            throw Invalid_Data_Exception(err);
         }
     }
 }
@@ -233,7 +240,11 @@ void File_Manager::generate_report(const string& filename,
                                    const Collection<shared_ptr<Session>>& sessions,
                                    const Ticket_system& system) {
     ofstream out(filename);
-    if (!out.is_open()) throw Invalid_Data_Exception("Cannot open file for report");
+    if (!out.is_open()) {
+        string err = "Cannot open file for report: " + filename;
+        log_action("FILE ERROR: " + err);
+        throw Invalid_Data_Exception(err);
+    }
 
     out << "SYSTEM REPORT\n\n";
     out << "HALLS\n";

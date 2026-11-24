@@ -24,6 +24,7 @@
 #include "Exception/Header/All_exceptions.h"
 #include "Function/Menu/Header/Sixth_lab_menu.h"
 #include "Function/Menu/Header/Seventh_lab_menu.h"
+#include "Class/File/Header/File_manager.h"
 #include<Define_const.h>
 
 using namespace std;
@@ -34,6 +35,7 @@ int main() {
     Collection<shared_ptr<Hall>> halls;
     Collection<shared_ptr<Session>> sessions;
     Ticket_system system;
+    File_Manager::log_action("PROGRAM STARTED");
 
   try {
   auto hall1 = make_shared<Hall>(1, 10, "Moon");
@@ -112,19 +114,49 @@ int main() {
           case 7: menu_fifth_lab(tickets, sessions); break;
           case 8: menu_sixth_lab(system, sessions, tickets, halls); break;
           case 9: menu_seventh_lab(system, halls, sessions); break;
-          case EXIT_NUMBER: return 0;
+          case EXIT_NUMBER:  File_Manager::log_action("PROGRAM EXITED NORMALLY"); return 0;
           default: cout << "Invalid choice.\n"; break;
       }
     }
-    catch (const Duplicate_Id_Exception& e)      { cout << "[SEAT BUSY] " << e.what() << "\n"; }
-    catch (const Object_Not_Found_Exception& e)  { cout << "[NOT FOUND] " << e.what() << "\n"; }
-    catch (const Limit_Exceeded_Exception& e)    { cout << "[LIMIT] " << e.what() << "\n"; }
-    catch (const Out_Of_Range_Exception& e)      { cout << "[RANGE] " << e.what() << "\n"; }
-    catch (const Invalid_Operation_Exception& e) { cout << "[BAD OP] " << e.what() << "\n"; }
-    catch (const Relation_Exception& e)          { cout << "[RELATION] " << e.what() << "\n"; }
-    catch (const Invalid_Data_Exception& e)      { cout << "[DATA] " << e.what() << "\n"; }
-    catch (const Cinema_Exception& e)            { cout << "[ERROR] " << e.what() << "\n"; }
-    catch (const std::exception& e)              { cout << "[STD] " << e.what() << "\n"; }
-    catch (...)                                  { cout << "[UNKNOWN ERROR]\n"; }
+    catch (const Duplicate_Id_Exception& e)      { 
+        cout << "[SEAT BUSY] " << e.what() << "\n"; 
+        File_Manager::log_action(string("ERROR: Duplicate_Id_Exception - ") + e.what());
+    }
+    catch (const Object_Not_Found_Exception& e)  { 
+        cout << "[NOT FOUND] " << e.what() << "\n"; 
+        File_Manager::log_action(string("ERROR: Object_Not_Found_Exception - ") + e.what());
+    }
+    catch (const Limit_Exceeded_Exception& e)    { 
+        cout << "[LIMIT] " << e.what() << "\n"; 
+        File_Manager::log_action(string("ERROR: Limit_Exceeded_Exception - ") + e.what());
+    }
+    catch (const Out_Of_Range_Exception& e)      { 
+        cout << "[RANGE] " << e.what() << "\n"; 
+        File_Manager::log_action(string("ERROR: Out_Of_Range_Exception - ") + e.what());
+    }
+    catch (const Invalid_Operation_Exception& e) { 
+        cout << "[BAD OP] " << e.what() << "\n"; 
+        File_Manager::log_action(string("ERROR: Invalid_Operation_Exception - ") + e.what());
+    }
+    catch (const Relation_Exception& e)          { 
+        cout << "[RELATION] " << e.what() << "\n"; 
+        File_Manager::log_action(string("ERROR: Relation_Exception - ") + e.what());
+    }
+    catch (const Invalid_Data_Exception& e)      { 
+        cout << "[DATA] " << e.what() << "\n"; 
+        File_Manager::log_action(string("ERROR: Invalid_Data_Exception - ") + e.what());
+    }
+    catch (const Cinema_Exception& e)            { 
+        cout << "[ERROR] " << e.what() << "\n"; 
+        File_Manager::log_action(string("ERROR: Cinema_Exception - ") + e.what());
+    }
+    catch (const std::exception& e)              { 
+        cout << "[STD] " << e.what() << "\n"; 
+        File_Manager::log_action(string("ERROR: std::exception - ") + e.what());
+    }
+    catch (...)                                  { 
+        cout << "[UNKNOWN ERROR]\n"; 
+        File_Manager::log_action("ERROR: Unknown exception caught");
+    }                       { cout << "[UNKNOWN ERROR]\n"; }
 }
 }
